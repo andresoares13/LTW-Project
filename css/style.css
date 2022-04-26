@@ -1,0 +1,82 @@
+html{
+  background-color: #8C2D19;
+}
+
+body{
+  width: 60em;
+  margin: 1em auto;
+  --main-color: black;
+}
+
+body>header{
+  display: flex;
+  padding: 1em;
+}
+
+body>header>h1{
+  flex-grow: 1;
+  font-size: 2em;
+}
+
+body>header>h1 a{
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+body>header>h1 a:hover{
+  font-size: 120%;
+}
+
+body>header>form{
+  display: grid;
+}
+
+body > header form.login {
+  grid-template-columns: auto auto;
+  gap: 1em;
+}
+
+body > header form.login input {
+  grid-column-end: span 2;
+}
+
+body > header form a {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+main {
+  margin: 1em 0;
+  padding: 1em;
+}
+
+
+main a {
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+#restaurants {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1em;
+}
+
+#restaurants article * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+#restaurants article a {
+  color: white;
+  text-decoration: none;
+  text-shadow: 2px 2px #333;
+
+  font-size: 1.5em;
+
+  align-self: center;
+  justify-self: center;
+
+  text-align: center;
+}
