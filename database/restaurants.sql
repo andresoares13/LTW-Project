@@ -22,6 +22,7 @@ CREATE TABLE restaurants (
   name VARCHAR NOT NULL,
   adress VARCHAR NOT NULL,
   category VARCHAR NOT NULL,
+  photo STRING DEFAULT "default.jpg",
   owner INTEGER NOT NULL REFERENCES restaurantOwner(id) ON DELETE CASCADE                    
 );
 
