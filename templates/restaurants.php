@@ -5,21 +5,20 @@
   <section id="restaurants">
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
-        <img src="https://picsum.photos/200?<?=$restaurant['id']?>">
-        <a href="restaurant.php?id=1"><?=$restaurant['name']?></a>
+        <img src="pictures/<?=$restaurant['photo']?>">
+        <a href="restaurant.php?id=<?=$restaurant['id']?>"><?=$restaurant['name']?></a>
       </article>
     <?php } ?>
   </section>
 <?php } ?>
 
 <?php function drawRestaurant(string $restaurantName, array $restaurants) { ?>
-  <h2><?=$artistName?></h2>
+  <h2><?=$restaurantName?></h2>
   <section id="menu">
-    <?php foreach ($restaurants as $restaurant) { ?>
+    <?php foreach ($restaurants as $menu) { ?>
     <article>
       <img src="https://picsum.photos/200?<?=$menu['id']?>">
-      <a href="menu.php?id=1"><?=$menu['name']?>Menu Name</a>
-      <p class="info"><?=$menu['dish']?> dishes <?=$menu['id']?></p>
+      <a href="menu.php?id=<?=$menu['id']?>"><?=$menu['name']?></a>
     </article>
     <?php } ?>
   </section>
