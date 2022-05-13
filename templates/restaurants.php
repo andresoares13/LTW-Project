@@ -12,10 +12,10 @@
   </section>
 <?php } ?>
 
-<?php function drawRestaurant(string $restaurantName, array $restaurants) { ?>
-  <h2><?=$restaurantName?></h2>
+<?php function drawRestaurant(Restaurant $restaurant, array $menus) { ?>
+  <h2><?=$restaurant->name?></h2>
   <section id="menu">
-    <?php foreach ($restaurants as $menu) { ?>
+    <?php foreach ($menus as $menu) { ?>
     <article>
       <img src="https://picsum.photos/200?<?=$menu['id']?>">
       <a href="menu.php?id=<?=$menu['id']?>"><?=$menu['name']?></a>

@@ -22,8 +22,8 @@ INSERT INTO menu(id,name,restaurant) VALUES (5,'massas',3);
 
 INSERT INTO menu(id,name,restaurant) VALUES (6,'pizzas',3);
 
-INSERT INTO dish(id,name,price,category,menu) VALUES (1,'massa com atum',5,'massa',1);
+INSERT INTO menu_item(id,name,price,category,menu) VALUES (1,'massa com atum',5,'massa',1);
 
-INSERT INTO dish(id,name,price,category,menu) VALUES (2,'massa com carne',6,'massa',1);
+INSERT INTO menu_item(id,name,price,category,menu) VALUES (2,'massa com carne',6,'massa',1);
 
 
