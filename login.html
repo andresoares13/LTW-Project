@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="css/style_login.css">
+    </head>
+    <body>
+        <div class="login1">
+            <div class="formul">
+                <div class="button_rectangle">
+                    <div id="log"></div>
+                    <button type="button" class="button_log" onclick="login2()">Login</button>
+                    <button type="button" class="button_log" onclick="register1()">Register</button>
+                </div>
+                <form id="login2" class="inputs">
+                    <input type="text" class="words" placeholder="Enter User Id" required>
+                    <input type="password" class="words" placeholder="Enter Password" required>
+                    <input type="checkbox" class="check"><span>Remember Password?</span>
+                    <button type="submit" class="sub">Register</button>
+                </form>
+                <form id="register1" class="inputs">
+                    <input type="text" class="words" placeholder="Enter User Id" required>
+                    <input type="text" class="words" placeholder="Enter Email" required>
+                    <input type="password" class="words" placeholder="Enter Password" required>
+                    <input type="checkbox" class="check"><span>I agree to the Terms & Conditions</span>
+                    <button type="submit" class="sub">Login</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            var x = document.getElementById("login2");
+            var y = document.getElementById("register1");
+            var z = document.getElementById("log");
+
+            function register1() {
+                x.style.left = "-450px";
+                y.style.left = "70px";
+                z.style.left = "90px";
+            }
+
+            function login2() {
+                x.style.left = "70px";
+                y.style.left = "500px";
+                z.style.left = "0px";
+            }
+        </script>
+    </body>
+</html>

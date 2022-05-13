@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;
+}
+
+.login1 {
+    height: 100%;
+    width: 100%;
+    background-image: url("../pictures/server.jpg");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+}
+
+.formul {
+    width: 450px;
+    height: 500px;
+    position: relative;
+    margin: 7% auto;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    overflow: hidden;
+}
+
+.button_rectangle {
+    width: 200px;
+    margin: 30px auto;
+    position: relative;
+    box-shadow: 0 0 15px 7px #8C2D19;
+    border-radius: 25px;
+}
+
+.button_log {
+    padding: 10px 27px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+#log {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right, #8c2d19, #8c2d88);
+    border-radius: 35px;
+    transition: 0.5s;
+}
+
+.inputs {
+    top: 200px;
+    position: absolute;
+    width: 250px;
+    transition: 0.5s;
+}
+
+.words {
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #8C2D19;
+    outline: none;
+    background: transparent;
+}
+
+.check {
+    margin: 35px 12px 35px 0;
+}
+
+.sub {
+    width: 90%;
+    padding: 10px 35px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #8c2d19, #8c2d88);
+    border: 0;
+    outline: none;
+    border-radius: 25px;
+}
+
+.sub:hover {
+    opacity: 1;
+    background: #cccc;
+    border-radius: 35px;
+    box-shadow: 0 0 15px 7px #cccc;
+    transition: 0.5s;
+}
+
+span {
+    color: #999;
+    font-size: 13px;
+    bottom: 70px;
+    position: absolute;
+}
+
+#login2 {
+    left: 50px;
+}
+
+#register1 {
+    left: 600px;
+}
