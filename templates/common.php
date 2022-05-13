@@ -11,7 +11,8 @@
   <body>
     <header>
       <h1><a href="/">Restaurant helper</a></h1>
-      <?php drawLoginForm() ?>
+      <?php if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);
+        else drawLoginForm(); ?>
     </header>
     <main>
 <?php } ?>
@@ -28,9 +29,16 @@
 
 <?php function drawLoginForm() { ?>
   <form action="action_login.php" method="post" class="login">
-    <input type="text" name="username" placeholder="username">
+    <input type="email" name="email" placeholder="email">
     <input type="password" name="password" placeholder="password">
     <a href="register.php">Register</a>
     <button type="submit">Login</button>
+  </form>
+<?php } ?>
+
+<?php function drawLogoutForm(string $name) { ?>
+  <form action="action_logout.php" method="post" class="logout">
+    <?=$name?>
+    <button type="submit">Logout</button>
   </form>
 <?php } ?>

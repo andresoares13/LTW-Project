@@ -10,8 +10,10 @@ CREATE TABLE users (
   userId INTEGER PRIMARY KEY,
   username VARCHAR NOT NULL UNIQUE,      
   password VARCHAR NOT NULL,                  
-  name     VARCHAR NOT NULL,
+  Fname     VARCHAR NOT NULL,
+  Lname    VARCHAR NOT NULL,
   adress   VARCHAR NOT NULL,
+  email    VARCHAR NOT NULL,
   phone    VARCHAR UNIQUE                 
 );
 
