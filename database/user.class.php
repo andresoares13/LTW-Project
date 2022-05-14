@@ -24,6 +24,15 @@
     function name() {
       return $this->firstName . ' ' . $this->lastName;
     }
+
+    function save($db) {
+      $stmt = $db->prepare('
+        UPDATE users SET Fname = ?, Lname = ?
+        WHERE userId = ?
+      ');
+
+      $stmt->execute(array($this->firstName, $this->lastName, $this->id));
+    }
     
     static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
       $stmt = $db->prepare('
@@ -44,10 +53,28 @@
           $user['email'],
           $user['phone']
         );
-      }
-
-      return null;
+      }else return null;
     }
 
+    static function getUser(PDO $db, int $id) : User {
+      $stmt = $db->prepare('
+      SELECT userId, username,Fname, Lname, adress,email, phone
+      FROM users
+      WHERE userId = ?
+      ');
+
+      $stmt->execute(array($id));
+      $user = $stmt->fetch();
+      
+      return new User(
+        (int)$user['userId'],
+        $user['username'],      
+        $user['Fname'],
+        $user['Lname'],
+        $user['adress'],
+        $user['email'],
+        $user['phone']
+      );
+    }
   }
 ?>

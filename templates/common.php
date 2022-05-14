@@ -38,7 +38,7 @@
 
 <?php function drawLogoutForm(string $name) { ?>
   <form action="action_logout.php" method="post" class="logout">
-    <?=$name?>
+  <a href="profile.php"><?=$name?></a>
     <button type="submit">Logout</button>
   </form>
 <?php } ?>
