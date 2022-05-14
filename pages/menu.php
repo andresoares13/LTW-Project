@@ -3,14 +3,14 @@
 
   session_start();
 
-  require_once('database/connection.php');
+  require_once('../database/connection.php');
 
-  require_once('database/restaurant.class.php');
-  require_once('database/menu.class.php');
-  require_once('database/menu_item.class.php');
+  require_once('../database/restaurant.class.php');
+  require_once('../database/menu.class.php');
+  require_once('../database/menu_item.class.php');
 
-  require_once('templates/common.php');
-  require_once('templates/menus.php');
+  require_once('../templates/common.php');
+  require_once('../templates/menus.php');
 
   $db = getDatabaseConnection();
   $menu = Menu::getMenu($db, intval($_GET['id']));

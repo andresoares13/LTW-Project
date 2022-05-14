@@ -3,8 +3,8 @@
 
   session_start();
 
-  require_once('database/connection.php');
-  require_once('database/user.class.php');
+  require_once('../database/connection.php');
+  require_once('../database/user.class.php');
 
   $db = getDatabaseConnection();
   
@@ -14,7 +14,10 @@
   if ($user) {
     $_SESSION['id'] = $user->id;
     $_SESSION['name'] = $user->name();
+    header('Location: ../pages/main.php');
+  }
+  else{
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
   }
 
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

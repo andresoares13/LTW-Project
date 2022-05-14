@@ -30,5 +30,22 @@
           $restaurant['name']
         );
     }
+
+  
+
+    static function searchRestaurants(PDO $db, string $search, int $count) : array {
+      $stmt = $db->prepare('SELECT id, name FROM restaurants WHERE name LIKE ? LIMIT ?');
+      $stmt->execute(array($search . '%', $count));
+      $restaurants = array();
+      while ($restaurant = $stmt->fetch()) {
+        $restaurants[] = new Restaurant(
+          $restaurant['id'],
+          $restaurant['name']
+        );
+      }
+      
+  
+      return $restaurants;
+    }
   }
 ?>

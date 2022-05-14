@@ -6,6 +6,11 @@ body{
   width: 60em;
   margin: 1em auto;
   --main-color: black;
+  max-width: 100vw;
+}
+
+body > * {
+  margin: 0 1em;
 }
 
 body>header{
@@ -46,7 +51,7 @@ body > header form a {
 }
 
 main {
-  margin: 1em 0;
+  margin: 1em;
   padding: 1em;
 }
 
@@ -54,6 +59,18 @@ main {
 main a {
   color: var(--main-color);
   text-decoration: none;
+}
+
+main > header {
+  display: flex;
+}
+
+main > header h2 {
+  flex-grow: 1;
+}
+
+main > header input {
+  align-self: center;
 }
 
 #restaurants {
@@ -79,4 +96,27 @@ main a {
   justify-self: center;
 
   text-align: center;
+}
+
+form.profile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+  max-width: 20em;
+}
+
+form.profile button {
+  grid-column-start: 2;
+}
+
+footer {
+  background-color: black;
+  padding: 1em;
+  color: white;
+}
+
+@media only screen and (max-width: 540px) {
+  #albums article {
+    grid-template-columns: auto;
+  }
 }

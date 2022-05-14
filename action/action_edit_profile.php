@@ -5,8 +5,8 @@
 
   if (!isset($_SESSION['id'])) die(header('Location: /'));
 
-  require_once('database/connection.php');
-  require_once('database/user.class.php');
+  require_once('../database/connection.php');
+  require_once('../database/user.class.php');
 
   $db = getDatabaseConnection();
 
@@ -19,5 +19,5 @@
     $user->save($db);
   }
 
-  header('Location: profile.php');
+  header('Location: ../pages/profile.php');
 ?>
