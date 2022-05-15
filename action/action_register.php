@@ -34,6 +34,11 @@
     $_SESSION['ERROR'] = 'Passwords dont match';
     header("Location:".$_SERVER['HTTP_REFERER']."");
   }
+
+  else if (!(preg_match( "/^[A-Za-z0-9_]{3,20}$/", $_POST['username'] ))){
+    $_SESSION['ERROR'] = 'username cannot contain special characters';
+    header("Location:".$_SERVER['HTTP_REFERER']."");
+  }
   
   else if ((User::createUser($db, $_POST['username'], $_POST['password'], $_POST['first_name'],$_POST['last_name'], $_POST['email'],$_POST['check'])) != -1) {
     echo 'User Registered successfully';

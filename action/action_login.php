@@ -9,11 +9,19 @@
   $db = getDatabaseConnection();
   
 
-  $user = User::getUserWithPassword($db, $_POST['email'], $_POST['password']);
+  $user = User::getUserWithPassword($db, $_POST['email/username'], $_POST['password']);
 
   if ($user) {
     $_SESSION['id'] = $user->id;
     $_SESSION['name'] = $user->name();
+    
+    if ($user->owner){
+      $_SESSION['usertype'] = 'Restaurant Owner';
+      
+    }
+    else{
+      $_SESSION['usertype'] = 'Customer';
+    }
     header('Location: ../pages/main.php');
   }
   else{

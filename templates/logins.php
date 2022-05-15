@@ -21,7 +21,7 @@
                 <div class="register_content">
                     <h1>Login</h1>
                     <form action="../action/action_login.php" method="post" class="login">
-                        <input type="email" name="email" placeholder="email" required="required">
+                        <input type="text" name="email/username" placeholder="email/username" required="required">
                         <input type="password" name="password" placeholder="password" required="required">
                         <button type="submit">Login</button>
                     </form>

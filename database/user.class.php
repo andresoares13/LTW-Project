@@ -9,8 +9,9 @@
     public string $adress;
     public string $email;
     public string $phone;
+    public bool $owner;
 
-    public function __construct(int $id, string $username, string $firstName, string $lastName, string $adress, string $email, string $phone)
+    public function __construct(int $id, string $username, string $firstName, string $lastName, string $adress, string $email, string $phone, bool $owner)
     {
       $this->id = $id;
       $this->username = $username;
@@ -19,6 +20,7 @@
       $this->adress = $adress;
       $this->email = $email;
       $this->phone = $phone;
+      $this->owner = $owner;
     }
 
     function name() {
@@ -35,15 +37,35 @@
     }
     
     static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
-      $stmt = $db->prepare('
+      $isEmail=false;
+      for ($i=0;$i<strlen($email);$i++){
+        if($email[$i]=='@'){
+          $isEmail=true;
+        }
+      }
+      if ($isEmail){
+        $stmt = $db->prepare('
         SELECT userId, username,Fname, Lname, adress,email, phone
         FROM users
         WHERE lower(email) = ? AND password = ?
-      ');
-      $realPass=hash('sha256',$password);
-      $stmt->execute(array(strtolower($email), $realPass));
+        ');
+        $realPass=hash('sha256',$password);
+        $stmt->execute(array(strtolower($email), $realPass));
+      }
+      else{
+        $stmt = $db->prepare('
+        SELECT userId, username,Fname, Lname, adress,email, phone
+        FROM users
+        WHERE username = ? AND password = ?
+        ');
+        $realPass=hash('sha256',$password);
+        $stmt->execute(array($email, $realPass));
+      }
       
+  
       if ($user = $stmt->fetch()) {
+        
+        $owner=User::isOwner($db,(int)$user['userId']);
         return new User(
           (int)$user['userId'],
           $user['username'],      
@@ -51,7 +73,8 @@
           $user['Lname'],
           $user['adress'],
           $user['email'],
-          $user['phone']
+          $user['phone'],
+          $owner
         );
       }else return null;
     }
@@ -65,7 +88,7 @@
 
       $stmt->execute(array($id));
       $user = $stmt->fetch();
-      
+      $owner=User::isOwner($db,(int)$user['userId']);
       return new User(
         (int)$user['userId'],
         $user['username'],      
@@ -73,7 +96,8 @@
         $user['Lname'],
         $user['adress'],
         $user['email'],
-        $user['phone']
+        $user['phone'],
+        $owner
       );
     }
 
@@ -94,6 +118,22 @@
         $stmt = $db->prepare('SELECT userId FROM users WHERE email = ?');
         $stmt->execute(array($email));
         return $stmt->fetch()  !== false;
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function isOwner(PDO $db, int $id) {
+      try {
+        $stmt = $db->prepare('SELECT user FROM restaurantOwner WHERE user = ?');
+        $stmt->execute(array($id));
+        if ($stmt->fetch()){
+          return true;
+        }
+        else{
+          return false;
+        }
       
       }catch(PDOException $e) {
         return true;

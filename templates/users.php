@@ -44,7 +44,7 @@
 
 
 <?php function drawProfile(User $user) { ?>
-<h2>Profile</h2>
+<h2>Profile  <?php echo $_SESSION['usertype'];?> </h2>
 <article>
   <ul>
     <li>Username: <?=$user->username ?></li>
