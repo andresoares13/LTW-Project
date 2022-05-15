@@ -15,7 +15,7 @@
   if ($user) {
     if (User::existsPhone($db,$_POST['phone'],$user->id)){
       $_SESSION['ERROR'] = 'Phone number already exists';
-      
+      header("Location:".$_SERVER['HTTP_REFERER']."");
     }
     else{
       $user->firstName = $_POST['first_name'];
@@ -26,9 +26,10 @@
       $_SESSION['id'] = $user->id;
       $_SESSION['name'] = $user->name();
       echo 'Profile information updated successfully';
+      header("Location:../pages/profile.php");
     }
     
     
   }
-  header("Location:".$_SERVER['HTTP_REFERER']."");
+  
 ?>

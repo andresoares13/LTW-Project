@@ -155,7 +155,7 @@
             }
           }
           else{
-            $stmt = $db->prepare('INSERT INTO customer(user,name) VALUES (:user,:name)');
+            $stmt = $db->prepare('INSERT INTO customer(id,name) VALUES (:user,:name)');
             $name= $firstname . ' ' . $lastname;
             $stmt->bindParam(':user', $id);
             $stmt->bindParam(':name',$name);
@@ -188,5 +188,20 @@
         return false;
       }
     }
+    function deleteUser(PDO $db,int $id) {
+      try {
+        $name='anonymous';
+        $stmt = $db->prepare('DELETE FROM users WHERE userId = ?');
+        $stmt->execute(array($id));
+        $stmt = $db->prepare('UPDATE customer SET name = ? WHERE id = ?');
+        $stmt->execute(array($name,$id));
+        return true;
+      }
+      catch(PDOException $e) {
+        return false;
+      }
+    }
   }
+
+
 ?>

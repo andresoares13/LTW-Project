@@ -15,17 +15,20 @@
   if ($user) {
     if ($_POST['password']!=$_POST['repeat']){
       $_SESSION['ERROR'] = 'Passwords dont match';
+      header("Location:".$_SERVER['HTTP_REFERER']."");
     }
     else if (!(4<=strlen($_POST['password'])&&strlen($_POST['password'])<=20)){
       $_SESSION['ERROR'] = 'Password must be between 4 and 20 characters';
+      header("Location:".$_SERVER['HTTP_REFERER']."");
     }
     else if (User::updatePassword($db,$user->id,$_POST['password'])){
-
+      header("Location:../pages/login.php");
     }
     else{
       $_SESSION['ERROR'] = 'ERROR';
+      header("Location:".$_SERVER['HTTP_REFERER']."");
     }
   }
 
-  header("Location:".$_SERVER['HTTP_REFERER']."");
+  
 ?>

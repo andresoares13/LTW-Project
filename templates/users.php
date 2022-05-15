@@ -57,4 +57,18 @@
 <p>
   <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a>
 </p>
+<p>
+  <input onclick="openDialog('Delete Account')" type="submit" value="Delete Account">
+  <div id="delete" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to delete your account forever? It is a very long time.</p>
+        <div class="buttons">
+            <input onclick="closeDialog('Delete Account')" type="button" value="Cancel">
+            <form action="../action/action_delete_account.php" method="post">
+                <input type="submit" name="Submit" value="Delete">
+            </form>
+        </div>
+    </div>
+</div>
+</p>
 <?php } ?>
