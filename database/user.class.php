@@ -113,7 +113,7 @@
       }
     }
 
-    function createUser(PDO $db, string $username, string $password, string $firstname, string $lastname ,string $email) {
+    function createUser(PDO $db, string $username, string $password, string $firstname, string $lastname ,string $email,string $check) {
       
       $password = hash('sha256', $password);
       
@@ -127,9 +127,24 @@
         $stmt->bindParam(':email', $email);
         
         if($stmt->execute()){
-          
           $id = User::getID($db,$username);
-          return $id;
+          if ($check=='owner'){
+            $stmt = $db->prepare('INSERT INTO restaurantOwner(user) VALUES (:user)');
+            $stmt->bindParam(':user', $id);
+            if($stmt->execute()){
+              return $id;
+            }
+          }
+          else{
+            $stmt = $db->prepare('INSERT INTO customer(user,name) VALUES (:user,:name)');
+            $name= $firstname . ' ' . $lastname;
+            $stmt->bindParam(':user', $id);
+            $stmt->bindParam(':name',$name);
+            if($stmt->execute()){
+              return $id;
+            }
+          }
+
         }
         else
           return -1;

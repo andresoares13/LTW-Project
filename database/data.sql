@@ -1,3 +1,5 @@
+PRAGMA foreign_keys = ON;
+
 INSERT INTO users (userId,username,password,Fname,Lname,adress,email,phone) VALUES (1,'admin','90bffe1884b84d5e255f12ff0ecbd70f2edfc877b68d612dc6fb50638b3ac17c', 'admin','Main', 'Parque infantil da Cordoaria','admin13131313@gmail.com', '966969694');
 
 INSERT INTO users (userId,username,password,Fname,Lname,adress,email,phone) VALUES (2,'manel','f46337876db2ee9c6cc7ed84a1de76198f7ce3ba219031bd91df46009d00d510', 'Joaquim','Manel', 'Rua do Povo','joaquimmaneltaskinha@gmail.com', '912242469');
@@ -25,5 +27,7 @@ INSERT INTO menu(id,name,restaurant) VALUES (6,'pizzas',3);
 INSERT INTO menu_item(id,name,price,category,menu) VALUES (1,'massa com atum',5,'massa',1);
 
 INSERT INTO menu_item(id,name,price,category,menu) VALUES (2,'massa com carne',6,'massa',1);
+
+PRAGMA foreign_keys = ON;
 
 

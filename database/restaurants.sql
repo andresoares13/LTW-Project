@@ -4,6 +4,8 @@ BEGIN TRANSACTION;
 .headers on
 .nullvalue NULL
 
+PRAGMA foreign_keys = ON;
+
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
@@ -111,8 +113,6 @@ CREATE TABLE favouriteMenu (
 
 COMMIT TRANSACTION;
 
-
-PRAGMA foreign_keys = on;  
-
+PRAGMA foreign_keys = ON;
   
   
