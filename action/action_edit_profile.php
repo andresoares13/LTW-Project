@@ -13,11 +13,22 @@
   $user = User::getUser($db, $_SESSION['id']);
 
   if ($user) {
-    $user->firstName = $_POST['first_name'];
-    $user->lastName = $_POST['last_name'];
+    if (User::existsPhone($db,$_POST['phone'],$user->id)){
+      $_SESSION['ERROR'] = 'Phone number already exists';
+      
+    }
+    else{
+      $user->firstName = $_POST['first_name'];
+      $user->lastName = $_POST['last_name'];
+      $user->adress = $_POST['adress'];
+      $user->phone = $_POST['phone'];
+      $user->save($db);
+      $_SESSION['id'] = $user->id;
+      $_SESSION['name'] = $user->name();
+      echo 'Profile information updated successfully';
+    }
     
-    $user->save($db);
+    
   }
-
-  header('Location: ../pages/profile.php');
+  header("Location:".$_SERVER['HTTP_REFERER']."");
 ?>

@@ -27,11 +27,11 @@
 
     function save($db) {
       $stmt = $db->prepare('
-        UPDATE users SET Fname = ?, Lname = ?
+        UPDATE users SET Fname = ?, Lname = ?, adress = ?, phone = ?
         WHERE userId = ?
       ');
 
-      $stmt->execute(array($this->firstName, $this->lastName, $this->id));
+      $stmt->execute(array($this->firstName, $this->lastName,$this->adress,$this->phone, $this->id));
     }
     
     static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
@@ -100,6 +100,25 @@
       }
     }
 
+    function existsPhone(PDO $db, string $phone, int $id) {
+      try {
+        $stmt = $db->prepare('SELECT userId FROM users WHERE phone = ?');
+        $stmt->execute(array($phone));
+        
+        if($userId=$stmt->fetch()){
+          if ((int)$userId['userId']!=$id){
+            return true;
+          }
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
     function getID(PDO $db,string $username) {
       try {
         $stmt = $db->prepare('SELECT userId FROM users WHERE username = ?');
@@ -153,6 +172,21 @@
         return -1;
       }
       
+    }
+
+    function updatePassword(PDO $db, int $id, string $password){
+      $password = hash('sha256', $password);
+  
+      try {
+        $stmt = $db->prepare('UPDATE users SET password = ? WHERE userId = ?');
+        if($stmt->execute(array($password, $id)))
+            return true;
+        else{
+          return false;
+        }   
+      }catch(PDOException $e) {
+        return false;
+      }
     }
   }
 ?>

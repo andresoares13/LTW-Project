@@ -21,8 +21,8 @@
                 <div class="register_content">
                     <h1>Login</h1>
                     <form action="../action/action_login.php" method="post" class="login">
-                        <input type="email" name="email" placeholder="email">
-                        <input type="password" name="password" placeholder="password">
+                        <input type="email" name="email" placeholder="email" required="required">
+                        <input type="password" name="password" placeholder="password" required="required">
                         <button type="submit">Login</button>
                     </form>
                     <p id="error_messages" style="color: black">
@@ -53,12 +53,12 @@
                 <div class="register_content">
                     <h1>Register</h1>
                     <form action="../action/action_register.php" method="post" class="register">
-                        <input type="email" name="email" placeholder="email">
-                        <input type="password" name="password" placeholder="password">
-                        <input type="password" name="password" placeholder="repeat password"> <br>
-                        <input type="username" name="username" placeholder="username">
-                        <input type="first_name" name="first_name" placeholder="first name">
-                        <input type="last_name" name="last_name" placeholder="last name">
+                        <input type="email" name="email" placeholder="email" required="required">
+                        <input type="password" name="password" placeholder="password" required="required">
+                        <input type="password" name="repeat" placeholder="repeat" required="required"> <br>
+                        <input type="username" name="username" placeholder="username" required="required">
+                        <input type="first_name" name="first_name" placeholder="first name" required="required">
+                        <input type="last_name" name="last_name" placeholder="last name" required="required">
                         <button type="submit">Register</button> <br> <br>
                         <input type="checkbox" id="owner" name="check" value="owner" onclick="onlyOne(this)">
                         <label for="owner"> I am a restaurant owner</label>

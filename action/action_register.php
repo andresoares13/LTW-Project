@@ -9,7 +9,7 @@
   $db = getDatabaseConnection();
 
   if ($_POST['check']==null){
-    $_SESSION['ERROR'] = 'ERROR';
+    $_SESSION['ERROR'] = 'Please choose whether you are a restaurant owner or a customer';
     header("Location:".$_SERVER['HTTP_REFERER']."");
   }
   
@@ -22,6 +22,16 @@
   
   else if(User::existsEmail($db, $_POST['email'])){
     $_SESSION['ERROR'] = 'User already exists';
+    header("Location:".$_SERVER['HTTP_REFERER']."");
+  }
+
+  else if (!(4<=strlen($_POST['password'])&&strlen($_POST['password'])<=20)){
+    $_SESSION['ERROR'] = 'Password must be between 4 and 20 characters';
+    header("Location:".$_SERVER['HTTP_REFERER']."");
+  }
+
+  else if ($_POST['password']!=$_POST['repeat']){
+    $_SESSION['ERROR'] = 'Passwords dont match';
     header("Location:".$_SERVER['HTTP_REFERER']."");
   }
   

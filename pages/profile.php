@@ -16,6 +16,14 @@
   $user = User::getUser($db, $_SESSION['id']);
 
   drawHeader();
-  drawProfileForm($user);
+  if($_GET['id']=='account'){
+    drawAccountInfoForm($user);
+  }
+  else if ($_GET['id']=='profile'){
+    drawProfileInfoForm($user);
+  }
+  else{
+    drawProfile($user);
+  }
   drawFooter();
 ?>

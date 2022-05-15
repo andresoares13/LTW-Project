@@ -17,6 +17,7 @@
     header('Location: ../pages/main.php');
   }
   else{
+    $_SESSION['ERROR'] = 'Login failed. Please make sure you typed the right email/password';
     header('Location: ' . $_SERVER['HTTP_REFERER']);
   }
 
