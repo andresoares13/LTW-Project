@@ -15,7 +15,8 @@ CREATE TABLE users (
   Lname    VARCHAR NOT NULL,
   adress   VARCHAR DEFAULT 'undefined',
   email    VARCHAR NOT NULL,
-  phone    VARCHAR DEFAULT 'empty'                 
+  phone    VARCHAR DEFAULT 'empty',
+  photo STRING DEFAULT "default.jpg"                 
 );
 
 DROP TABLE IF EXISTS restaurants;

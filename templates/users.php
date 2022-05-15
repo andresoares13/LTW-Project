@@ -45,7 +45,7 @@
 
 <?php function drawProfileCustomer(User $user) { ?>
 <h2>Profile  <?php echo $_SESSION['usertype'];?> </h2>
-<article>
+<article id='profile_list'>
   <ul>
     <li>Username: <?=$user->username ?></li>
     <li>First name: <?= $user->firstName ?></li>
@@ -53,6 +53,9 @@
     <li>Address: <?= $user->adress ?></li>
     <li>Phone number: <?= $user->phone ?></li>
   </ul>
+  <div id='profile_image'>
+    <img src="../pictures/<?=$user->photo?>" alt="ProfilePic">
+  </div>
 </article>
 <p>
   <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a>
@@ -76,7 +79,7 @@
 
 <?php function drawProfileOwner(User $user) { ?>
 <h2>Profile  <?php echo $_SESSION['usertype'];?> </h2>
-<article>
+<article id='profile_list'>
   <ul>
     <li>Username: <?=$user->username ?></li>
     <li>First name: <?= $user->firstName ?></li>
@@ -84,6 +87,9 @@
     <li>Address: <?= $user->adress ?></li>
     <li>Phone number: <?= $user->phone ?></li>
   </ul>
+  <div id='profile_image'>
+    <img src="../pictures/<?=$user->photo?>" alt="ProfilePic">
+  </div>
 </article>
 <p>
   <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> | <a href="../pages/profile.php?id=owner">My restaurants</a>

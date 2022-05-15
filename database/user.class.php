@@ -10,8 +10,9 @@
     public string $email;
     public string $phone;
     public bool $owner;
+    public string $photo;
 
-    public function __construct(int $id, string $username, string $firstName, string $lastName, string $adress, string $email, string $phone, bool $owner)
+    public function __construct(int $id, string $username, string $firstName, string $lastName, string $adress, string $email, string $phone, bool $owner,string $photo)
     {
       $this->id = $id;
       $this->username = $username;
@@ -21,6 +22,7 @@
       $this->email = $email;
       $this->phone = $phone;
       $this->owner = $owner;
+      $this->photo = $photo;
     }
 
     function name() {
@@ -45,7 +47,7 @@
       }
       if ($isEmail){
         $stmt = $db->prepare('
-        SELECT userId, username,Fname, Lname, adress,email, phone
+        SELECT userId, username,Fname, Lname, adress,email, phone,photo
         FROM users
         WHERE lower(email) = ? AND password = ?
         ');
@@ -54,7 +56,7 @@
       }
       else{
         $stmt = $db->prepare('
-        SELECT userId, username,Fname, Lname, adress,email, phone
+        SELECT userId, username,Fname, Lname, adress,email, phone,photo
         FROM users
         WHERE username = ? AND password = ?
         ');
@@ -74,14 +76,15 @@
           $user['adress'],
           $user['email'],
           $user['phone'],
-          $owner
+          $owner,
+          $user['photo']
         );
       }else return null;
     }
 
     static function getUser(PDO $db, int $id) : User {
       $stmt = $db->prepare('
-      SELECT userId, username,Fname, Lname, adress,email, phone
+      SELECT userId, username,Fname, Lname, adress,email, phone,photo
       FROM users
       WHERE userId = ?
       ');
@@ -97,7 +100,8 @@
         $user['adress'],
         $user['email'],
         $user['phone'],
-        $owner
+        $owner,
+        $user['photo']
       );
     }
 

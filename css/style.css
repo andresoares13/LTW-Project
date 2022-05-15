@@ -120,3 +120,21 @@ footer {
     grid-template-columns: auto;
   }
 }
+
+#profile_image>img{
+  width: 100px !important;
+  height: 100px !important;
+}
+
+#profile_list{
+  display: flex;
+  margin: 5px;
+}
+
+#profile_list>img{
+  margin: 12px;
+}
+
+#profile_list>ul{
+  margin: 12px;
+}
