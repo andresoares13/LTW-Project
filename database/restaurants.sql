@@ -12,9 +12,9 @@ CREATE TABLE users (
   password VARCHAR NOT NULL,                  
   Fname     VARCHAR NOT NULL,
   Lname    VARCHAR NOT NULL,
-  adress   VARCHAR NOT NULL,
+  adress   VARCHAR DEFAULT 'undefined',
   email    VARCHAR NOT NULL,
-  phone    VARCHAR UNIQUE                 
+  phone    VARCHAR DEFAULT 'empty'                 
 );
 
 DROP TABLE IF EXISTS restaurants;

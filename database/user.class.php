@@ -76,5 +76,68 @@
         $user['phone']
       );
     }
+
+    function existsUsername(PDO $db, string $username) {
+      try {
+        $stmt = $db->prepare('SELECT userId FROM users WHERE username = ?');
+        $stmt->execute(array($username));
+        
+        return $stmt->fetch()  !== false;
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function existsEmail(PDO $db, string $email) {
+      try {
+        $stmt = $db->prepare('SELECT userId FROM users WHERE email = ?');
+        $stmt->execute(array($email));
+        return $stmt->fetch()  !== false;
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function getID(PDO $db,string $username) {
+      try {
+        $stmt = $db->prepare('SELECT userId FROM users WHERE username = ?');
+        $stmt->execute(array($username));
+        if($id = $stmt->fetch()){
+          return $id['userId'];
+        }
+      
+      }catch(PDOException $e) {
+        return -1;
+      }
+    }
+
+    function createUser(PDO $db, string $username, string $password, string $firstname, string $lastname ,string $email) {
+      
+      $password = hash('sha256', $password);
+      
+      
+      try {
+        $stmt = $db->prepare('INSERT INTO users(username, password, Fname, Lname,email) VALUES (:username,:password,:firstname,:lastname,:email)');
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':firstname', $firstname);
+        $stmt->bindParam(':lastname', $lastname);
+        $stmt->bindParam(':email', $email);
+        
+        if($stmt->execute()){
+          
+          $id = User::getID($db,$username);
+          return $id;
+        }
+        else
+          return -1;
+      }catch(PDOException $e) {
+        
+        return -1;
+      }
+      
+    }
   }
 ?>

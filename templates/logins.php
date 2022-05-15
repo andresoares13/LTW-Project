@@ -44,6 +44,7 @@
             <link rel="stylesheet" href="../css/style.css">
             <link rel="shortcut icon" href="../pictures/logo.png">
             <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+            <script src="../javascript/checkbox.js" defer></script>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
 
@@ -54,8 +55,16 @@
                     <form action="../action/action_register.php" method="post" class="register">
                         <input type="email" name="email" placeholder="email">
                         <input type="password" name="password" placeholder="password">
-                        <input type="password" name="password" placeholder="repeat password">
-                        <button type="submit">Register</button>
+                        <input type="password" name="password" placeholder="repeat password"> <br>
+                        <input type="username" name="username" placeholder="username">
+                        <input type="first_name" name="first_name" placeholder="first name">
+                        <input type="last_name" name="last_name" placeholder="last name">
+                        <button type="submit">Register</button> <br> <br>
+                        <input type="checkbox" id="owner" name="check" value="owner" onclick="onlyOne(this)">
+                        <label for="owner"> I am a restaurant owner</label>
+                        <input type="checkbox" id="customer" name="check" value="customer" onclick="onlyOne(this)">
+                        <label for="customer"> I am a customer</label><br>
+                    
                     </form>
                     <p id="error_messages" style="color: black">
                         <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
