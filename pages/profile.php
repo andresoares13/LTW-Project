@@ -7,9 +7,11 @@
 
   require_once('../database/connection.php');
   require_once('../database/user.class.php');
+  require_once('../database/restaurant.class.php');
 
   require_once('../templates/common.php');
   require_once('../templates/users.php');
+  require_once('../templates/restaurants.php');
 
   $db = getDatabaseConnection();
   
@@ -22,8 +24,23 @@
   else if ($_GET['id']=='profile'){
     drawProfileInfoForm($user);
   }
+  else if ($_GET['id']=='owner'&&$_SESSION['usertype']=='Restaurant Owner'){
+    $restaurants = Restaurant::getRestaurantsWithOwner($db, $_SESSION['id']);
+    if($restaurants!=null){
+      drawRestaurants($restaurants);
+    }
+    else{
+      
+      drawOwnerNoRestaurants();
+    }
+  }
   else{
-    drawProfile($user);
+    if ($_SESSION['usertype']=='Restaurant Owner'){
+      drawProfileOwner($user);
+    }
+    else{
+      drawProfileCustomer($user);
+    }
   }
   drawFooter();
 ?>

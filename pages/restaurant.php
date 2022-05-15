@@ -2,6 +2,8 @@
   declare(strict_types = 1);
 
   session_start();
+  
+  if (!isset($_SESSION['id'])) die(header('Location: /'));
 
   require_once('../database/connection.php');
 
@@ -17,6 +19,16 @@
   $menus = Menu::getRestaurantMenus($db, intval($_GET['id'])); 
 
   drawHeader();
-  drawRestaurant($restaurant, $menus);
+  if ($_GET['id2']=='edit'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+    drawRestaurantInfoForm($restaurant);
+  }
+  else{
+    if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+      drawRestaurantOwner($restaurant,$menus);
+    }
+    else{
+      drawRestaurant($restaurant, $menus);
+    }
+  }
   drawFooter();
 ?>

@@ -14,7 +14,7 @@
   }
   
   
-  if(User::existsUsername($db, $_POST['username'])){
+  else if(User::existsUsername($db, $_POST['username'])){
     $_SESSION['ERROR'] = 'User already exists';
     header("Location:".$_SERVER['HTTP_REFERER']."");
   }

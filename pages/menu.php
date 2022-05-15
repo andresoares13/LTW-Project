@@ -3,6 +3,8 @@
 
   session_start();
 
+  if (!isset($_SESSION['id'])) die(header('Location: /'));
+
   require_once('../database/connection.php');
 
   require_once('../database/restaurant.class.php');
