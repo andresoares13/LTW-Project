@@ -16,7 +16,9 @@
   $db = getDatabaseConnection();
 
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
-  $menus = Menu::getRestaurantMenus($db, intval($_GET['id'])); 
+  $menus = Menu::getRestaurantMenus($db, intval($_GET['id']));
+  
+  
 
   drawHeader();
   if ($_GET['id2']=='edit'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
@@ -28,6 +30,7 @@
   else{
     if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
       drawRestaurantOwner($restaurant,$menus);
+      
     }
     else{
       drawRestaurant($restaurant, $menus);

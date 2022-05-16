@@ -4,79 +4,51 @@
         <head>
             <title>Restaurant Helper</title>
             <meta charset="utf-8">
+            <link rel="stylesheet" href="../css/style_login.css">
             <link rel="stylesheet" href="../css/style.css">
             <link rel="shortcut icon" href="../pictures/logo.png">
             <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        </head>
-
-        <body>
-            <div id="register_container">
-                <div class="register_header">
-                    <a href="register.php">Register</a>
-                    <img src="../pictures/logo.png" alt="logo">
-                    <h1>Restaurant Helper</h1>
-                    <p>Eat from everywhere.</p>
-                </div>
-                <div class="register_content">
-                    <h1>Login</h1>
-                    <form action="../action/action_login.php" method="post" class="login">
-                        <input type="text" name="email/username" placeholder="email/username" required="required">
-                        <input type="password" name="password" placeholder="password" required="required">
-                        <button type="submit">Login</button>
-                    </form>
-                    <p id="error_messages" style="color: black">
-                        <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
-                    </p>
-                </div>
-            </div>
-        </body>
-    </htlm>     
-<?php } ?>
-
-
-<?php function drawRegister() { ?>
-    <!DOCTYPE html>
-    <html lang="en-US">
-        <head>
-            <title>Restaurant Helper</title>
-            <meta charset="utf-8">
-            <link rel="stylesheet" href="../css/style.css">
-            <link rel="shortcut icon" href="../pictures/logo.png">
-            <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+            <script src="../javascript/login.js" defer></script>
             <script src="../javascript/checkbox.js" defer></script>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
         </head>
 
         <body>
-            <div id="register_container">
-                <div class="register_content">
-                    <h1>Register</h1>
-                    <form action="../action/action_register.php" method="post" class="register">
-                        <input type="email" name="email" placeholder="email" required="required">
-                        <input type="password" name="password" placeholder="password" required="required">
-                        <input type="password" name="repeat" placeholder="repeat" required="required"> <br>
-                        <input type="username" name="username" placeholder="username" required="required">
-                        <input type="first_name" name="first_name" placeholder="first name" required="required">
-                        <input type="last_name" name="last_name" placeholder="last name" required="required">
-                        <button type="submit">Register</button> <br> <br>
-                        <input type="checkbox" id="owner" name="check" value="owner" onclick="onlyOne(this)">
-                        <label for="owner"> I am a restaurant owner</label>
-                        <input type="checkbox" id="customer" name="check" value="customer" onclick="onlyOne(this)">
-                        <label for="customer"> I am a customer</label><br>
-                    
+            <header><h1>Restaurant Helper</h1></header>
+            <div class="login1">
+                <div class="formul">
+                    <div class="button_rectangle">
+                        <div id="log"></div>
+                        <button type="button" class="button_log" onclick="login()">Login</button>
+                        <button type="button" class="button_log" onclick="register()">Register</button>
+                    </div>
+                    <form id="login2" class="inputs" action="../action/action_login.php" method="post">
+                        <input type="text" name="email/username" class="words" placeholder="email/username" required="required">
+                        <input type="password" name="password" class="words" placeholder="password" required="required">
+                        <button type="submit" class="sub">Login</button>
                     </form>
-                    <p id="error_messages" style="color: black">
+                    <form id="register1" class="inputs" action="../action/action_register.php" method="post">
+                        <input type="email" name="email" class="words" placeholder="email" required="required">
+                        <input type="password" name="password" class="words" placeholder="password" required="required">
+                        <input type="password" name="repeat" class="words" placeholder="repeat" required="required">
+                        <input type="username" name="username" class="words" placeholder="username" required="required">
+                        <input type="first_name" name="first_name" class="words" placeholder="first name" required="required">
+                        <input type="last_name" name="last_name" class="words" placeholder="last name" required="required">
+                        <input type="checkbox" id="owner" name="check" class="check" value="owner" onclick="onlyOne(this)">
+                        <label for="owner"> I am a restaurant owner</label>
+                        <input type="checkbox" id="customer" name="check" class="check" value="customer" onclick="onlyOne(this)">
+                        <label for="customer"> I am a customer</label>
+                        <button type="submit" class="sub">Register</button> 
+                    </form>
+                    <p id="error_messages" style="color: white">
                         <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
-                    </p>
-                    <p>
-                        Already have an account? 
-                        <a href="../pages/login.php"> Log in</a>
                     </p>
                 </div>
             </div>
         </body>
     </htlm>     
 <?php } ?>
+
+
 
  

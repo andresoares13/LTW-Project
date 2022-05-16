@@ -22,7 +22,7 @@
   <h2>Menus:</h2>
     <?php foreach ($menus as $menu) { ?>
     <article>
-      <h3><a href="../pages/menu.php?id=<?=$menu['id']?>"><?=$menu['name']?></a></h3>
+    <h3><ul><li><a href="../pages/menu.php?id=<?=$menu['id']?>"><?=$menu['name']?></a></li></ul></h3>
     </article>
     <?php } ?>
   </section>
@@ -37,7 +37,6 @@
   <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit2">Add a menu</a>
   <h3>Category: <?=$restaurant->category?></h3>
   <section id="menu">
-    <h2>Menus:</h2>
     <?php foreach ($menus as $menu) { ?>
     <article>
       <h3><ul><li><a href="../pages/menu.php?id=<?=$menu['id']?>"><?=$menu['name']?></a></li></ul></h3>
