@@ -92,5 +92,38 @@
       }
     }
 
+    function existsMenu(PDO $db, int $Rid, string $name) {
+      try {
+        $stmt = $db->prepare('SELECT id FROM restaurants WHERE id = ? AND id = (SELECT restaurant FROM menu WHERE name = ?)');
+        $stmt->execute(array($Rid,$name));
+        if ($stmt->fetch()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function addMenu(PDO $db,int $Rid ,string $name){
+      try {
+        $stmt = $db->prepare('INSERT INTO menu(name,restaurant) VALUES (:name,:restaurant)');
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':restaurant', $Rid);
+        if ($stmt->execute()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
   }
 ?>

@@ -1,5 +1,7 @@
 <?php declare(strict_types = 1); ?>
 
+
+
 <?php function drawProfileInfoForm(User $user) { ?>
 <h2>Profile</h2>
 <form action="../action/action_edit_profile.php" method="post" class="profile">
@@ -24,7 +26,7 @@
 </form>
 <?php } ?>
 
-<?php function drawAccountInfoForm(User $user) { ?>
+<?php function drawAccountInfoForm() { ?>
 <h2>Profile</h2>
 <form action="../action/action_update_password.php" method="post" class="account">
 
@@ -62,7 +64,7 @@
 </p>
 <p>
   <input onclick="openDialog('Delete Account')" type="submit" value="Delete Account">
-  <div id="delete" class="modal">
+  <div hidden id="dialog1" class="modal">
     <div class="modal-content">
         <p>Are you sure you want to delete your account forever? It is a very long time.</p>
         <div class="buttons">
@@ -72,7 +74,8 @@
             </form>
         </div>
     </div>
-</div>
+  </div>
+
 </p>
 <?php } ?>
 
@@ -92,11 +95,12 @@
   </div>
 </article>
 <p>
-  <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> | <a href="../pages/profile.php?id=owner">My restaurants</a>
+  <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> | <a href="../pages/profile.php?id=owner">My restaurants</a> |
+  <a href="../pages/profile.php?id=reviews">Reviews</a> | <a href="../pages/profile.php?id=Rorders">Orders</a>
 </p>
 <p>
   <input onclick="openDialog('Delete Account')" type="submit" value="Delete Account">
-  <div id="delete" class="modal">
+  <div hidden id="dialog1" class="modal">
     <div class="modal-content">
         <p>Are you sure you want to delete your account forever? It is a very long time.</p>
         <div class="buttons">
@@ -106,7 +110,8 @@
             </form>
         </div>
     </div>
-</div>
+  </div>
+  
 </p>
 <?php } ?>
 

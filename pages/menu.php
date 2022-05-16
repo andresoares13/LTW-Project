@@ -20,6 +20,19 @@
   $menu_items = Menu_Item::getMenuItems($db, intval($_GET['id']));
   
   drawHeader();
-  drawMenu($menu,$restaurant,$menu_items);
+  if ($_GET['id2']=='edit'&&Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
+    drawMenuInfoForm($restaurant);
+  }
+  else if($_GET['id2']=='edit2'&&Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
+    drawNewMenuItemForm($restaurant);
+  }
+  else{
+    if (Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
+      drawMenuOwner($menu,$restaurant,$menu_items);
+    }
+    else{
+      drawMenu($menu,$restaurant,$menu_items);
+    }
+  }
   drawFooter();
 ?>

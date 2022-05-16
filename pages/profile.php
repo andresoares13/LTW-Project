@@ -19,7 +19,7 @@
 
   drawHeader();
   if($_GET['id']=='account'){
-    drawAccountInfoForm($user);
+    drawAccountInfoForm();
   }
   else if ($_GET['id']=='profile'){
     drawProfileInfoForm($user);

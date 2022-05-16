@@ -138,3 +138,8 @@ footer {
 #profile_list>ul{
   margin: 12px;
 }
+
+#restaurants article img{
+  width: 100px !important;
+  height: 100px !important;
+}

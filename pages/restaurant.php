@@ -22,6 +22,9 @@
   if ($_GET['id2']=='edit'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
     drawRestaurantInfoForm($restaurant);
   }
+  else if($_GET['id2']=='edit2'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+    drawNewMenuForm($restaurant);
+  }
   else{
     if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
       drawRestaurantOwner($restaurant,$menus);
