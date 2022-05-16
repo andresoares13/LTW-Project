@@ -18,13 +18,19 @@
   $menu = Menu::getMenu($db, intval($_GET['id']));
   $restaurant = Restaurant::getRestaurant($db, $menu->restaurant);
   $menu_items = Menu_Item::getMenuItems($db, intval($_GET['id']));
+
   
   drawHeader();
   if ($_GET['id2']=='edit'&&Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
     drawMenuInfoForm($restaurant);
   }
   else if($_GET['id2']=='edit2'&&Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
-    drawNewMenuItemForm($restaurant);
+    drawNewMenuItemForm($menu);
+  }
+  else if($_GET['id2']=='photo'&&Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
+    $menu_item = Menu_Item::getMenuItem($db,intval($_GET['id3']));
+    $_SESSION['iteminfo']['Photo']=$menu_item->photo;
+    drawPictureForm($menu_item);
   }
   else{
     if (Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){

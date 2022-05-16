@@ -37,6 +37,41 @@
           (int) $menu['restaurant']
         );
     }
+
+    function existsItem(PDO $db, int $Mid, string $name) {
+      try {
+        $stmt = $db->prepare('SELECT id FROM menu WHERE id = ? AND id = (SELECT menu FROM menu_item WHERE name = ?)');
+        $stmt->execute(array($Mid,$name));
+        if ($stmt->fetch()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function addMenuItem(PDO $db,int $Mid ,string $name, int $price, string $category ){
+      try {
+        $stmt = $db->prepare('INSERT INTO menu_item(name,price,category,menu) VALUES (:name,:price,:category,:menu)');
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':price', $price);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':menu', $Mid);
+        if ($stmt->execute()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
   
   }
 ?>

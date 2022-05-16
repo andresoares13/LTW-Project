@@ -101,12 +101,12 @@ CREATE TABLE favouriteRestaurant (
 );
 
 
-DROP TABLE IF EXISTS favouriteMenu;
+DROP TABLE IF EXISTS favouriteMenuItem;
 
-CREATE TABLE favouriteMenu (
+CREATE TABLE favouriteMenuItem (
   id INTEGER PRIMARY KEY,
   customer INTEGER NOT NULL REFERENCES customer(id) ON DELETE CASCADE,
-  menu INTEGER NOT NULL REFERENCES menu(id) ON DELETE CASCADE
+  menu_item INTEGER NOT NULL REFERENCES menu_item(id) ON DELETE CASCADE
 );
 
 INSERT INTO users (userId,username,password,Fname,Lname,adress,email,phone) VALUES (1,'admin','90bffe1884b84d5e255f12ff0ecbd70f2edfc877b68d612dc6fb50638b3ac17c', 'admin','Main', 'Parque infantil da Cordoaria','admin13131313@gmail.com', '966969694');

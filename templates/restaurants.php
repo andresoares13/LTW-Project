@@ -95,7 +95,7 @@
   <form action="../action/action_add_menu.php" method="post" class="restaurant">
 
     <label for="name">Menu name:</label>
-    <input id="name" type="text" name="name" value="<?=$restaurant->name?>" required="required">
+    <input id="name" type="text" name="name" required="required">
   
     <input id="id" type="hidden" name="id" value="<?=$restaurant->id?>" required="required">
 
