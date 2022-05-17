@@ -89,7 +89,8 @@ CREATE TABLE review (
   customer INTEGER NOT NULL REFERENCES customer(id) ON DELETE SET NULL,
   restaurant INTEGER NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE,
   rating INTEGER NOT NULL,
-  comment VARCHAR NOT NULL
+  comment VARCHAR NOT NULL,
+  review VARCHAR NOT NULL
 );
 
 DROP TABLE IF EXISTS favouriteRestaurant;

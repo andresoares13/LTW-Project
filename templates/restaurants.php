@@ -29,6 +29,9 @@
   <p>
     Restaurant's Adress: <?=$restaurant->adress?>
   </p>
+  <p>
+    <a href="../pages/review.php?id=<?=$restaurant->id?>">Reviews</a>
+  </p>
 <?php } ?>
 
 <?php function drawRestaurantOwner(Restaurant $restaurant, array $menus) { ?>
@@ -46,6 +49,9 @@
   </section>
   <p>
     Restaurant's Adress: <?=$restaurant->adress?>
+  </p>
+  <p>
+    <a href="../pages/review.php?id=<?=$restaurant->id?>">Reviews</a>
   </p>
 <?php } ?>
 
