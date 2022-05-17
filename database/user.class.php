@@ -128,7 +128,7 @@
       }
     }
 
-    function isOwner(PDO $db, int $id) {
+    static function isOwner(PDO $db, int $id) {
       try {
         $stmt = $db->prepare('SELECT user FROM restaurantOwner WHERE user = ?');
         $stmt->execute(array($id));
