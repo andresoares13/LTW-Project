@@ -3,22 +3,24 @@
 
   class Review {
     public int $id;
-    public int $customer;
+    public string $customer;
     public int $restaurant;
     public int $rating;
     public string $comment;
+    public string $reply;
 
 
-    public function __construct(int $id, int $customer, int $restaurant, int $rating, string $comment) {
+    public function __construct(int $id, string $customer, int $restaurant, int $rating, string $comment, string $reply) {
       $this->id = $id;
       $this->customer = $customer;
       $this->restaurant = $restaurant;
       $this->rating = $rating;
       $this->comment = $comment;
+      $this->reply = $reply;
     }
 
     static function getRestaurantReviews(PDO $db, int $id)  {
-        $stmt = $db->prepare('SELECT id, customer, restaurant, rating, comment FROM review WHERE restaurant = ?');
+        $stmt = $db->prepare('SELECT review.id,name,restaurant,rating,comment,reply from review,customer where review.restaurant = ?');
         $stmt->execute(array($id));
     
         $reviews = [];
@@ -26,30 +28,57 @@
         while ($review = $stmt->fetch()) {
           $reviews[] = new Review(
             (int) $review['id'],
-            (int) $review['customer'],
+            $review['name'],
             (int) $review['restaurant'],
             (int) $review['rating'],
-            $review['comment']
+            $review['comment'],
+            $review['reply']
           );
         }
     
         return $reviews;
     }
 
-
-    static function getMenuItem(PDO $db, int $id) : Menu_Item {
-      $stmt = $db->prepare('SELECT id,name,price,photo,category,menu FROM menu_item WHERE id = ?');
-      $stmt->execute(array($id));
-      $item = $stmt->fetch();
-      return new Menu_Item(
-        (int) $item['id'],
-        $item['name'],
-        (int) $item['price'],
-        $item['photo'],
-        $item['category'],
-        (int) $item['menu']
-      );
+    function addReview(PDO $db,int $Rid ,int $Cid, int $rating, string $comment){
+      $reply="";
+      try {
+        $stmt = $db->prepare('INSERT INTO review(customer,restaurant,rating,comment,reply) VALUES (:customer,:restaurant,:rating,:comment,:reply)');
+        $stmt->bindParam(':customer', $Cid);
+        $stmt->bindParam(':restaurant', $Rid);
+        $stmt->bindParam(':rating', $rating);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':reply', $reply);
+        if ($stmt->execute()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        var_dump($e);
+        exit();
+        return true;
+      }
     }
+
+    function existsReview(PDO $db, int $Rid, int $Cid) {
+      try {
+        $stmt = $db->prepare('SELECT id FROM review WHERE restaurant = ? AND customer = ?');
+        $stmt->execute(array($Rid,$Cid));
+        if ($stmt->fetch()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+
 
   }
 ?>

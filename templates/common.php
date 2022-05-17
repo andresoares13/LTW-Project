@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="../pictures/logo.png">
     <script src="../javascript/script.js" defer></script>
     <script src="../javascript/dialogs.js" defer></script>
+    <script src="../javascript/radio.js" defer></script>
   </head>
   <body>
     <header>

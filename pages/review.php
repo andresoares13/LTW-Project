@@ -26,7 +26,12 @@
     drawOwnerReviews($reviews,$restaurant);
   }
   else{
-    drawReviews($reviews,$restaurant);
+    if ($_GET['id2']=="review"){
+      drawReviewForm($restaurant);
+    }
+    else{
+      drawReviews($reviews,$restaurant);
+    }
   }
   drawFooter();
 ?>
