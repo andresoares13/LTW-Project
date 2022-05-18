@@ -7,16 +7,19 @@
 
   require_once('../database/connection.php');
   require_once('../database/review.class.php');
+  require_once('../database/user.class.php');
 
 
 
   $db = getDatabaseConnection();  
+
+  $Cid=User::getCustomerID($db,$_SESSION['username']);
   
-  if(Review::existsReview($db,(int)$_POST['id'] ,(int)$_SESSION['id'])){
+  if(Review::existsReview($db,(int)$_POST['id'] ,(int)$Cid)){
     $_SESSION['ERROR'] = 'You already reviewd this restaurant';
     header("Location:".$_SERVER['HTTP_REFERER']."");
   }
-  else if (Review::addReview($db,(int) $_POST['id'],(int)$_SESSION['id'],(int)$_POST['stars'],$_POST['comment'])){
+  else if (Review::addReview($db,(int) $_POST['id'],(int)$Cid,(int)$_POST['stars'],$_POST['comment'])){
     $next="Location:../pages/review.php?id=". $_POST['id'];
     header($next);
   }

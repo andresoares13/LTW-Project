@@ -14,7 +14,7 @@
     if(($id = $_SESSION['id']) != null) {
         
         
-        if(User::deleteUser($db,$id)) {
+        if(User::deleteUser($db,$id,$_SESSION['username'])) {
             unset($_SESSION['id']);
             unset($_SESSION['name']);
             header("Location:../pages/login.php");

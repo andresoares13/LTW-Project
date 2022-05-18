@@ -14,6 +14,7 @@
   if ($user) {
     $_SESSION['id'] = $user->id;
     $_SESSION['name'] = $user->name();
+    $_SESSION['username'] = $user->username;
     
     if ($user->owner){
       $_SESSION['usertype'] = 'Restaurant Owner';

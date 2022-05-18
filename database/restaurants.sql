@@ -54,7 +54,8 @@ DROP TABLE IF EXISTS customer;
 
 CREATE TABLE customer (
   id INTEGER PRIMARY KEY,
-  name VARCHAR NOT NULL
+  name VARCHAR NOT NULL,
+  username VARCHAR NOT NULL
 ); 
 
 DROP TABLE IF EXISTS restaurantOwner;

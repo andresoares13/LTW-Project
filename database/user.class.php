@@ -176,6 +176,19 @@
       }
     }
 
+    function getCustomerID(PDO $db,string $username) {
+      try {
+        $stmt = $db->prepare('SELECT id FROM customer WHERE username = ?');
+        $stmt->execute(array($username));
+        if($id = $stmt->fetch()){
+          return $id['id'];
+        }
+      
+      }catch(PDOException $e) {
+        return -1;
+      }
+    }
+
     function createUser(PDO $db, string $username, string $password, string $firstname, string $lastname ,string $email,string $check) {
       
       $password = hash('sha256', $password);
@@ -199,10 +212,10 @@
             }
           }
           else{
-            $stmt = $db->prepare('INSERT INTO customer(id,name) VALUES (:user,:name)');
+            $stmt = $db->prepare('INSERT INTO customer(name,username) VALUES (:name,:username)');
             $name= $firstname . ' ' . $lastname;
-            $stmt->bindParam(':user', $id);
             $stmt->bindParam(':name',$name);
+            $stmt->bindParam(':username',$username);
             if($stmt->execute()){
               return $id;
             }
@@ -232,13 +245,13 @@
         return false;
       }
     }
-    function deleteUser(PDO $db,int $id) {
+    function deleteUser(PDO $db,int $id, string $username) {
       try {
         $name='anonymous';
         $stmt = $db->prepare('DELETE FROM users WHERE userId = ?');
         $stmt->execute(array($id));
-        $stmt = $db->prepare('UPDATE customer SET name = ? WHERE id = ?');
-        $stmt->execute(array($name,$id));
+        $stmt = $db->prepare('UPDATE customer SET name = ?, username = ? WHERE username = ?');
+        $stmt->execute(array($name,$name,$username));
         return true;
       }
       catch(PDOException $e) {

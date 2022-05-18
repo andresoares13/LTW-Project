@@ -20,7 +20,7 @@
     }
 
     static function getRestaurantReviews(PDO $db, int $id)  {
-        $stmt = $db->prepare('SELECT review.id,name,restaurant,rating,comment,reply from review,customer where review.restaurant = ?');
+        $stmt = $db->prepare('SELECT review.id,name,restaurant,rating,comment,reply from review,customer where review.restaurant = ? and review.customer=customer.id');
         $stmt->execute(array($id));
     
         $reviews = [];
