@@ -10,7 +10,7 @@ if (searchRestaurant) {
     for (const restaurant of restaurants) {
       const article = document.createElement('article')
       const img = document.createElement('img')
-      img.src = 'https://picsum.photos/200?' + restaurant.id
+      img.src = '../restaurantPictures/' + restaurant.photo;
       const link = document.createElement('a')
       link.href = 'restaurant.php?id=' + restaurant.id
       link.textContent = restaurant.name
