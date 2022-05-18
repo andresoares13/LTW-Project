@@ -1,3 +1,5 @@
+
+
 html{
   background-color: #8C2D19;
 }
@@ -227,4 +229,51 @@ footer {
   width: 160px;
   text-align: center;
   vertical-align: middle;
+}
+
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background: black;
+  outline: none;
+  width: 60em;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.container{
+  width: 60em;
+}
+
+
+
+/* The slider handle (use webkit (Chrome, Opera, Safari, Edge) and moz (Firefox) to override default look) */
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: black;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.slider::-webkit-slider-thumb,
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: black;
+  cursor: pointer;
+  border-radius: 50%;
+  margin: 0;
+}
+
+#State {
+font-family: "Lato";
+font-size: 2rem;
+font-weight: 300;
 }

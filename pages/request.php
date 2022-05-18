@@ -7,35 +7,34 @@
 
   require_once('../database/connection.php');
 
-  require_once('../database/review.class.php');
+  require_once('../database/request.class.php');
   require_once('../database/restaurant.class.php');
+  require_once('../database/menu_item.class.php');
 
   require_once('../templates/common.php');
-  require_once('../templates/reviews.php');
+  require_once('../templates/requests.php');
 
 
   $db = getDatabaseConnection();
 
-  $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
-  $reviews = Review::getRestaurantReviews($db,$restaurant->id);
+  $request=Request::getRequest($db,(int)$_GET['id']);
   
   
 
   drawHeader();
-  if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])&&$_GET['id2']=="answer"){
-    $review=Review::getReview($db,(int) $_GET['id3']);
-    drawReplyForm($review,$restaurant);
+  if (Restaurant::isOwnerOfRestaurant($db,Request::getRestaurantIdByRequest($db,(int)$_GET['id']),$_SESSION['id'])&&$_GET['id2']=="state"&&$request->state!="Delivered"){
+    drawOwnerOrderForm($request);
   }
-  else if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
-    drawOwnerReviews($reviews,$restaurant);
+  else if (Restaurant::isOwnerOfRestaurant($db,Request::getRestaurantIdByRequest($db,(int)$_GET['id']),$_SESSION['id'])){
+    $items=Menu_Item::getItemsByRequest($db,(int)$_GET['id']);
+    drawOwnerRequest($request,$items);
+  }
+  else if($request->customer==$_SESSION['username']){
+    $items=Menu_Item::getItemsByRequest($db,(int)$_GET['id']);
+    drawCustomerRequest($request,$items);
   }
   else{
-    if ($_GET['id2']=="review"){
-      drawReviewForm($restaurant);
-    }
-    else{
-      drawReviews($reviews,$restaurant);
-    }
+    die(header('Location: /'));
   }
   drawFooter();
 ?>

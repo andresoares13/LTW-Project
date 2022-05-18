@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../pictures/logo.png">
-    <script src="../javascript/script.js" defer></script>
+    <script src="../javascript/search.js" defer></script>
     <script src="../javascript/dialogs.js" defer></script>
     <script src="../javascript/radio.js" defer></script>
+    <script src="../javascript/stateSlider.js" defer></script>
   </head>
   <body>
     <header>

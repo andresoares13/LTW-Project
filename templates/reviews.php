@@ -12,6 +12,9 @@
   </table>
   <?php } else{?>
   <h4>No reviews yet</h4> <?php }?>
+  <p id="error_messages" style="color: black">
+      <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
+    </p>
 <?php } ?>
 
 <?php function drawOwnerReviews(array $reviews, Restaurant $restaurant) { ?>
