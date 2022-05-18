@@ -9,11 +9,13 @@
   require_once('../database/user.class.php');
   require_once('../database/restaurant.class.php');
   require_once('../database/review.class.php');
+  require_once('../database/request.class.php');
 
   require_once('../templates/common.php');
   require_once('../templates/users.php');
   require_once('../templates/restaurants.php');
   require_once('../templates/reviews.php');
+  require_once('../templates/requests.php');
 
   $db = getDatabaseConnection();
   
@@ -29,6 +31,10 @@
   else if ($_GET['id']=='reviews'&&$_SESSION['usertype']=='Restaurant Owner'){
     $reviews=Review::getOwnerReviews($db,(int)$_SESSION['id']);
     drawProfileReviews($reviews);
+  }
+  else if ($_GET['id']=='Rorders'&&$_SESSION['usertype']=='Restaurant Owner'){
+    $requests=Request::getOwnerOrders($db,(int)$_SESSION['id']);
+    drawProfileRequests($requests);
   }
   else if ($_GET['id']=='owner'&&$_SESSION['usertype']=='Restaurant Owner'){
     $restaurants = Restaurant::getRestaurantsWithOwner($db, $_SESSION['id']);

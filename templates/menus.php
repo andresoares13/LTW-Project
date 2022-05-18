@@ -11,7 +11,7 @@ require_once('../database/menu.class.php');
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
-      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
+      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
     <?php } ?>
   </table>
   <?php } else{?>
@@ -26,7 +26,7 @@ require_once('../database/menu.class.php');
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
-      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td>
+      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td>
       <td><a href="../pages/menu.php?id=<?=$menu->id?>&id2=photo&id3=<?=$item->id?>">Change photo</a></td></tr>
     <?php } ?>
   </table>

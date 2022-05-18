@@ -60,7 +60,7 @@
   </div>
 </article>
 <p>
-  <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a>
+  <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> | <a href="../pages/profile.php?id=favorites">Favorites</a>
 </p>
 <p>
   <input onclick="openDialog('Delete Account')" type="submit" value="Delete Account">
