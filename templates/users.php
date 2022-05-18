@@ -56,7 +56,7 @@
     <li>Phone number: <?= $user->phone ?></li>
   </ul>
   <div id='profile_image'>
-    <img src="../pictures/<?=$user->photo?>" alt="ProfilePic">
+    <img src="../userPictures/<?=$user->photo?>" alt="ProfilePic">
   </div>
 </article>
 <p>
@@ -91,7 +91,7 @@
     <li>Phone number: <?= $user->phone ?></li>
   </ul>
   <div id='profile_image'>
-    <img src="../pictures/<?=$user->photo?>" alt="ProfilePic">
+    <img src="../userPictures/<?=$user->photo?>" alt="ProfilePic">
   </div>
 </article>
 <p>
@@ -120,7 +120,7 @@
 <?php function drawOwnerNoRestaurants() { ?>
   <h2>Looks like you dont have any restaurants yet</h2>
   <p>
-    <a href="../pages/registerRestaurant.php">Click here to add your restaurant</a>
+    <a href="../pages/restaurant.php?id=add">Click here to add your restaurant</a>
   </p>
 
 <?php } ?>  

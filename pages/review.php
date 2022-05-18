@@ -22,7 +22,11 @@
   
 
   drawHeader();
-  if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+  if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])&&$_GET['id2']=="answer"){
+    $review=Review::getReview($db,(int) $_GET['id3']);
+    drawReplyForm($review,$restaurant);
+  }
+  else if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
     drawOwnerReviews($reviews,$restaurant);
   }
   else{

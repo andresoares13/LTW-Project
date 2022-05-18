@@ -144,7 +144,7 @@ footer {
   height: 100px !important;
 }
 
-#menus img{
+#tables img{
   width: 100px !important;
   height: 100px !important;
 }
@@ -219,4 +219,12 @@ footer {
 .rating label input:focus:not(:checked) ~ .icon:last-child {
   color: #000;
   text-shadow: 0 0 5px gold;
+}
+
+
+#tables td{
+  height: 80px;
+  width: 160px;
+  text-align: center;
+  vertical-align: middle;
 }

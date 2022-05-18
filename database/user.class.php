@@ -245,6 +245,7 @@
         return false;
       }
     }
+    
     function deleteUser(PDO $db,int $id, string $username) {
       try {
         $name='anonymous';

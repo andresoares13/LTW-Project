@@ -108,6 +108,42 @@
       }
     }
 
+    function addRestaurant(PDO $db,int $id,string $name, string $adress, string $category){
+      try {
+        $stmt = $db->prepare('INSERT INTO restaurants(name,adress,category,owner) VALUES (:name,:adress,:category,:owner)');
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':adress', $adress);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':owner', $id);
+        if ($stmt->execute()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+
+    function getOwnerID(PDO $db,int $Uid) {
+      try {
+        $stmt = $db->prepare('SELECT id FROM restaurantOwner WHERE user = ?');
+        $stmt->execute(array($Uid));
+        if($id = $stmt->fetch()){
+          return (int)$id['id'];
+        }
+      
+      }catch(PDOException $e) {
+        return -1;
+      }
+    }
+
+
+    
+
     function addMenu(PDO $db,int $Rid ,string $name){
       try {
         $stmt = $db->prepare('INSERT INTO menu(name,restaurant) VALUES (:name,:restaurant)');

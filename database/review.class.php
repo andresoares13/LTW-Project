@@ -56,8 +56,6 @@
         }
       
       }catch(PDOException $e) {
-        var_dump($e);
-        exit();
         return true;
       }
     }
@@ -75,6 +73,55 @@
       
       }catch(PDOException $e) {
         return true;
+      }
+    }
+
+    static function getReview(PDO $db, int $id) : Review {
+      $stmt = $db->prepare('SELECT review.id, name,restaurant, rating, comment,reply from review,customer where review.id= ? and customer.id=review.customer;');
+      $stmt->execute(array($id));
+      $review = $stmt->fetch();
+      return new Review(
+        (int) $review['id'],
+        $review['name'],
+        (int) $review['restaurant'],
+        (int) $review['rating'],
+        $review['comment'],
+        $review['reply']
+      );
+    }
+
+    static function getOwnerReviews(PDO $db, int $id)  {
+      $stmt = $db->prepare('SELECT review.id,name,restaurant,rating,comment,reply from review,customer where review.restaurant in (select id from restaurants where owner =(select id from restaurantOwner where user=?) ) and review.customer=customer.id');
+      $stmt->execute(array($id));
+    
+      $reviews = [];
+    
+      while ($review = $stmt->fetch()) {
+        $reviews[] = new Review(
+          (int) $review['id'],
+          $review['name'],
+          (int) $review['restaurant'],
+          (int) $review['rating'],
+          $review['comment'],
+          $review['reply']
+        );
+      }
+    
+      return $reviews;
+    }
+
+
+    function Reply(PDO $db, int $id, string $reply){
+  
+      try {
+        $stmt = $db->prepare('UPDATE review SET reply = ? WHERE id = ?');
+        if($stmt->execute(array($reply, $id)))
+            return true;
+        else{
+          return false;
+        }   
+      }catch(PDOException $e) {
+        return false;
       }
     }
 

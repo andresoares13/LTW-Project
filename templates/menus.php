@@ -6,26 +6,32 @@ require_once('../database/menu.class.php');
 
 <?php function drawMenu(Menu $menu, Restaurant $restaurant, array $menu_items) { ?>
   <h2>Menu: <?=$menu->name?></h2>
-  <h3>Restaurant: <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></h3>      
-  <table id="menus">
-    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col"></th></tr>
+  <h3>Restaurant: <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></h3>
+  <?php if ($menu_items!=[]){ ?>      
+  <table id="tables">
+    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
       <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
     <?php } ?>
   </table>
+  <?php } else{?>
+  <h4>No items yet</h4> <?php }?>
 <?php } ?>
 
 <?php function drawMenuOwner(Menu $menu, Restaurant $restaurant, array $menu_items) { ?>
   <h2>Menu: <?=$menu->name?></h2>
   <h3>Restaurant: <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></h3>      
   <a href="../pages/menu.php?id=<?=$menu->id?>&id2=edit2">Add a menu item</a> <br> <br>
-  <table id="menus">
-    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col"></th></tr>
+  <?php if ($menu_items!=[]){ ?>
+  <table id="tables">
+    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
       <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td>
       <td><a href="../pages/menu.php?id=<?=$menu->id?>&id2=photo&id3=<?=$item->id?>">Change photo</a></td></tr>
     <?php } ?>
   </table>
+  <?php } else{?>
+  <h4>No items yet</h4> <?php }?>
 <?php } ?>
 
 

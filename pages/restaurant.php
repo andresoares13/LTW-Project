@@ -14,26 +14,36 @@
   require_once('../templates/restaurants.php');
 
   $db = getDatabaseConnection();
-
-  $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
-  $menus = Menu::getRestaurantMenus($db, intval($_GET['id']));
   
   
 
   drawHeader();
-  if ($_GET['id2']=='edit'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
-    drawRestaurantInfoForm($restaurant);
-  }
-  else if($_GET['id2']=='edit2'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
-    drawNewMenuForm($restaurant);
-  }
-  else{
-    if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
-      drawRestaurantOwner($restaurant,$menus);
-      
+  if($_GET['id']=='add'){
+    if ($_SESSION['usertype']=='Restaurant Owner'){
+      drawNewRestaurantForm();
     }
     else{
-      drawRestaurant($restaurant, $menus);
+      die(header('Location: /'));
+    }
+    
+  }
+  else{
+    $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
+    $menus = Menu::getRestaurantMenus($db, intval($_GET['id']));
+    if ($_GET['id2']=='edit'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+      drawRestaurantInfoForm($restaurant);
+    }
+    else if($_GET['id2']=='edit2'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+      drawNewMenuForm($restaurant);
+    }
+    else{
+      if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+        drawRestaurantOwner($restaurant,$menus);
+        
+      }
+      else{
+        drawRestaurant($restaurant, $menus);
+      }
     }
   }
   drawFooter();
