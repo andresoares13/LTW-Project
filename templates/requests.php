@@ -1,6 +1,6 @@
 <?php function drawProfileRequests(array $requests) { ?>
   <h2>Orders of your restaurants:</h2>
-  <h3>click on the order to see details and edit state</h3>
+  <h3>click on the order to see details <?php if ($_SESSION['usertype']=='Restaurant Owner') { ?>and edit state <?php }?></h3>
   <?php if ($requests!=[]){ ?>     
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Customer</th><th scope="col">Restaurant</th><th scope="col">State</th></tr>

@@ -18,6 +18,7 @@
   $db = getDatabaseConnection();
 
   $request=Request::getRequest($db,(int)$_GET['id']);
+
   
   
 
@@ -29,11 +30,13 @@
     $items=Menu_Item::getItemsByRequest($db,(int)$_GET['id']);
     drawOwnerRequest($request,$items);
   }
-  else if($request->customer==$_SESSION['username']){
+  else if($request->customer==$_SESSION['name']){
+  
     $items=Menu_Item::getItemsByRequest($db,(int)$_GET['id']);
     drawCustomerRequest($request,$items);
   }
   else{
+
     die(header('Location: /'));
   }
   drawFooter();

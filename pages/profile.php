@@ -36,6 +36,10 @@
     $requests=Request::getOwnerOrders($db,(int)$_SESSION['id']);
     drawProfileRequests($requests);
   }
+  else if ($_GET['id']=='Corders'&&$_SESSION['usertype']=='Customer'){
+    $requests=Request::getCustomerOrders($db,(int) User::getCustomerID($db,$_SESSION['username']));
+    drawProfileRequests($requests);
+  }
   else if ($_GET['id']=='owner'&&$_SESSION['usertype']=='Restaurant Owner'){
     $restaurants = Restaurant::getRestaurantsWithOwner($db, $_SESSION['id']);
     if($restaurants!=null){

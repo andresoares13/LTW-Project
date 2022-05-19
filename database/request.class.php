@@ -34,6 +34,24 @@
         return $requests;
     }
 
+    static function getCustomerOrders(PDO $db, int $id)  {
+      $stmt = $db->prepare('select request.id,customer.name,state from request,customer where request.customer = customer.id and request.customer = ?');
+      $stmt->execute(array($id));
+  
+      $requests = [];
+  
+      while ($request = $stmt->fetch()) {
+        $requests[] = new Request(
+          (int) $request['id'],
+          $request['name'],
+          $request['state'],
+          Request::getRestaurantByRequest($db,(int) $request['id']),
+        );
+      }
+  
+      return $requests;
+  }
+
     static function getRestaurantByRequest(PDO $db, int $id){
         $stmt = $db->prepare('select name from restaurants where id in (select restaurant from menu where id in (select menu from menu_item where id in (select menu_item from requestMenuItem where request = ?)))');
         $stmt->execute(array($id));
