@@ -4,7 +4,7 @@
         <head>
             <title>Restaurant Helper</title>
             <meta charset="utf-8">
-            <link rel="stylesheet" href="../css/style_login.css">
+
             <link rel="stylesheet" href="../css/style.css">
             <link rel="shortcut icon" href="../pictures/logo.png">
             <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
@@ -14,7 +14,7 @@
         </head>
 
         <body>
-            <header><h1>Restaurant Helper</h1></header>
+            <header><h1 class="tit">Restaurant Helper</h1></header>
             <div class="login1">
                 <div class="formul">
                     <div class="button_rectangle">
@@ -30,6 +30,7 @@
                     <form id="register1" class="inputs" action="../action/action_register.php" method="post">
                         <input type="email" name="email" class="words" placeholder="email" required="required">
                         <input type="password" name="password" class="words" placeholder="password" required="required">
+                        <input type="password" name="repeat" class="words" placeholder="repeat" required="required">
                         <input type="username" name="username" class="words" placeholder="username" required="required">
                         <input type="first_name" name="first_name" class="words" placeholder="first name" required="required">
                         <input type="last_name" name="last_name" class="words" placeholder="last name" required="required">
