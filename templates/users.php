@@ -123,5 +123,39 @@
   <p>
     <a href="../pages/restaurant.php?id=add">Click here to add your restaurant</a>
   </p>
+<?php } ?>
 
+
+
+<?php function drawProfileFavorites(array $items,array $restaurants) { ?>
+  <label class="rating">
+  <h2>My favorites <span class="icon">★</span></h2> 
+  </label>
+  <h3>Favorite Restaurants:</h3>
+  <?php if ($restaurants!=[]){ ?>
+    <p>Click on the restaurant name to go to the restaurant</p>
+  <table id="tables">
+    <tr><th scope="col">#</th><th scope="col">Name</th><th scope="col">Adress</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
+    <?php foreach ($restaurants as $i => $restaurant) { $total+=(int)$item->price?>
+
+      <tr><td><?=$i+1?></td><td><a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></td><td><?=$restaurant->adress?></td><td><?=$restaurant->category?></td><td><img src="../restaurantPictures/<?=$restaurant->photo?>"></td></tr>
+    <?php } ?>  
+  </table>
+  <?php }else { ?>
+    <p>Looks like you don't have any restaurants marked as favorites</p>
+  <?php } ?>
+  
+  <h3>Favorite Items:</h3>
+  <?php if ($items!=[]){ ?>
+    <p>Click on the item name to go to the corresponding menu</p>
+  <table id="tables">
+    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
+    <?php foreach ($items as $i => $item) { $total+=(int)$item->price?>
+
+      <tr><td><?=$i+1?></td><td><a href="../pages/menu.php?id=<?=$item->menu?>"><?=$item->name?></a></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
+    <?php } ?>  
+  </table>
+  <?php }else { ?>
+    <p>Looks like you don't have any items marked as favorites</p>
+  <?php } ?>  
 <?php } ?>  

@@ -161,5 +161,24 @@
       }
     }
 
+    static function getFavoriteRestaurants(PDO $db, int $id) : array {
+      $stmt = $db->prepare('SELECT id, name,adress,category,photo FROM restaurants WHERE id in (select restaurant from favouriteRestaurant where customer = ?) ');
+      $stmt->execute(array($id));
+  
+      $restaurants = array();
+      while ($restaurant = $stmt->fetch()) {
+        $restaurants[] = new Restaurant(
+          (int)$restaurant['id'],
+          $restaurant['name'],
+          $restaurant['adress'],
+          $restaurant['category'],
+          $restaurant['photo']
+        );
+      }
+      
+  
+      return $restaurants;
+    }
+
   }
 ?>
