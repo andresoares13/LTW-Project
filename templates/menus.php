@@ -2,6 +2,9 @@
 
 require_once('../database/restaurant.class.php');
 require_once('../database/menu.class.php');
+require_once('../database/user.class.php');
+require_once('../database/connection.php');
+
 ?>
 
 <?php function drawMenu(Menu $menu, Restaurant $restaurant, array $menu_items) { ?>
@@ -11,7 +14,38 @@ require_once('../database/menu.class.php');
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
-      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
+      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td>
+    <?php if ($_SESSION['usertype']=='Customer'){?><td>
+      <?php $db = getDatabaseConnection();$favorite=User::isItemFavorite($db,$item->id); if (!$favorite){ ?>
+  <form action="../action/action_add_favorite.php" method="post" class="favorite">
+  <label class="rating">
+    
+  <label>
+    <input type="checkbox" name="stars" value="1" onchange='this.form.submit();' />
+    <span class="icon">★</span>
+  </label>
+</label>
+<input id="id" type="hidden" name="id" value="<?=$item->id?>" required="required">
+<input id="id" type="hidden" name="type" value="item" required="required">
+<input id="id2" type="hidden" name="id2" value="<?=$menu->id?>" required="required">
+Add to your favorites
+  </form>
+<?php } else {?>
+  <form action="../action/action_remove_favorite.php" method="post" class="favorite">
+  <label class="rating">
+    
+  <label>
+    <input type="checkbox" name="stars" value="1" checked  onclick='this.form.submit();' />
+    <span class="icon">★</span>
+  </label>
+</label>
+<input id="id" type="hidden" name="id" value="<?=$item->id?>" required="required">
+<input id="id" type="hidden" name="type" value="item" required="required">
+<input id="id2" type="hidden" name="id2" value="<?=$menu->id?>" required="required">
+Remove from your favorites
+</form>
+  <?php }?>
+    </td> <?php }?></tr>
     <?php } ?>
   </table>
   <?php } else{?>

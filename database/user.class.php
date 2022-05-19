@@ -259,6 +259,110 @@
         return false;
       }
     }
+
+
+
+    function addFavoriteRestaurant(PDO $db,int $id,int $Rid){
+      try {
+        $stmt = $db->prepare('INSERT INTO favouriteRestaurant(customer,restaurant) VALUES (:customer,:restaurant)');
+        $stmt->bindParam(':customer', $id);
+        $stmt->bindParam(':restaurant', $Rid);
+        if ($stmt->execute()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function removeFavoriteRestaurant(PDO $db,int $id,int $Rid){
+      try {
+        $stmt = $db->prepare('delete from favouriteRestaurant where customer = ? and restaurant = ?');
+        if ($stmt->execute(array($id,$Rid))){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+
+
+    function addFavoriteItem(PDO $db,int $id,int $Itemid){
+      try {
+        $stmt = $db->prepare('INSERT INTO favouriteMenuItem(customer,menu_item) VALUES (:customer,:menu_item)');
+        $stmt->bindParam(':customer', $id);
+        $stmt->bindParam(':menu_item', $Itemid);
+        if ($stmt->execute()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function removeFavoriteItem(PDO $db,int $id,int $Itemid){
+      try {
+        $stmt = $db->prepare('delete from favouriteMenuItem where customer = ? and menu_item = ?');
+        if ($stmt->execute(array($id,$Itemid))){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function isRestaurantFavorite(PDO $db, int $id) {
+      try {
+        $customer = (int) User::getCustomerID($db,$_SESSION['username']);
+        $stmt = $db->prepare('SELECT id FROM favouriteRestaurant WHERE restaurant = ? and customer = ?');
+        $stmt->execute(array($id,$customer));
+        
+        if($stmt->fetch()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
+
+    function isItemFavorite(PDO $db, int $id) {
+      try {
+        $customer = (int) User::getCustomerID($db,$_SESSION['username']);
+        $stmt = $db->prepare('SELECT id FROM favouriteMenuItem WHERE menu_item = ? and customer = ?');
+        $stmt->execute(array($id,$customer));
+        
+        if($stmt->fetch()){
+          return true;
+        }
+        else{
+          return false;
+        }
+      
+      }catch(PDOException $e) {
+        return true;
+      }
+    }
   }
 
 

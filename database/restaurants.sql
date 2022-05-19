@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS favouriteRestaurant;
 CREATE TABLE favouriteRestaurant (
   id INTEGER PRIMARY KEY,
   customer INTEGER NOT NULL REFERENCES customer(id) ON DELETE CASCADE,
-  restaurant INTEGER NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE
+  restaurant INTEGER NOT NULL REFERENCES restaurants(id) ON DELETE CASCADE
 );
 
 

@@ -9,6 +9,7 @@
 
   require_once('../database/restaurant.class.php');
   require_once('../database/menu.class.php');
+  require_once('../database/user.class.php');
 
   require_once('../templates/common.php');
   require_once('../templates/restaurants.php');
@@ -42,7 +43,8 @@
         
       }
       else{
-        drawRestaurant($restaurant, $menus);
+        $favorite=User::isRestaurantFavorite($db,$restaurant->id);
+        drawRestaurant($restaurant, $menus,$favorite);
       }
     }
   }

@@ -15,8 +15,8 @@
   </section>
 <?php } ?>
 
-<?php function drawRestaurant(Restaurant $restaurant, array $menus) { ?>
-  <h2><?=$restaurant->name?></h2>
+<?php function drawRestaurant(Restaurant $restaurant, array $menus, bool $favorite) { ?>
+  <h2><?=$restaurant->name?></h2> 
   <h3>Category: <?=$restaurant->category?></h3>
   <section id="menu">
   <h2>Menus:</h2>
@@ -32,6 +32,33 @@
   <p>
     <a href="../pages/review.php?id=<?=$restaurant->id?>">Reviews</a>
   </p>
+  <?php if (!$favorite){ ?>
+  <form action="../action/action_add_favorite.php" method="post" class="favorite">
+  <label class="rating">
+    
+  <label>
+    <input type="checkbox" name="stars" value="1" onchange='this.form.submit();' />
+    <span class="icon">★</span>
+  </label>
+</label>
+<input id="id" type="hidden" name="id" value="<?=$restaurant->id?>" required="required">
+<input id="id" type="hidden" name="type" value="restaurant" required="required">
+Add to your favorites
+  </form>
+<?php } else {?>
+  <form action="../action/action_remove_favorite.php" method="post" class="favorite">
+  <label class="rating">
+    
+  <label>
+    <input type="checkbox" name="stars" value="1" checked  onclick='this.form.submit();' />
+    <span class="icon">★</span>
+  </label>
+</label>
+<input id="id" type="hidden" name="id" value="<?=$restaurant->id?>" required="required">
+<input id="id" type="hidden" name="type" value="restaurant" required="required">
+Remove from your favorites
+</form>
+  <?php }?>
 <?php } ?>
 
 <?php function drawRestaurantOwner(Restaurant $restaurant, array $menus) { ?>
