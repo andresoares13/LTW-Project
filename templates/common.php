@@ -13,6 +13,7 @@
     <script src="../javascript/dialogs.js" defer></script>
     <script src="../javascript/radio.js" defer></script>
     <script src="../javascript/stateSlider.js" defer></script>
+    <script src="../javascript/header.js" defer></script>
   </head>
   <body>
     <header>
@@ -24,9 +25,8 @@
 
 <?php function drawFooter() { ?>
     </main>
-
-    <footer>
-      Restaurant helper
+    <footer id="footer">
+      <p id="cp">Copyright &copy; Restaurant helper</p>
     </footer>
   </body>
 </html>
@@ -36,6 +36,6 @@
 <?php function drawLogoutForm(string $name) { ?>
   <form action="../action/action_logout.php" method="post" class="logout">
   <a href="../pages/profile.php"><?=$name?></a>
-    <button type="submit">Logout</button>
+    <button id="logout-but" type="submit" >Logout</button>
   </form>
 <?php } ?>
