@@ -30,6 +30,9 @@
     Restaurant's Adress: <?=$restaurant->adress?>
   </p>
   <p>
+  <a href="../pages/cart.php?id=<?=$restaurant->id?>">Order from here</a>
+  </p>
+  <p>
     <a href="../pages/review.php?id=<?=$restaurant->id?>">Reviews</a>
   </p>
   <?php if (!$favorite){ ?>
