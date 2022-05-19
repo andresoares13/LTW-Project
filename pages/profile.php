@@ -10,6 +10,7 @@
   require_once('../database/restaurant.class.php');
   require_once('../database/review.class.php');
   require_once('../database/request.class.php');
+  require_once('../database/menu_item.class.php');
 
   require_once('../templates/common.php');
   require_once('../templates/users.php');
@@ -39,6 +40,11 @@
   else if ($_GET['id']=='Corders'&&$_SESSION['usertype']=='Customer'){
     $requests=Request::getCustomerOrders($db,(int) User::getCustomerID($db,$_SESSION['username']));
     drawProfileRequests($requests);
+  }
+  else if ($_GET['id']=='favorites'&&$_SESSION['usertype']=='Customer'){
+    $items = Menu_Item::getFavoriteItems($db,(int) User::getCustomerID($db,$_SESSION['username']));
+    $restaurants = Restaurant::getFavoriteRestaurants($db,(int) User::getCustomerID($db,$_SESSION['username']));
+    drawProfileFavorites($items,$restaurants);
   }
   else if ($_GET['id']=='owner'&&$_SESSION['usertype']=='Restaurant Owner'){
     $restaurants = Restaurant::getRestaurantsWithOwner($db, $_SESSION['id']);

@@ -97,6 +97,26 @@
       }
   
       return $menu_items;
-  }
+    }
+
+    static function getFavoriteItems(PDO $db, int $id) : array {
+      $stmt = $db->prepare('select id,name,price,photo,category,menu from menu_item where id in (select menu_item from favouriteMenuItem where customer = ?)');
+      $stmt->execute(array($id));
+  
+      $menu_items = [];
+  
+      while ($item = $stmt->fetch()) {
+        $menu_items[] = new Menu_Item(
+          (int) $item['id'],
+          $item['name'],
+          (int) $item['price'],
+          $item['photo'],
+          $item['category'],
+          (int) $item['menu']
+        );
+      }
+  
+      return $menu_items;
+    }
   }
 ?>
