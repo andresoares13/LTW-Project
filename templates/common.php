@@ -16,10 +16,36 @@
     <script src="../javascript/header.js" defer></script>
   </head>
   <body>
-    <header>
-      <h1><a href="../pages/main.php">Restaurant helper</a></h1>
-      <?php if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);?>
-    </header>
+  <header id="header">
+    <div id="wrap2">
+            <h1 class="tit"><a href="../pages/main.php">Restaurant Helper</a></h1>
+            <?php if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);?>
+    </div>
+              <div id="wrapper">
+                  <nav id="menu">
+                    <ul>
+                        <li class="item"><a href="#">Home</a></li>
+                        <li class="item"><a href="#">Restaurants</a></li>
+                        <li class="item"><a href="#">Dishes</a></li>
+                        <li class="item"><a href="#">Order</a></li>
+                    </ul>
+                    <div id="hamb">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+                <div class="signup">
+                    <form id="search" action="header.php" method="post">
+                        <input type="text" name="src" placeholder="Search...">
+                        <button type="submit"><i class="fa fa-search"></i>
+                            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+                        </button>
+                    </form>
+                    <!--<a href="login.html">Login</a>-->
+                </div>
+              </div>
+        </header>
     <main>
 <?php } ?>
 
