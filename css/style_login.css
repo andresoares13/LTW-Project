@@ -1,23 +1,35 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-family: Verdana, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;  
   color: #fff;
+}
+
+body {
+    margin-bottom: 50px;
 }
 
 .login1 {
     background-image: url("../pictures/server.jpg");
-   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-top: 170px;
+    width: 100%;
+    height: 100%;
 }
 
-header{
-  height: 100px;
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1;
 }
 
 .formul {
     width: 450px;
-    height: 600px;
+    height: 500px;
     position: relative;
     margin: 7% auto;
     background: rgba(0, 0, 0, 0.8);
@@ -73,7 +85,7 @@ header{
 }
 
 .check {
-    margin: 35px 12px 35px 0;
+    margin: 25px 12px 25px 0;
 }
 
 .sub {
@@ -109,4 +121,26 @@ header{
 
 #register1 {
     left: 600px;
+    top: 120px;
+}
+
+#footer {
+    background-color: rgb(51, 51, 51, 51);
+    padding: 1em;
+    color: white;
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    margin-bottom: 0px;
+    position: absolute;
+}
+  
+#cp {
+    text-align: left;
+    font-weight: bold;
+    font-size: 12px;
+    vertical-align: middle;
+    line-height: normal;
+    margin-left: 20px;
 }
