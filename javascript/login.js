@@ -3,14 +3,14 @@ var y = document.getElementById("register1");
 var z = document.getElementById("log");
 
 function register() {
-    x.style.left = "-450px";
-    y.style.left = "100px";
-    z.style.left = "90px";
+    x.style.left = "-28.125em";
+    y.style.left = "6.25em";
+    z.style.left = "5.625em";
 }
 
     function login() {
-    x.style.left = "100px";
-    y.style.left = "500px";
-    z.style.left = "0px";
+    x.style.left = "6.25em";
+    y.style.left = "31.25em";
+    z.style.left = "0em";
 }
 

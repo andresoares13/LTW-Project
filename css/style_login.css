@@ -1,12 +1,10 @@
 * {
-  margin: 0;
-  padding: 0;
+
   font-family: Verdana, Geneva, Tahoma, sans-serif; 
   color: #fff;
 }
 
 body {
-    margin-bottom: 50px;
     width: 120em;
     margin: 1em auto;
     max-width: 100vw;
@@ -15,17 +13,6 @@ body {
 
 body > * {
     margin: 0 1em;
-  }
-  
-  body > header {
-    display: flex;
-  
-    padding: 1em;
-  
-  }
-  
-  body > header h1 {
-    flex-grow: 1;
   }
   
   body > header a {
@@ -39,17 +26,21 @@ body > * {
     background-size: cover;
     background-position: center;
     position: relative;
+    margin: 0;
+    padding: 0;
     
 }
 
 
 .formul {
+    margin-top: 0;
     width: 30em;
-    height: 42em;
+    height: 35em;
     position: relative;
     margin: 5% auto;
     background: rgba(0, 0, 0, 0.8);
     overflow: hidden;
+    padding: 0;
 }
 
 
@@ -75,34 +66,34 @@ body > * {
     top: 0;
     left: 0;
     position: absolute;
-    width: 110px;
+    width: 6.875em;
     height: 100%;
     background: linear-gradient(to right, #8c2d19, #8c2d88);
-    border-radius: 35px;
+    border-radius: 2.1875em;
     transition: 0.5s;
 }
 
 .inputs {
-    top: 200px;
+    top: 12.5em;
     position: absolute;
-    width: 250px;
+    width: 15.625em;
     transition: 0.5s;
 }
 
 .words {
     width: 100%;
-    padding: 10px 0;
-    margin: 5px 0;
+    padding: 0.625em 0;
+    margin: 0.3125em 0;
     border-left: 0;
     border-top: 0;
     border-right: 0;
-    border-bottom: 1px solid #8C2D19;
+    border-bottom: 0.0625em solid #8C2D19;
     outline: none;
     background: transparent;
 }
 
 .check {
-    margin: 25px 12px 25px 0;
+    margin: 1.5625em 0.75em 1.5625em 0;
 }
 
 .sub {
@@ -114,26 +105,19 @@ body > * {
     background: linear-gradient(to right, #8c2d19, #8c2d88);
     border: 0;
     outline: none;
-    border-radius: 25px;
+    border-radius: 1.5625em;
 }
 
 .sub:hover {
     opacity: 1;
     background: #cccc;
-    border-radius: 35px;
-    box-shadow: 0 0 15px 7px #cccc;
+    border-radius: 2.1875em;
+    box-shadow: 0 0 0.9375em 0.4375em #cccc;
     transition: 0.5s;
 }
 
-.useless {
-    color: #999;
-    font-size: 13px;
-    bottom: 70px;
-    position: absolute;
-}
-
 #login2 {
-    left: 100px;
+    left: 6.25em;
     
 }
 
@@ -143,8 +127,8 @@ body > * {
 }
 
 #register1 {
-    left: 600px;
-    top: 120px;
+    left: 37.5em;
+    top: 7.5em;
 }
 
 
@@ -153,4 +137,5 @@ footer {
     background-color: black;
     padding: 1em;
     color: white;
+
   }
