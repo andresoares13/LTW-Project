@@ -6,11 +6,11 @@
   if (!isset($_SESSION['id'])) die(header('Location: /'));
 
   require_once('../database/connection.php');
-  require_once('../database/restaurant.class.php');
+  require_once('../database/menu_item.class.php');
 
   $db = getDatabaseConnection();
 
-  $restaurants = Restaurant::searchRestaurants($db, $_GET['search'], 8);
-  
-  echo json_encode($restaurants);
+  $items = Menu_Item::searchItems($db, $_GET['search'], 8);
+
+  echo json_encode($items);
 ?>

@@ -19,7 +19,34 @@
   
 
   drawHeader();
-  if($_GET['id']=='add'){
+  if ($_GET['id']=='search'){
+    if ($_GET['id2']==NULL){
+      drawRestaurantSearch();
+    }
+    else if ($_GET['id2']=='name'){
+      drawRestaurantSearchResults('name',[]);
+    }
+    else if ($_GET['id2']=='item'){
+      drawRestaurantSearchResults('item',[]);
+    }
+    else if($_GET['id2']=='rating'){
+      $restaurants = Restaurant::getRestaurantsObjects($db,10);
+      function cmp($a, $b) {
+        return $a->rating < $b->rating;
+      }
+      usort($restaurants, "cmp");
+      drawRestaurantSearchResults('rating',$restaurants);
+    }
+    else if($_GET['id2']=='itemR'){
+      drawRestaurantSearchResults('itemR',[]);
+    }
+    else{
+      die(header('Location: /'));
+    }
+    
+  }
+
+  else if($_GET['id']=='add'){
     if ($_SESSION['usertype']=='Restaurant Owner'){
       drawNewRestaurantForm();
     }

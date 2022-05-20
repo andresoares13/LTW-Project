@@ -13,7 +13,7 @@
       </article>
     <?php } ?>
   </section>
-  <h3><a href="">Search for a restaurant</a></h3>
+  <h3><a href="../pages/restaurant.php?id=search">Search for a restaurant</a></h3>
 <?php } ?>
 
 <?php function drawRestaurant(Restaurant $restaurant, array $menus, bool $favorite) { ?>
@@ -100,6 +100,81 @@ Remove from your favorites
       </article>
     <?php } ?>
   </section>
+<?php } ?>
+
+
+<?php function drawRestaurantSearch() { ?>
+  <header>
+  <h1>What would you like to search by?</h1>
+  </header>
+  <section id="searchOptions">
+    <h2>
+    <ul>
+      <li>
+        <a href="../pages/restaurant.php?id=search&id2=name">Search for a restaurant by its name</a>
+      </li>
+      <li>
+        <a href="../pages/restaurant.php?id=search&id2=itemR">Search for a restaurant that contains a certain menu item</a>
+      </li>
+      <li>
+        <a href="../pages/restaurant.php?id=search&id2=rating">Search for a restaurant by average rating</a>
+      </li>
+      <li>
+        <a href="../pages/restaurant.php?id=search&id2=item">Search for a menu item by its name</a>
+      </li>
+    </ul>
+    </h2>
+  </section>
+<?php } ?>
+
+<?php function drawRestaurantSearchResults(string $parameter,array $restaurants) { ?>
+    <?php if ($parameter=='name'){?>
+    <header>  
+    <h1>Type your desired restaurant name and it will appear
+    <input id="searchrestaurant1" type="text" placeholder="search">
+    </h1>
+    </header>
+    <section id="restaurants">
+    
+  </section>
+    <?php } else if($parameter=='item'){?>
+    <header>  
+    <h1>Type your desired item name and it will appear
+    <input id="searchitem" type="text" placeholder="search">
+    </h1>    
+    </header>
+    <section id="itemssearch">
+  
+    </section>
+    <?php } else if($parameter=='rating'&&$restaurants!=[]){?>
+    <header>  
+    <h1>Restaurants sorted by average rating
+
+    </h1>
+    </header>
+    <section id="restaurants">
+      <ul>
+    <?php foreach($restaurants as $restaurant) { ?> 
+      <li>
+        <img src="../restaurantPictures/<?=$restaurant->photo?>"> <br>
+        <h2><a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>  
+        Rating: <?php if($restaurant->rating>0){?><?=$restaurant->rating?> <?php }else{?> No ratings yet <?php } ?> </h2>
+    </li>
+    <?php } ?>
+      </ul>
+  </section>
+
+    <?php } else if($parameter=='itemR'){?>
+    <header>  
+    <h1>Type an item name and all restaurants containing it will appear
+    <input id="searchrestaurant2" type="text" placeholder="search">
+    </h1>
+    </header>
+    <section id="restaurants">
+
+    </section>
+    <?php }else{?>
+    <?php }?>
 <?php } ?>
 
 

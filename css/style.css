@@ -140,6 +140,13 @@ form.profile button {
   height: 6.25em !important;
 }
 
+#restaurants ul img{
+  width: 6.25em !important;
+  height: 6.25em !important;
+}
+
+
+
 #tables img{
   width: 6.25em !important;
   height: 6.25em !important;
@@ -303,6 +310,32 @@ font-weight: 300;
   margin-top: 2em;
   margin-left: auto;;
   margin-right: auto;
+}
+
+#searchOptions ul{
+  list-style: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
+
+#searchOptions li{
+  list-style: none;
+  list-style-position: inside;
+  padding: 1em;
+}
+
+#restaurants ul{
+  list-style: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+}
+
+#restaurants li{
+  list-style: none;
+  list-style-position: inside;
+  padding: 1em;
 }
 
 footer {

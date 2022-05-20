@@ -10,7 +10,7 @@
 
   $db = getDatabaseConnection();
 
-  $restaurants = Restaurant::searchRestaurants($db, $_GET['search'], 8);
+  $restaurants = Restaurant::getRestaurantsByItem($db, $_GET['search']);
   
   echo json_encode($restaurants);
 ?>

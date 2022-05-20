@@ -7,15 +7,17 @@
     public string $adress;
     public string $category;
     public string $photo;
+    public float $rating;
     
 
-    public function __construct(int $id, string $name, string $adress, string $category,string $photo)
+    public function __construct(int $id, string $name, string $adress, string $category,string $photo,float $rating)
     { 
       $this->id = $id;
       $this->name = $name;
       $this->adress = $adress;
       $this->category = $category;
       $this->photo = $photo;
+      $this->rating = $rating;
       
     }
 
@@ -46,29 +48,62 @@
         $stmt = $db->prepare('SELECT id, name, adress, category,photo FROM restaurants WHERE id = ?');
         $stmt->execute(array($id));
         $restaurant = $stmt->fetch();
+        $rating = Restaurant::getRestaurantAVGRating($db,(int)$restaurant['id']);
+        if ($rating==NULL){
+          $rating=0;
+        }
     
         return new Restaurant(
           (int) $restaurant['id'], 
           $restaurant['name'],
           $restaurant['adress'],
           $restaurant['category'],
-          $restaurant['photo']
+          $restaurant['photo'],
+          $rating
         );
     }
 
   
 
     static function searchRestaurants(PDO $db, string $search, int $count) : array {
-      $stmt = $db->prepare('SELECT id, name,adress,category,photo FROM restaurants WHERE name LIKE ? LIMIT ?');
+      $stmt = $db->prepare("SELECT id, name,adress,category,photo FROM restaurants WHERE name LIKE ?  LIMIT ?");
       $stmt->execute(array($search . '%', $count));
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
+        $rating = Restaurant::getRestaurantAVGRating($db,(int)$restaurant['id']);
+        if ($rating==NULL){
+          $rating=0;
+        }
         $restaurants[] = new Restaurant(
           (int)$restaurant['id'],
           $restaurant['name'],
           $restaurant['adress'],
           $restaurant['category'],
-          $restaurant['photo']
+          $restaurant['photo'],
+          $rating
+        );
+      }
+      
+  
+      return $restaurants;
+    }
+
+    static function getRestaurantsByItem(PDO $db, string $search) : array {
+      $stmt = $db->prepare("SELECT id, name,adress,category,photo FROM restaurants WHERE id in (select restaurant from menu where id in (select menu from menu_item where name LIKE ?))");
+      $stmt->execute(array($search . '%'));
+      $restaurants = array();
+      while ($restaurant = $stmt->fetch()) {
+        $rating = Restaurant::getRestaurantAVGRating($db,(int)$restaurant['id']);
+        if ($rating==NULL){
+          $rating=0;
+        }
+        $restaurants[] = new Restaurant(
+          (int)$restaurant['id'],
+          $restaurant['name'],
+          $restaurant['adress'],
+          $restaurant['category'],
+          $restaurant['photo'],
+          $rating
         );
       }
       
@@ -167,12 +202,50 @@
   
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
+        $rating = Restaurant::getRestaurantAVGRating($db,(int)$restaurant['id']);
+        if ($rating==NULL){
+          $rating=0;
+        }
         $restaurants[] = new Restaurant(
           (int)$restaurant['id'],
           $restaurant['name'],
           $restaurant['adress'],
           $restaurant['category'],
-          $restaurant['photo']
+          $restaurant['photo'],
+          $rating
+        );
+      }
+      
+  
+      return $restaurants;
+    }
+
+    static function getRestaurantAVGRating(PDO $db, int $id) : float{
+      $stmt = $db->prepare('select round(avg(rating), 2) as Rating from review where restaurant = ?');
+      $stmt->execute(array($id));
+      if($id = $stmt->fetch()){
+          return (float)$id['Rating'];
+        }
+      
+    }
+
+    static function getRestaurantsObjects(PDO $db, int $id) : array {
+      $stmt = $db->prepare('SELECT id, name,adress,category,photo FROM restaurants LIMIT ?');
+      $stmt->execute(array($id));
+  
+      $restaurants = array();
+      while ($restaurant = $stmt->fetch()) {
+        $rating = Restaurant::getRestaurantAVGRating($db,(int)$restaurant['id']);
+        if ($rating==NULL){
+          $rating=0;
+        }
+        $restaurants[] = new Restaurant(
+          (int)$restaurant['id'],
+          $restaurant['name'],
+          $restaurant['adress'],
+          $restaurant['category'],
+          $restaurant['photo'],
+          $rating
         );
       }
       

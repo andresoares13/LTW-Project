@@ -137,5 +137,26 @@
       }
       return $menu_items;
     }
+
+
+    static function searchItems(PDO $db, string $search, int $count) : array {
+      $stmt = $db->prepare("SELECT id, name,price,photo,category,menu FROM menu_item WHERE name LIKE ?  LIMIT ?");
+      $stmt->execute(array($search . '%', $count));
+      $item = array();
+  
+      while ($item = $stmt->fetch()) {
+        $menu_items[] = new Menu_Item(
+          (int) $item['id'],
+          $item['name'],
+          (int) $item['price'],
+          $item['photo'],
+          $item['category'],
+          (int) $item['menu']
+        );
+      }
+      
+  
+      return $menu_items;
+    }
   }
 ?>
