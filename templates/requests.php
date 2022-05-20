@@ -1,3 +1,5 @@
+<?php declare(strict_types = 1); ?>
+
 <?php function drawProfileRequests(array $requests) { ?>
   <h2>Orders of your restaurants:</h2>
   <?php if ($requests!=[]){ ?>  

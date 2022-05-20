@@ -1,13 +1,37 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 
+  font-family: Verdana, Geneva, Tahoma, sans-serif; 
   color: #fff;
 }
 
 body {
     margin-bottom: 50px;
+    width: 60em;
+    margin: 1em auto;
+    max-width: 100vw;
+    background-color: #8C2D19;
 }
+
+body > * {
+    margin: 0 1em;
+  }
+  
+  body > header {
+    display: flex;
+  
+    padding: 1em;
+  
+  }
+  
+  body > header h1 {
+    flex-grow: 1;
+  }
+  
+  body > header a {
+    color: #8C2D19;
+    text-decoration: none;
+  }
 
 .login1 {
     background-image: url("../pictures/server.jpg");
@@ -15,27 +39,20 @@ body {
     background-size: cover;
     background-position: center;
     position: relative;
-    margin-top: 170px;
-    width: 100%;
-    height: 100%;
+    
 }
 
-header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-}
 
 .formul {
-    width: 450px;
-    height: 500px;
+    width: 30em;
+    height: 42em;
     position: relative;
-    margin: 7% auto;
+    margin: 5% auto;
     background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
     overflow: hidden;
 }
+
+
 
 .button_rectangle {
     width: 200px;
@@ -116,7 +133,13 @@ header {
 }
 
 #login2 {
-    left: 50px;
+    left: 100px;
+    
+}
+
+#login2 button{
+    margin-top: 1em;
+    
 }
 
 #register1 {
@@ -124,23 +147,10 @@ header {
     top: 120px;
 }
 
-#footer {
-    background-color: rgb(51, 51, 51, 51);
+
+  
+footer {
+    background-color: black;
     padding: 1em;
     color: white;
-    height: 50px;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    margin-bottom: 0px;
-    position: absolute;
-}
-  
-#cp {
-    text-align: left;
-    font-weight: bold;
-    font-size: 12px;
-    vertical-align: middle;
-    line-height: normal;
-    margin-left: 20px;
-}
+  }

@@ -120,9 +120,8 @@
     }
 
     static function getItemsByMenu(PDO $db, int $id) {
-      $stmt = $db->prepare('select menu_item.id,menu_item.name,price,photo,category,menu.id from menu_item,menu where menu_item.menu=menu.id and menu.restaurant = ? order by menu.id');
+      $stmt = $db->prepare('select menu_item.id,menu_item.name,price,photo,category,menu.id as menu from menu_item,menu where menu_item.menu=menu.id and menu.restaurant = ? order by menu.id');
       $stmt->execute(array($id));
-    
       $menu_items = [];
   
       while ($item = $stmt->fetch()) {
@@ -134,8 +133,8 @@
           $item['category'],
           (int) $item['menu']
         );
+
       }
-  
       return $menu_items;
     }
   }

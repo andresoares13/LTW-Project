@@ -3,15 +3,20 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
+
   }
+
+
   #prodcuts article .sale{
     background-color: #ffddd2;
+ 
   }
   
   #products article {
     padding: 1em;
     text-align: center;
     background-color: #ccc;
+    flex: 1 1 0px;
   }
   
   
@@ -52,4 +57,9 @@
   
   #cart thead tr, #cart tfoot tr  {
     background-color: #edf6f9;
+  }
+
+  #products img{
+    width: 100px !important;
+    height: 100px !important;
   }

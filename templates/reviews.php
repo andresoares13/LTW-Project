@@ -1,3 +1,5 @@
+<?php declare(strict_types = 1); ?>
+
 <?php function drawReviews(array $reviews, Restaurant $restaurant) { ?>
   <h2>Reviews:</h2>
   <h3>Restaurant: <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></h3>     

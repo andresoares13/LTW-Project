@@ -5,7 +5,7 @@
             <title>Restaurant Helper</title>
             <meta charset="utf-8">
 
-            <link rel="stylesheet" href="../css/style.css">
+            <link rel="stylesheet" href="../css/style_login.css">
             <link rel="shortcut icon" href="../pictures/logo.png">
             <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,12 +30,12 @@
                     <form id="register1" class="inputs" action="../action/action_register.php" method="post">
                         <input type="email" name="email" class="words" placeholder="email" required="required">
                         <input type="password" name="password" class="words" placeholder="password" required="required">
-                        <input type="password" name="repeat" class="words" placeholder="repeat" required="required">
+                        <input type="password" name="repeat" class="words" placeholder="repeat password" required="required">
                         <input type="username" name="username" class="words" placeholder="username" required="required">
                         <input type="first_name" name="first_name" class="words" placeholder="first name" required="required">
                         <input type="last_name" name="last_name" class="words" placeholder="last name" required="required">
                         <input type="checkbox" id="owner" name="check" class="check" value="owner" onclick="onlyOne(this)">
-                        <label for="owner" id="Iam"> I am a restaurant owner</label>
+                        <label for="owner" id="Iam"> I am a restaurant owner</label> <br>
                         <input type="checkbox" id="customer" name="check" class="check" value="customer" onclick="onlyOne(this)">
                         <label for="customer" id="Iam"> I am a customer</label>
                         <button type="submit" class="sub">Register</button> 

@@ -4,12 +4,12 @@ var z = document.getElementById("log");
 
 function register() {
     x.style.left = "-450px";
-    y.style.left = "70px";
+    y.style.left = "100px";
     z.style.left = "90px";
 }
 
     function login() {
-    x.style.left = "70px";
+    x.style.left = "100px";
     y.style.left = "500px";
     z.style.left = "0px";
 }

@@ -1,9 +1,10 @@
 <?php declare(strict_types = 1); ?>
 
 <?php function drawRestaurants(array $restaurants) { ?>
-  <!--<header>
+  <header>
+  <h2>Restaurants</h2>
     <input id="searchrestaurant" type="text" placeholder="search">
-  </header>-->
+  </header>
   <section id="restaurants">
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
@@ -12,6 +13,7 @@
       </article>
     <?php } ?>
   </section>
+  <h3><a href="">Search for a restaurant</a></h3>
 <?php } ?>
 
 <?php function drawRestaurant(Restaurant $restaurant, array $menus, bool $favorite) { ?>
