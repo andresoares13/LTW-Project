@@ -2,13 +2,13 @@
 
 <?php function drawRestaurants(array $restaurants) { ?>
   <header>
-  <h2>Restaurants</h2>
+  <h2 id="mainRestaurants">Restaurants</h2>
     <input id="searchrestaurant" type="text" placeholder="search">
   </header>
   <section id="restaurants">
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
-        <img src="../restaurantPictures/<?=$restaurant['photo']?>">
+        <img src="../restaurantPictures/<?=$restaurant['photo']?>"> <br>
         <a href="../pages/restaurant.php?id=<?=$restaurant['id']?>"><?=$restaurant['name']?></a>
       </article>
     <?php } ?>
@@ -17,7 +17,7 @@
 <?php } ?>
 
 <?php function drawRestaurant(Restaurant $restaurant, array $menus, bool $favorite) { ?>
-  <h2><?=$restaurant->name?></h2> 
+  <h1><?=$restaurant->name?></h1> 
   <h3>Category: <?=$restaurant->category?></h3>
   <section id="menu">
   <h2>Menus:</h2>
@@ -66,7 +66,7 @@ Remove from your favorites
 <?php } ?>
 
 <?php function drawRestaurantOwner(Restaurant $restaurant, array $menus) { ?>
-  <h2><?=$restaurant->name?></h2>
+  <h1><?=$restaurant->name?></h1>
   <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit">Edit restaurant information</a> |
   <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit2">Add a menu</a>
   <h3>Category: <?=$restaurant->category?></h3>

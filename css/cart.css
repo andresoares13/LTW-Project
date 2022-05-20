@@ -52,7 +52,7 @@
   
   #cart tr {
     background-color: #ffddd2;  
-    border: 5px solid white;
+    border: 0.3125em solid white;
   }
   
   #cart thead tr, #cart tfoot tr  {
@@ -60,6 +60,6 @@
   }
 
   #products img{
-    width: 100px !important;
-    height: 100px !important;
+    width: 6.25em !important;
+    height: 6.25em !important;
   }

@@ -13,7 +13,7 @@
   $user = User::getUser($db, $_SESSION['id']);
 
   if ($user) {
-    if (User::existsPhone($db,$_POST['phone'],$user->id)){
+    if (User::existsPhone($db,$_POST['phone'],$user->id)&&$_POST['phone']!='empty'){
       $_SESSION['ERROR'] = 'Phone number already exists';
       header("Location:".$_SERVER['HTTP_REFERER']."");
     }
