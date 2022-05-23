@@ -12,11 +12,14 @@
   require_once('../templates/restaurants.php');
 
   $db = getDatabaseConnection();
-
-  $restaurants = Restaurant::getRestaurants($db, 8);
   
   
   drawHeader();
+  $restaurants = Restaurant::getRestaurantsObjects($db,4);
+      function cmp($a, $b) {
+        return $a->rating < $b->rating;
+      }
+      usort($restaurants, "cmp");
   drawRestaurants($restaurants);
   drawFooter();
 ?>

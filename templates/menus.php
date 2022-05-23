@@ -92,13 +92,14 @@ Remove from your favorites
   </form>
 <?php } ?>
 
-<?php function drawPictureForm(Menu_Item $menu_item) { ?>
+<?php function drawItemPictureForm(Menu_Item $menu_item) { ?>
   <div id="photo_field">
     <form action="../action/api.upload_photo.php" method="post" enctype="multipart/form-data">
       <label>Photo</label>
       <img id="photo" src="<?php echo  htmlentities('../itemPictures/'.$_SESSION['iteminfo']['Photo']) ?>" alt="Item picture">
       <input type="file" name="fileToUpload" id="fileToUpload">
       <input id="id" type="hidden" name="id" value="<?=$menu_item->id?>" required="required">
+      <input id="type" type="hidden" name="type" value="item" required="required">
       <input type="submit" name="Submit" value="Upload">
     </form>
   </div>

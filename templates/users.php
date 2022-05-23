@@ -60,7 +60,7 @@
   </div>
 </article>
 <p>
-  <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> 
+<a href="../pages/profile.php?id=photo"> Change Profile Picture</a> | <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> 
   | <a href="../pages/profile.php?id=favorites">Favorites</a> | <a href="../pages/profile.php?id=Corders">My orders</a>
 </p>
 <p>
@@ -96,7 +96,7 @@
   </div>
 </article>
 <p>
-  <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> | <a href="../pages/profile.php?id=owner">My restaurants</a> |
+<a href="../pages/profile.php?id=photo"> Change Profile Picture</a> | <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> | <a href="../pages/profile.php?id=owner">My restaurants</a> |
   <a href="../pages/profile.php?id=reviews">Reviews</a> | <a href="../pages/profile.php?id=Rorders">Orders</a>
 </p>
 <p>
@@ -159,3 +159,18 @@
     <p>Looks like you don't have any items marked as favorites</p>
   <?php } ?>  
 <?php } ?>  
+
+
+
+<?php function drawUserPictureForm() { ?>
+  <div id="photo_field">
+    <form action="../action/api.upload_photo.php" method="post" enctype="multipart/form-data">
+      <label>Photo</label>
+      <img id="photo" src="<?php echo  htmlentities('../userPictures/'.$_SESSION['userinfo']['Photo']) ?>" alt="Item picture">
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input id="id" type="hidden" name="id" value=<?=$_SESSION['id']?> required="required">
+      <input id="type" type="hidden" name="type" value="user" required="required">
+      <input type="submit" name="Submit" value="Upload">
+    </form>
+  </div>
+<?php }?>

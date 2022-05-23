@@ -41,6 +41,10 @@
     $requests=Request::getCustomerOrders($db,(int) User::getCustomerID($db,$_SESSION['username']));
     drawProfileRequests($requests);
   }
+  else if ($_GET['id']=='photo'){
+    $_SESSION['userinfo']['Photo']=$user->photo;
+    drawUserPictureForm();
+  }
   else if ($_GET['id']=='favorites'&&$_SESSION['usertype']=='Customer'){
     $items = Menu_Item::getFavoriteItems($db,(int) User::getCustomerID($db,$_SESSION['username']));
     $restaurants = Restaurant::getFavoriteRestaurants($db,(int) User::getCustomerID($db,$_SESSION['username']));

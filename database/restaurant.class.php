@@ -254,6 +254,20 @@
     }
 
 
+    function updateRestaurantPhoto(PDO $db,int $id, string $photoPath) {
+      try {
+        $stmt = $db->prepare('UPDATE restaurants SET photo = ? WHERE id = ?');
+        if($stmt->execute(array($photoPath, $id))){
+          return true;
+        }
+        else
+            return false;
+      }catch(PDOException $e) {
+        return false;
+      }
+    } 
+
+
 
   }
 ?>

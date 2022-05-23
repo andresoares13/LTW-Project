@@ -2,14 +2,13 @@
 
 <?php function drawRestaurants(array $restaurants) { ?>
   <header>
-  <h2 id="mainRestaurants">Restaurants</h2>
-    <input id="searchrestaurant" type="text" placeholder="search">
+  <h2 id="mainRestaurants">Top Restaurants</h2>
   </header>
-  <section id="restaurants">
+  <section id="restaurantsMain">
     <?php foreach($restaurants as $restaurant) { ?> 
-      <article>
-        <img src="../restaurantPictures/<?=$restaurant['photo']?>"> <br>
-        <a href="../pages/restaurant.php?id=<?=$restaurant['id']?>"><?=$restaurant['name']?></a>
+      <article id="card">
+        <img src="../restaurantPictures/<?=$restaurant->photo?>"> <br>
+        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>
       </article>
     <?php } ?>
   </section>
@@ -67,8 +66,9 @@ Remove from your favorites
 
 <?php function drawRestaurantOwner(Restaurant $restaurant, array $menus) { ?>
   <h1><?=$restaurant->name?></h1>
-  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit">Edit restaurant information</a> |
-  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit2">Add a menu</a>
+  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit">Edit restaurant's information</a> |
+  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit2">Add a menu</a> |
+  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=photo">Change restaurant's photo</a>
   <h3>Category: <?=$restaurant->category?></h3>
   <section id="menu">
     <?php foreach ($menus as $menu) { ?>
@@ -242,3 +242,17 @@ Remove from your favorites
   </p>
 </form>
 <?php } ?>
+
+
+<?php function drawRestaurantPictureForm(Restaurant $restaurant) { ?>
+  <div id="photo_field">
+    <form action="../action/api.upload_photo.php" method="post" enctype="multipart/form-data">
+      <label>Photo</label>
+      <img id="photo" src="<?php echo  htmlentities('../restaurantPictures/'.$_SESSION['rinfo']['Photo']) ?>" alt="Item picture">
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input id="id" type="hidden" name="id" value=<?=$restaurant->id?> required="required">
+      <input id="type" type="hidden" name="type" value="restaurant" required="required">
+      <input type="submit" name="Submit" value="Upload">
+    </form>
+  </div>
+<?php }?>

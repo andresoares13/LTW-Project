@@ -64,6 +64,10 @@
     else if($_GET['id2']=='edit2'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
       drawNewMenuForm($restaurant);
     }
+    else if($_GET['id2']=='photo'&&Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
+      $_SESSION['rinfo']['Photo']=$restaurant->photo;
+      drawRestaurantPictureForm($restaurant);
+    }
     else{
       if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
         drawRestaurantOwner($restaurant,$menus);

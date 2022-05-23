@@ -30,7 +30,7 @@
   else if($_GET['id2']=='photo'&&Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
     $menu_item = Menu_Item::getMenuItem($db,intval($_GET['id3']));
     $_SESSION['iteminfo']['Photo']=$menu_item->photo;
-    drawPictureForm($menu_item);
+    drawItemPictureForm($menu_item);
   }
   else{
     if (Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){

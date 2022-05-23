@@ -363,6 +363,19 @@
         return true;
       }
     }
+
+    function updateUserPhoto(PDO $db,int $id, string $photoPath) {
+      try {
+        $stmt = $db->prepare('UPDATE users SET photo = ? WHERE userId = ?');
+        if($stmt->execute(array($photoPath, $id)))
+            return true;
+        else
+            return false;
+      }catch(PDOException $e) {
+        return false;
+      }
+    } 
+
   }
 
 
