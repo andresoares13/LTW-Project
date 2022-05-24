@@ -5,6 +5,7 @@ function attachBuyEvents() {
           let exists=false;
           let total=0;
           const table=document.querySelector("#cart table");
+          const tbody=document.querySelector("#cart table tbody");
           const tr=document.createElement("tr");
           const th1=document.createElement("th");
           const th2=document.createElement("th");
@@ -26,6 +27,8 @@ function attachBuyEvents() {
           const children=table.children;
           let samechild;
           for (const child of children){
+            console.log(child.getAttribute("id"));
+            console.log(button.parentElement.getAttribute("data-id"));
             if (child.getAttribute("id")==button.parentElement.getAttribute("data-id")){
               exists=true;
               samechild=child;
@@ -49,6 +52,18 @@ function attachBuyEvents() {
           table.appendChild(tr);
           
 
+          let data = {id: button.parentElement.getAttribute("data-id"), quantity: button.previousElementSibling.value, price: button.previousElementSibling.previousElementSibling.innerHTML};
+          (async () => {
+            const rawResponse = await fetch('../action/api.updateCart.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: encodeForAjax(data)
+            });
+          
+          })();
+
         });
     }
   }
@@ -63,4 +78,10 @@ function DeleteRow(){
       break;
     };
   }
+}
+
+function encodeForAjax(data) {
+  return Object.keys(data).map(function(k){
+    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+  }).join('&')
 }

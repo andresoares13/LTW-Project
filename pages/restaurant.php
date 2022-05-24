@@ -32,7 +32,7 @@
     else if($_GET['id2']=='rating'){
       $restaurants = Restaurant::getRestaurantsObjects($db,10);
       function cmp($a, $b) {
-        return $a->rating < $b->rating;
+        return $b->rating <=> $a->rating;
       }
       usort($restaurants, "cmp");
       drawRestaurantSearchResults('rating',$restaurants);

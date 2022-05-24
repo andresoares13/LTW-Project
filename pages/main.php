@@ -17,7 +17,7 @@
   drawHeader();
   $restaurants = Restaurant::getRestaurantsObjects($db,4);
       function cmp($a, $b) {
-        return $a->rating < $b->rating;
+        return $b->rating <=> $a->rating;
       }
       usort($restaurants, "cmp");
   drawRestaurants($restaurants);

@@ -158,5 +158,19 @@
   
       return $menu_items;
     }
+
+
+    function getItemName(PDO $db,int $id) {
+      try {
+        $stmt = $db->prepare('SELECT name FROM menu_item WHERE id = ?');
+        $stmt->execute(array($id));
+        if($id = $stmt->fetch()){
+          return (string)$id['name'];
+        }
+      
+      }catch(PDOException $e) {
+        return -1;
+      }
+    }
   }
 ?>

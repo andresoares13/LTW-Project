@@ -54,7 +54,7 @@ body > * {
 }
 
 .button_log {
-    padding: 1em 2em;
+    padding: 1em 1.9em;
     cursor: pointer;
     background: transparent;
     border: 0;
