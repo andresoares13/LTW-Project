@@ -14,6 +14,7 @@ function attachBuyEvents() {
           const th5=document.createElement("th");
           const th6=document.createElement("th");
           tr.setAttribute("id",button.parentElement.getAttribute("data-id"));
+          tbody.setAttribute("id","tbody");
           th1.textContent=button.parentElement.getAttribute("data-id");
           th2.textContent=button.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
           th3.textContent=button.previousElementSibling.value;
@@ -24,7 +25,7 @@ function attachBuyEvents() {
           disPlaytotal.innerHTML=parseInt(disPlaytotal.innerHTML)+total;
           th6.innerHTML='<a href="javascript:DeleteRow()">X</a>';
           console.log(th6);
-          const children=table.children;
+          const children=tbody.children;
           let samechild;
           for (const child of children){
             console.log(child.getAttribute("id"));
@@ -49,7 +50,7 @@ function attachBuyEvents() {
             newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML=parseInt(th5.textContent)+parseInt(newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML);
 
           }
-          table.appendChild(tr);
+          tbody.appendChild(tr);
           
 
           let data = {id: button.parentElement.getAttribute("data-id"), quantity: button.previousElementSibling.value, price: button.previousElementSibling.previousElementSibling.innerHTML};
