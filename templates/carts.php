@@ -12,7 +12,7 @@ require_once('../database/menu_item.class.php');
     <section id="products">
     <?php if ($itemsByMenu!=[]){ ?>
     <?php foreach ($itemsByMenu as $i => $item) { ?>
-    <article data-id="<?=$i+1?>">
+    <article data-id="<?=$item->id?>">
       <h2><?=$item->name?></h2>
       <img src="../itemPictures/<?=$item->photo?>">
       <p class="price"><?=$item->price?></p>
