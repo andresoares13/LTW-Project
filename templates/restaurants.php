@@ -95,7 +95,7 @@ Remove from your favorites
   <a href="../pages/restaurant.php?id=add">Add a restaurant</a>
     <?php foreach($restaurants as $restaurant) { ?> 
       <article>
-        <img src="../restaurantPictures/<?=$restaurant['photo']?>">
+        <img src="../restaurantPictures/<?=$restaurant['photo']?>"> <br>
         <a href="../pages/restaurant.php?id=<?=$restaurant['id']?>"><?=$restaurant['name']?></a>
       </article>
     <?php } ?>
