@@ -35,7 +35,7 @@
 
 <?php function drawLogoutForm(string $name) { ?>
   <form action="../action/action_logout.php" method="post" class="logout">
-  <a href="../pages/profile.php"><?=$name?></a>
+  <a id="profile_name_header" href="../pages/profile.php"><?=$name?></a>
     <button id="logout-but" type="submit" >Logout</button>
   </form>
 <?php } ?>
