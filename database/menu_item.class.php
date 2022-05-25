@@ -8,15 +8,17 @@
     public string $photo;
     public string $category;
     public int $menu;
+    public int $quantity;
 
 
-    public function __construct(int $id, string $name, int $price, string $photo, string $category, int $menu) {
+    public function __construct(int $id, string $name, int $price, string $photo, string $category, int $menu, int $quantity) {
       $this->id = $id;
       $this->name = $name;
       $this->price = $price;
       $this->photo = $photo;
       $this->category = $category;
       $this->menu = $menu;
+      $this->quantity = $quantity;
     }
 
     static function getMenuItems(PDO $db, int $id) : array {
@@ -32,7 +34,8 @@
             (int) $item['price'],
             $item['photo'],
             $item['category'],
-            (int) $item['menu']
+            (int) $item['menu'],
+            0
           );
         }
     
@@ -50,7 +53,8 @@
         (int) $item['price'],
         $item['photo'],
         $item['category'],
-        (int) $item['menu']
+        (int) $item['menu'],
+        0
       );
     }
 
@@ -80,7 +84,7 @@
 
 
     static function getItemsByRequest(PDO $db, int $id) : array {
-      $stmt = $db->prepare('select id,name,price,photo,category,menu from menu_item where id in (select menu_item from requestMenuItem where request = ?)');
+      $stmt = $db->prepare('select menu_item.id,name,price,photo,category,menu,quantity from menu_item,requestMenuItem where menu_item.id=requestMenuItem.menu_item and request = ?');
       $stmt->execute(array($id));
   
       $menu_items = [];
@@ -92,7 +96,9 @@
           (int) $item['price'],
           $item['photo'],
           $item['category'],
-          (int) $item['menu']
+          (int) $item['menu'],
+          (int) $item['quantity']
+          
         );
       }
   
@@ -112,7 +118,8 @@
           (int) $item['price'],
           $item['photo'],
           $item['category'],
-          (int) $item['menu']
+          (int) $item['menu'],
+          0
         );
       }
   
@@ -131,7 +138,8 @@
           (int) $item['price'],
           $item['photo'],
           $item['category'],
-          (int) $item['menu']
+          (int) $item['menu'],
+          0
         );
 
       }
@@ -151,7 +159,8 @@
           (int) $item['price'],
           $item['photo'],
           $item['category'],
-          (int) $item['menu']
+          (int) $item['menu'],
+          0
         );
       }
       

@@ -63,3 +63,21 @@
     width: 6.25em !important;
     height: 6.25em !important;
   }
+
+  #SubmitOrder{
+    background-color: white;
+  border: 0.125em #000;
+  border-radius: 0.3125em;
+  min-width: 5.625em;
+  
+  font-size: 4em;
+  float: right;
+  }
+
+  #SubmitOrder:hover {
+    font-weight: 900;
+    background-color: #cecdcd;
+    transition: 0.2s;
+    cursor: pointer;
+  } 
+

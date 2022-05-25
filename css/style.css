@@ -77,14 +77,15 @@ main > header input {
 
 #logout-but {
   background-color: white;
-  border: 2px #000;
-  border-radius: 5px;
-  min-width: 90px;
-  max-width: 90px;
+  border: 0.125em #000;
+  border-radius: 0.3125em;
+  min-width: 5.625em;
+  max-width: 5.625em;
 
 }
 
 #logout-but:hover {
+  cursor: pointer;
   font-weight: 900;
   background-color: #cecdcd;
   transition: 0.2s;
@@ -395,27 +396,14 @@ footer {
 
 }
 
-#card img{
+#card a img{
   border-radius: 1em;
   width: 100%;
   height: 100%;
   -webkit-filter: brightness(100%);
 }
 
-#card a {
-  color: white;
-  text-decoration: none;
-  text-shadow: 2px 2px #333;
 
-  font-size: 1.5em;
-
-  align-self: center;
-  justify-self: center;
-
-  text-align: center;
-
-  display: none;
-}
 
 #card:hover a {
   display: inline;

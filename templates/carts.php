@@ -31,8 +31,8 @@ require_once('../database/menu_item.class.php');
       </thead>
       <tbody id="tbody">
       <?php $total = 0; foreach ($_SESSION['cart'] as $i => $item) { $total+=$item['price']*$item['quantity'];?>
-          <tr id="<?=$i?>"><th><?=$i?></th><th><?php $db = getDatabaseConnection(); ?><?=Menu_Item::getItemName($db,$i)?></th><th><?=$item['quantity']?></th><th><?=$item['price']?></th>
-          <th><?=$item['price']*$item['quantity']?></th> <th><a href="javascript:DeleteRow()">X</a></th></tr>
+          <tr id="<?=$i?>"><th><?=$i?></th><th><?php $db = getDatabaseConnection(); ?><?=Menu_Item::getItemName($db,$i)?></th><th id="quantity"><?=$item['quantity']?></th><th id= "price"><?=$item['price']?></th>
+          <th><?=$item['price']*$item['quantity']?></th> <th><input type = "button" id="deleteCartRow" onclick = "DeleteRow(<?=$i?>)" value = "X"></th></tr>
         <?php } ?>
       </tbody>
       <tfoot>
@@ -40,4 +40,12 @@ require_once('../database/menu_item.class.php');
       </tfoot>
     </table>
   </section>
+  <form action="../action/action_make_order.php" method="post" class="requestForm">
+        <button id="SubmitOrder" type="submit">Place Order</button>
+
+        <p id="error_messages" style="color: black">
+          <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
+        </p>
+        </form>
+
 <?php }?>

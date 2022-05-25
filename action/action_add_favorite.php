@@ -9,8 +9,7 @@
   require_once('../database/user.class.php');
 
 
-  var_dump($_SESSION['cart']);
-  exit();
+ 
 
   $db = getDatabaseConnection();
 

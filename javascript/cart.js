@@ -18,18 +18,18 @@ function attachBuyEvents() {
           th1.textContent=button.parentElement.getAttribute("data-id");
           th2.textContent=button.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
           th3.textContent=button.previousElementSibling.value;
+          th3.setAttribute("id","quantity")
           th4.textContent=button.previousElementSibling.previousElementSibling.innerHTML;
+          th4.setAttribute("id","price")
           total+=parseInt(button.previousElementSibling.value)*parseInt(button.previousElementSibling.previousElementSibling.innerHTML);
           th5.textContent=total;
           const disPlaytotal=document.querySelector("#cart table tfoot tr th").nextElementSibling;
           disPlaytotal.innerHTML=parseInt(disPlaytotal.innerHTML)+total;
-          th6.innerHTML='<a href="javascript:DeleteRow()">X</a>';
-          console.log(th6);
+          let deletefunction = 'DeleteRow('+ button.parentElement.getAttribute("data-id") + ')';
+          th6.innerHTML='<input type = "button" onclick =' + deletefunction + ' value = "X">';
           const children=tbody.children;
           let samechild;
           for (const child of children){
-            console.log(child.getAttribute("id"));
-            console.log(button.parentElement.getAttribute("data-id"));
             if (child.getAttribute("id")==button.parentElement.getAttribute("data-id")){
               exists=true;
               samechild=child;
@@ -70,15 +70,36 @@ function attachBuyEvents() {
   }
 attachBuyEvents();
 
-function DeleteRow(){
-  const table=document.querySelector("#cart table");
-  const children=table.children;
+function DeleteRow(id){
+
+  
+  const tbody=document.querySelector("#cart table tbody");
+
+  const children=tbody.children;
   for (const child of children){
-    if (child.getAttribute("id")==button.parentElement.getAttribute("data-id")){
-      table.remove(child);
+    if (child.getAttribute("id")==id){
+      const price=child.querySelector("#price").textContent;
+      const quantity = child.querySelector("#quantity").textContent;
+      const total = parseInt(price)* parseInt(quantity);
+      const disPlaytotal=document.querySelector("#cart table tfoot tr th").nextElementSibling;
+      disPlaytotal.innerHTML=parseInt(disPlaytotal.innerHTML)-total;     
+      child.remove();
       break;
-    };
+    }; 
   }
+  
+  let data = {delete: id};
+          (async () => {
+            const rawResponse = await fetch('../action/api.updateCart.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              body: encodeForAjax(data)
+            });
+          
+          })();
+  
 }
 
 function encodeForAjax(data) {

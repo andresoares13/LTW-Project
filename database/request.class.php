@@ -107,7 +107,52 @@
         }catch(PDOException $e) {
           return true;
         }
-      }  
+      }
+      
+      function CreateRequest(PDO $db,int $Cid){
+        try {
+          $stmt = $db->prepare('INSERT INTO request(customer,state) VALUES (:customer,:state)');
+          $state='Received';
+          $stmt->bindParam(':customer', $Cid);
+          $stmt->bindParam(':state', $state);
+          if ($stmt->execute()){
+            return true;
+          }
+          else{
+            return false;
+          }
+        
+        }catch(PDOException $e) {
+          return true;
+        }
+      }
+
+      static function getLatestRequest(PDO $db, int $Cid) : int {
+        
+        $stmt = $db->prepare('SELECT id from request where customer = ? ORDER BY id desc LIMIT 1');
+        $stmt->execute(array($Cid));
+        $request = $stmt->fetch();
+        return (int) $request['id'];
+        
+      }
+
+      function InsertItemRequest(PDO $db,int $RequestId, int $ItemId, int $quantity){
+        try {
+          $stmt = $db->prepare('INSERT INTO requestMenuItem(menu_item,request,quantity) VALUES (:item,:request,:quantity)');
+          $stmt->bindParam(':item', $ItemId);
+          $stmt->bindParam(':request', $RequestId);
+          $stmt->bindParam(':quantity', $quantity);
+          if ($stmt->execute()){
+            return true;
+          }
+          else{
+            return false;
+          }
+        
+        }catch(PDOException $e) {
+          return true;
+        }
+      }
     
 
 

@@ -7,8 +7,10 @@
   <section id="restaurantsMain">
     <?php foreach($restaurants as $restaurant) { ?> 
       <article id="card">
-        <img src="../restaurantPictures/<?=$restaurant->photo?>"> <br>
-        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>
+        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><img src="../restaurantPictures/<?=$restaurant->photo?>" > </a>
+        <?=$restaurant->name?>
+        
+        
       </article>
     <?php } ?>
   </section>

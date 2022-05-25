@@ -27,10 +27,10 @@
   <a href="../pages/request.php?id=<?=$request->id?>&id2=state">Click to change order state</a> <?php }?>
   <h3>Items:</h3>
   <table id="tables">
-    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
-    <?php foreach ($items as $i => $item) { $total+=(int)$item->price?>
+    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Quantity</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
+    <?php foreach ($items as $i => $item) { $total+=(int)$item->price*(int)$item->quantity?>
 
-      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
+      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->quantity?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
     <?php } ?>
   </table>
   <h2>Total: <?=$total?>€</h2>
@@ -47,10 +47,10 @@
   </table>
   <h3>Items:</h3>
   <table id="tables">
-    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
-    <?php foreach ($items as $i => $item) { $total+=(int)$item->price?>
+    <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Quantity</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
+    <?php foreach ($items as $i => $item) { $total+=(int)$item->price*(int)$item->quantity?>
 
-      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
+      <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->quantity?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
     <?php } ?>
   </table>
   <h2>Total: <?=$total?>€</h2>
