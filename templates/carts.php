@@ -16,7 +16,7 @@ require_once('../database/menu_item.class.php');
       <h2><?=$item->name?></h2>
       <img src="../itemPictures/<?=$item->photo?>">
       <p class="price"><?=$item->price?></p>
-      <input class="quantity" type="number" value="1">
+      <input class="quantity" type="number" value="1" min="1">
       <button class="buy">Buy</button>
     </article>
     <?php } ?>
@@ -47,5 +47,22 @@ require_once('../database/menu_item.class.php');
           <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
         </p>
         </form>
+
+<?php }?>
+
+
+<?php function drawEmptyCart(){ ?>
+    <header>
+    <link rel="stylesheet" href="../css/cart.css">
+    <script src="../javascript/cart.js" defer></script>
+    </header>
+    <body>
+      <h1>
+        Looks like your cart is empty :(
+      </h1>
+      <p>
+        <a href="../pages/restaurant.php?id=search">Click here to search for restaurants </a>
+      </p>
+    </body>
 
 <?php }?>

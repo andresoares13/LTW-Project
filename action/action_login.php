@@ -22,6 +22,7 @@
     }
     else{
       $_SESSION['usertype'] = 'Customer';
+      $_SESSION['cartRestaurant'] ='empty';
     }
     header('Location: ../pages/main.php');
   }

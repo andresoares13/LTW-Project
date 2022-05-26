@@ -15,11 +15,7 @@
 
   $Cid=User::getCustomerID($db,$_SESSION['username']);
   
-  if(Review::existsReview($db,(int)$_POST['id'] ,(int)$Cid)){
-    $_SESSION['ERROR'] = 'You already reviewd this restaurant';
-    header("Location:".$_SERVER['HTTP_REFERER']."");
-  }
-  else if (Review::addReview($db,(int) $_POST['id'],(int)$Cid,(int)$_POST['stars'],$_POST['comment'])){
+  if (Review::addReview($db,(int) $_POST['id'],(int)$Cid,(int)$_POST['stars'],$_POST['comment'])){
     $next="Location:../pages/review.php?id=". $_POST['id'];
     header($next);
   }

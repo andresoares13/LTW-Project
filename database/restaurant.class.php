@@ -265,7 +265,17 @@
       }catch(PDOException $e) {
         return false;
       }
-    } 
+    }
+    
+    
+    static function getRestaurantIdFromItem(PDO $db, int $id){
+      $stmt = $db->prepare('select id from restaurants where id = (select restaurant from menu where id=(select menu from menu_item where id = ? ))');
+      $stmt->execute(array($id));
+      if($id = $stmt->fetch()){
+          return $id['id'];
+        }
+      
+    }
 
 
 

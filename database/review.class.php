@@ -126,6 +126,16 @@
     }
 
 
+    static function getCountReviewCustomerRestaurant(PDO $db, string $username, int $Rid) : int {
+        
+      $stmt = $db->prepare('select count(id) as count from review where customer = (select id from customer where username = ?) and restaurant = ?');
+      $stmt->execute(array($username,$Rid));
+      $request = $stmt->fetch();
+      return (int) $request['count'];
+      
+    }
+
+
 
   }
 ?>

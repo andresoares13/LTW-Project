@@ -8,6 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="../pictures/logo.png">
     <script src="../javascript/search.js" defer></script>
     <script src="../javascript/dialogs.js" defer></script>
@@ -18,6 +19,14 @@
   <body>
   <header>
       <h1><a href="../pages/main.php">Restaurant helper</a></h1>
+      <?php if ($_SESSION['usertype']=='Customer'){ ?>
+      <div id="cartIcon">
+      <a href="../pages/cart.php?id=<?=$_SESSION['cartRestaurant']?>">
+      <i class="fa" style="font-size:1.5em">&#xf07a;</i>
+      </a>
+       <span class='badge badge-warning'  id='lblCartCount' <?php if (!$_SESSION['cart']){?> style="background-color:transparent;" <?php } ?> ><?php if ($_SESSION['cart']){?> <?= count($_SESSION['cart'])?> <?php }?> </span> 
+      </div>
+      <?php } ?>  
       <?php if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);?>
     </header>
     <main>

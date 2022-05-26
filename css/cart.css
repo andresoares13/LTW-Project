@@ -18,6 +18,20 @@
     background-color: #ccc;
     flex: 1 1 0px;
   }
+
+  #products article button{
+    background-color: white;
+  border: 0.125em #000;
+  border-radius: 0.3125em;
+  
+  }
+
+  #products article button:hover {
+    font-weight: 900;
+    background-color: #cecdcd;
+    transition: 0.2s;
+    cursor: pointer;
+  } 
   
   
   
@@ -79,5 +93,7 @@
     background-color: #cecdcd;
     transition: 0.2s;
     cursor: pointer;
-  } 
+  }
+  
+  
 

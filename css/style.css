@@ -127,9 +127,10 @@ i.action {
 
 form.profile {
   display: grid;
-  grid-template-columns: auto 1fr;
   gap: 1em;
   max-width: 20em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 form.profile button {
@@ -419,5 +420,29 @@ footer {
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease;
     transition: all 1s ease;
+}
+
+
+
+#lblCartCount {
+    font-size: 0.8em;
+    background: white;
+    padding: 0 0.3125em;
+    vertical-align: top;
+    margin-left: -0.625em;
+    height: 1em;
+}
+.badge {
+  padding-left: 0.5625em;
+  padding-right: 0.5625em;
+  -webkit-border-radius: 0.5625em;
+  -moz-border-radius: 0.5625em;
+  border-radius: 0.5625em;
+  margin-right: 1em;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
 }
 

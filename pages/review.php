@@ -34,7 +34,7 @@
     if (!Request::isCustomerCompletedRequest($db,$_SESSION['username'],(int)$_GET['id'])){
       drawReviews($reviews,$restaurant);
       if ($_GET['id2']=="review"){
-        $_SESSION['ERROR'] = 'To review this restaurant you have to have ordered from it before';
+        $_SESSION['ERROR'] = 'You can only place a review after every completed order';
         header("Location:".$_SERVER['HTTP_REFERER']."");
 
       }

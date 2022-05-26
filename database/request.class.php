@@ -1,6 +1,8 @@
 <?php
   declare(strict_types = 1);
 
+  require_once('../database/review.class.php');
+
 
   class Request {
     public int $id;
@@ -99,10 +101,21 @@
 
       function isCustomerCompletedRequest(PDO $db, string $username, int $restaurant) {
         try {
-          $stmt = $db->prepare('select id from request where state="Delivered" and customer = (select id from customer where username = ?) and id in (select request from requestMenuItem where menu_item in (select id from menu_item where menu in (select id from menu where restaurant in (select id from restaurants where id = ?))))');
+          $stmt = $db->prepare('select count(id) as count from request where state="Delivered" and customer = (select id from customer where username = ?) and id in (select request from requestMenuItem where menu_item in (select id from menu_item where menu in (select id from menu where restaurant in (select id from restaurants where id = ?))))');
           $stmt->execute(array($username,$restaurant));
+          if ($result=$stmt->fetch()){
+            $ReviewCount = Review::getCountReviewCustomerRestaurant($db,$username,$restaurant);
+            if (intval($result['count'])>$ReviewCount){
+              return true;
+            }
+            else{
+              return false;
+            }
+          }
+          else{
+            return false;
+          }
           
-          return $stmt->fetch()  !== false;
         
         }catch(PDOException $e) {
           return true;

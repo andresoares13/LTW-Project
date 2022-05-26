@@ -26,6 +26,7 @@
           Request::InsertItemRequest($db,(int)$request,(int)$i,(int)$item['quantity']);
       }
       unset($_SESSION['cart']);
+      $_SESSION['cartRestaurant'] = 'empty';
       $next="Location:../pages/request.php?id=". $request;
     header($next);
   }
