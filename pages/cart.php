@@ -24,12 +24,20 @@
   if ($_SESSION['cartRestaurant']=='empty' && $_GET['id']=='empty'){
     drawEmptyCart();
   }
+  else if($_SESSION['cartRestaurant']!='empty'&&$_GET['id']!=$_SESSION['cartRestaurant']){
+    $_SESSION['ERROR'] = 'You can only have items in your cart from one restaurant at a time and you already have some from this one';
+    $next="Location:../pages/cart.php?id=". $_SESSION['cartRestaurant'];
+    die(header($next));
+    
+  
+  }
   else{
     if ($itemsByMenu!=NULL){
-      drawCart($itemsByMenu);
+
+      drawCart($itemsByMenu,(int)$_GET['id']);
     }
     else{
-      die(header('Location: /'));
+      drawEmptyRestaurant();
     }
   }
   drawFooter();

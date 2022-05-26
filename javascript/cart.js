@@ -6,6 +6,8 @@ function attachBuyEvents() {
           let total=0;
           const table=document.querySelector("#cart table");
           const tbody=document.querySelector("#cart table tbody");
+          const cartIconA = document.querySelector("#cartIcon a");
+          const cartIconNumber = document.querySelector("#lblCartCount");
           const tr=document.createElement("tr");
           const th1=document.createElement("th");
           const th2=document.createElement("th");
@@ -43,6 +45,7 @@ function attachBuyEvents() {
             tr.appendChild(th4);
             tr.appendChild(th5);
             tr.appendChild(th6);
+            tbody.appendChild(tr);
           }
           else{
             newChildren=samechild.firstChild;
@@ -50,7 +53,20 @@ function attachBuyEvents() {
             newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML=parseInt(th5.textContent)+parseInt(newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML);
 
           }
-          tbody.appendChild(tr);
+          const Rid=document.querySelector('#products input');
+          if (cartIconA.getAttribute("href")=='../pages/cart.php?id=empty'){
+            let newRef='../pages/cart.php?id=' + Rid.value;
+            cartIconA.setAttribute("href",newRef);
+            cartIconNumber.setAttribute("style","");
+          }
+          let DiffItemCount=0;
+          const tbodyAfter=document.querySelector("#cart table tbody");
+          const tbodyChildren=tbodyAfter.children;
+          for (const child of tbodyChildren){
+            DiffItemCount+=1;
+          }
+          cartIconNumber.innerHTML=DiffItemCount;
+          
           
 
           let data = {id: button.parentElement.getAttribute("data-id"), quantity: button.previousElementSibling.value, price: button.previousElementSibling.previousElementSibling.innerHTML};
@@ -86,6 +102,14 @@ function DeleteRow(id){
       child.remove();
       break;
     }; 
+  }
+  const cartIconNumber = document.querySelector("#lblCartCount");
+  cartIconNumber.innerHTML=parseInt(cartIconNumber.innerHTML)-1;
+  if (parseInt(cartIconNumber.innerHTML)==0){
+    cartIconNumber.setAttribute("style","background-color:transparent;");
+    cartIconNumber.innerHTML="";
+    const cartIconA = document.querySelector("#cartIcon a");
+    cartIconA.setAttribute("href",'../pages/cart.php?id=empty');
   }
   
   let data = {delete: id};

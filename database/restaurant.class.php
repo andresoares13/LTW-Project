@@ -277,6 +277,15 @@
       
     }
 
+    static function getRestaurantIdFromName(PDO $db, string $name){
+      $stmt = $db->prepare('select id from restaurants where name = ?');
+      $stmt->execute(array($name));
+      if($id = $stmt->fetch()){
+          return $id['id'];
+        }
+      
+    }
+
 
 
   }

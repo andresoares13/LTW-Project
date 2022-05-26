@@ -1,5 +1,8 @@
-<?php declare(strict_types = 1); ?>
+<?php declare(strict_types = 1); 
 
+require_once('../database/connection.php');
+require_once('../database/restaurant.class.php');
+?>
 <?php function drawProfileRequests(array $requests) { ?>
   <h2>Orders of your restaurants:</h2>
   <?php if ($requests!=[]){ ?>  
@@ -7,7 +10,9 @@
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Customer</th><th scope="col">Restaurant</th><th scope="col">State</th></tr>
     <?php foreach ($requests as $i => $request) { ?>
-      <tr><td><a href="../pages/request.php?id=<?=$request->id?>"> Order #<?=$request->id?> </a> </td><td><?=$request->customer?></td><td><?=$request->restaurant?></td><td><?=$request->state?></td></tr> 
+      <tr><td><a href="../pages/request.php?id=<?=$request->id?>"> Order #<?=$request->id?> </a> </td><td><?=$request->customer?></td><td> 
+      <?php $db = getDatabaseConnection(); $id=Restaurant::getRestaurantIdFromName($db,$request->restaurant); ?>
+      <a href="../pages/restaurant.php?id=<?=$id ?>"> <?=$request->restaurant?> </a></td><td><?=$request->state?></td></tr> 
     <?php } ?>
   </table>
   <?php } else{?>
@@ -20,8 +25,9 @@
   <h2>Order #<?=$request->id?>:</h2>
   <?php $total=0;?>  
   <table id="tables">
+  <?php $db = getDatabaseConnection(); $id=Restaurant::getRestaurantIdFromName($db,$request->restaurant); ?>
     <tr><th scope="col">Restaurant</th><th scope="col">State</th></tr>
-    <tr><td><?=$request->restaurant?></td><td><?=$request->state?></td></tr>
+    <tr><td><a href="../pages/restaurant.php?id=<?=$id ?>"> <?=$request->restaurant?> </a></td><td><?=$request->state?></td></tr>
   </table>
   <?php if ($request->state!="Delivered"){ ?>
   <a href="../pages/request.php?id=<?=$request->id?>&id2=state">Click to change order state</a> <?php }?>
@@ -42,8 +48,9 @@
   <h2>Order #<?=$request->id?>:</h2>
   <?php $total=0;?>  
   <table id="tables">
+  <?php $db = getDatabaseConnection(); $id=Restaurant::getRestaurantIdFromName($db,$request->restaurant); ?>
     <tr><th scope="col">Restaurant</th><th scope="col">State</th></tr>
-    <tr><td><?=$request->restaurant?></td><td><?=$request->state?></td></tr>
+    <tr><td><a href="../pages/restaurant.php?id=<?=$id ?>"> <?=$request->restaurant?> </a></td><td><?=$request->state?></td></tr>
   </table>
   <h3>Items:</h3>
   <table id="tables">

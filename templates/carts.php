@@ -1,15 +1,17 @@
 <?php declare(strict_types = 1);
+require_once('../database/connection.php'); 
 require_once('../database/menu_item.class.php'); 
 
 ?>
 
 
-<?php function drawCart(array $itemsByMenu){ ?>
+<?php function drawCart(array $itemsByMenu,int $Rid){ ?>
     <header>
     <link rel="stylesheet" href="../css/cart.css">
     <script src="../javascript/cart.js" defer></script>
     </header>
     <section id="products">
+    <input id="id" type="hidden" name="id" value="<?=$Rid?>" required="required">
     <?php if ($itemsByMenu!=[]){ ?>
     <?php foreach ($itemsByMenu as $i => $item) { ?>
     <article data-id="<?=$item->id?>">
@@ -60,6 +62,26 @@ require_once('../database/menu_item.class.php');
       <h1>
         Looks like your cart is empty :(
       </h1>
+      <p>
+        <a href="../pages/restaurant.php?id=search">Click here to search for restaurants </a>
+      </p>
+    </body>
+
+<?php }?>
+
+
+
+<?php function drawEmptyRestaurant(){ ?>
+    <header>
+    <link rel="stylesheet" href="../css/cart.css">
+    <script src="../javascript/cart.js" defer></script>
+    </header>
+    <body>
+      <h1>
+        Looks like this restaurant doesn't have any items yet :( <br>
+        In the meantime enjoy this photo of a cute penguin
+      </h1>
+      <img src="../pictures/banhas.jpg" alt="Cute Penguin">
       <p>
         <a href="../pages/restaurant.php?id=search">Click here to search for restaurants </a>
       </p>

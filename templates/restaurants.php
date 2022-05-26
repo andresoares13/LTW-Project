@@ -63,6 +63,7 @@ Add to your favorites
 <input id="id" type="hidden" name="type" value="restaurant" required="required">
 Remove from your favorites
 </form>
+
   <?php }?>
 <?php } ?>
 
@@ -159,7 +160,7 @@ Remove from your favorites
     <?php foreach($restaurants as $restaurant) { ?> 
       <li>
         <img src="../restaurantPictures/<?=$restaurant->photo?>"> <br>
-        <h2><a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>  
+        <h2><a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>  <br>
         Rating: <?php if($restaurant->rating>0){?><?=$restaurant->rating?> <?php }else{?> No ratings yet <?php } ?> </h2>
     </li>
     <?php } ?>
