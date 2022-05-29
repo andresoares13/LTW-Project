@@ -369,6 +369,7 @@ footer {
   margin-left: 0;
   bottom: 0;
   position: fixed;
+  clear: both;
 }
 
 
@@ -420,8 +421,8 @@ footer {
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease;
     transition: all 1s ease;
+    visibility: visible !important;
 }
-
 
 
 #lblCartCount {
