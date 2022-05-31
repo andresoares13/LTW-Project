@@ -181,5 +181,17 @@
         return -1;
       }
     }
+
+
+    function deleteItem(PDO $db,int $id) {
+      try {
+        $stmt = $db->prepare('DELETE FROM menu_item WHERE id = ?');
+        $stmt->execute(array($id));
+        return true;
+      }
+      catch(PDOException $e) {
+        return false;
+      }
+    }
   }
 ?>

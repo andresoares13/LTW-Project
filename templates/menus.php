@@ -61,11 +61,37 @@ Remove from your favorites
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
       <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td>
-      <td><a href="../pages/menu.php?id=<?=$menu->id?>&id2=photo&id3=<?=$item->id?>">Change photo</a></td></tr>
+      <td><a href="../pages/menu.php?id=<?=$menu->id?>&id2=photo&id3=<?=$item->id?>">Change photo</a></td>
+      <td>
+      <form action="../action/action_delete_menu_item.php" method="post">
+                <input type="hidden" name="menu" value="<?=$menu->id?>">
+                <input type="hidden" name="item" value="<?=$item->id?>">
+                <input type="hidden" name="restaurant" value="<?=$restaurant->id?>">
+                <input type="submit" name="Submit" value="Delete">
+            </form>
+      </td>
+      </tr>
     <?php } ?>
   </table>
   <?php } else{?>
   <h4>No items yet</h4> <?php }?>
+  <p>
+  <input onclick="openDialog('Delete Menu')" type="submit" value="Delete Menu">
+  <div hidden id="dialog2" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to delete this menu?</p>
+        <div class="buttons">
+            <input onclick="closeDialog('Delete Menu')" type="button" value="Cancel">
+            <form action="../action/action_delete_menu.php" method="post">
+                <input type="hidden" name="menu" value="<?=$menu->id?>">
+                <input type="hidden" name="restaurant" value="<?=$restaurant->id?>">
+                <input type="submit" name="Submit" value="Delete">
+            </form>
+        </div>
+    </div>
+  </div>
+  
+</p>
 <?php } ?>
 
 
