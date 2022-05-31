@@ -348,6 +348,18 @@ font-weight: 300;
   padding: 1em;
 }
 
+#searchOptions li:hover {
+  text-shadow:
+    -0.3px -0.3px 0 black,
+    0.3px -0.3px 0 black,
+    -0.3px 0.3px 0 black,
+    0.3px 0.3px 0 black;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+
 #restaurants ul{
   list-style: none;
   list-style-position: inside;
@@ -359,6 +371,18 @@ font-weight: 300;
   list-style: none;
   list-style-position: inside;
   padding: 1em;
+}
+
+#restaurants li:hover {
+  text-shadow:
+    -0.3px -0.3px 0 black,
+    0.3px -0.3px 0 black,
+    -0.3px 0.3px 0 black,
+    0.3px 0.3px 0 black;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
 }
 
 footer {
@@ -405,7 +429,13 @@ footer {
   -webkit-filter: brightness(100%);
 }
 
+#resText {
+  visibility: hidden;
+}
 
+#card:hover #resText {
+  visibility: visible;
+}
 
 #card:hover a {
   display: inline;
@@ -446,4 +476,3 @@ footer {
 .badge-warning[href] {
   background-color: #c67605;
 }
-

@@ -6,12 +6,11 @@
   </header>
   <section id="restaurantsMain">
     <?php foreach($restaurants as $restaurant) { ?> 
-      <article id="card">
-        <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><img src="../restaurantPictures/<?=$restaurant->photo?>" > </a>
-        <?=$restaurant->name?>
-        
-        
-      </article>
+      <div id="card">
+          <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><img src="../restaurantPictures/<?=$restaurant->photo?>" > </a>
+          <div id="resText"><?=$restaurant->name?></div>
+      </div>
+
     <?php } ?>
   </section>
   <h3><a href="../pages/restaurant.php?id=search">Search for a restaurant</a></h3>

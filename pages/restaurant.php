@@ -16,7 +16,7 @@
 
   $db = getDatabaseConnection();
   
-  
+  error_reporting(E_ERROR | E_PARSE);
 
   drawHeader();
   if ($_GET['id']=='search'){
