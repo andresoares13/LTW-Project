@@ -11,6 +11,10 @@ function openDialog(value) {
       dialog2 = document.getElementById("dialog2");
       if (dialog2 != null) dialog2.style.display = "block";
       break;  
+    case "Delete Restaurant":
+      dialog3 = document.getElementById("dialog3");
+      if (dialog3 != null) dialog3.style.display = "block";
+      break;   
   }
 }
 
@@ -24,7 +28,10 @@ function closeDialog(value) {
       dialog2 = document.getElementById("dialog2");
       if (dialog2 != null) dialog2.style.display = "none";
       break;
-        
+    case "Delete Restaurant":
+      dialog3 = document.getElementById("dialog3");
+      if (dialog3 != null) dialog3.style.display = "none";
+      break;    
     
   }
 }

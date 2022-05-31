@@ -286,6 +286,17 @@
       
     }
 
+    function deleteRestaurant(PDO $db,int $id) {
+      try {
+        $stmt = $db->prepare('DELETE FROM restaurants WHERE id = ?');
+        $stmt->execute(array($id));
+        return true;
+      }
+      catch(PDOException $e) {
+        return false;
+      }
+    }
+
 
 
   }

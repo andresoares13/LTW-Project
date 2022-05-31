@@ -86,6 +86,23 @@ Remove from your favorites
   <p>
     <a href="../pages/review.php?id=<?=$restaurant->id?>">Reviews</a>
   </p>
+
+  <p>
+  <input onclick="openDialog('Delete Restaurant')" type="submit" value="Delete Restaurant">
+  <div hidden id="dialog3" class="modal">
+    <div class="modal-content">
+        <p>Are you sure you want to delete this restaurant?</p>
+        <div class="buttons">
+            <input onclick="closeDialog('Delete Restaurant')" type="button" value="Cancel">
+            <form action="../action/action_delete_restaurant.php" method="post">
+                <input type="hidden" name="restaurant" value="<?=$restaurant->id?>">
+                <input type="submit" name="Submit" value="Delete">
+            </form>
+        </div>
+    </div>
+  </div>
+  
+</p>
 <?php } ?>
 
 <?php function drawProfileRestaurants(array $restaurants) { ?>
