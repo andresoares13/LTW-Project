@@ -20,6 +20,8 @@
 
   $db = getDatabaseConnection();
   
+  error_reporting(E_ERROR | E_PARSE);
+
   $user = User::getUser($db, $_SESSION['id']);
 
   drawHeader();
