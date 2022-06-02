@@ -394,6 +394,7 @@ footer {
   bottom: 0;
   position: fixed;
   clear: both;
+  margin-top: 1em;
 }
 
 
