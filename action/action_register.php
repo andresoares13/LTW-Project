@@ -42,9 +42,8 @@
   
   else if ((User::createUser($db, $_POST['username'], $_POST['password'], $_POST['first_name'],$_POST['last_name'], $_POST['email'],$_POST['check'])) != -1) {
     echo 'User Registered successfully';
-    $user=User::getUserWithPassword($db,$_POST['email'],$_POST['password']);
-    $_SESSION['id'] = $user->id;
-    $_SESSION['name'] = $user->name();
+
+   
     header("Location:../index.php");	
     
   }

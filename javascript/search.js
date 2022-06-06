@@ -32,6 +32,9 @@ if (searchItem) {
       if (this.value==""){
         break;
       }
+      if (!item.active){
+        continue;
+      }
       const tr = document.createElement('tr');
       const td = document.createElement('td');
       const td2 = document.createElement('td');

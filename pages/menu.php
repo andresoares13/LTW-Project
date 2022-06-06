@@ -18,6 +18,16 @@
   $menu = Menu::getMenu($db, intval($_GET['id']));
   $restaurant = Restaurant::getRestaurant($db, $menu->restaurant);
   $menu_items = Menu_Item::getMenuItems($db, intval($_GET['id']));
+  $anyActive=false;
+
+  for ($i=0;$i<sizeof($menu_items);$i++){
+    if ($menu_items[$i]->active){
+      $anyActive=true;
+      break;
+    }
+
+  }
+  
 
   
   drawHeader();
@@ -34,10 +44,10 @@
   }
   else{
     if (Restaurant::isOwnerOfRestaurant($db,$restaurant->id,$_SESSION['id'])){
-      drawMenuOwner($menu,$restaurant,$menu_items);
+      drawMenuOwner($menu,$restaurant,$menu_items,$anyActive);
     }
     else{
-      drawMenu($menu,$restaurant,$menu_items);
+      drawMenu($menu,$restaurant,$menu_items,$anyActive);
     }
   }
   drawFooter();

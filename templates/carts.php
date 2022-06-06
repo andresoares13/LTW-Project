@@ -14,6 +14,7 @@ require_once('../database/menu_item.class.php');
     <input id="id" type="hidden" name="id" value="<?=$Rid?>" required="required">
     <?php if ($itemsByMenu!=[]){ ?>
     <?php foreach ($itemsByMenu as $i => $item) { ?>
+      <?php if ($item->active) {?>
     <article data-id="<?=$item->id?>">
       <h2><?=$item->name?></h2>
       <img src="../itemPictures/<?=$item->photo?>">
@@ -21,6 +22,7 @@ require_once('../database/menu_item.class.php');
       <input class="quantity" type="number" value="1" min="1">
       <button class="buy">Buy</button>
     </article>
+    <?php }?>
     <?php } ?>
   <?php } else{?>
   <h4>This restaurant doesn't have any items</h4> <?php }?>

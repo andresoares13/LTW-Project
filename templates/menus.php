@@ -7,13 +7,14 @@ require_once('../database/connection.php');
 
 ?>
 
-<?php function drawMenu(Menu $menu, Restaurant $restaurant, array $menu_items) { ?>
+<?php function drawMenu(Menu $menu, Restaurant $restaurant, array $menu_items, bool $anyActive) { ?>
   <h2>Menu: <?=$menu->name?></h2>
   <h3>Restaurant: <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></h3>
-  <?php if ($menu_items!=[]){ ?>      
+  <?php if ($menu_items!=[] && $anyActive){ ?>      
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
+      <?php if ($item->active){?>
       <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td>
     <?php if ($_SESSION['usertype']=='Customer'){?><td>
       <?php $db = getDatabaseConnection();$favorite=User::isItemFavorite($db,$item->id); if (!$favorite){ ?>
@@ -46,20 +47,22 @@ Remove from your favorites
 </form>
   <?php }?>
     </td> <?php }?></tr>
+    <?php }?>
     <?php } ?>
   </table>
   <?php } else{?>
   <h4>No items yet</h4> <?php }?>
 <?php } ?>
 
-<?php function drawMenuOwner(Menu $menu, Restaurant $restaurant, array $menu_items) { ?>
+<?php function drawMenuOwner(Menu $menu, Restaurant $restaurant, array $menu_items, bool $anyActive) { ?>
   <h2>Menu: <?=$menu->name?></h2>
   <h3>Restaurant: <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></h3>      
   <a href="../pages/menu.php?id=<?=$menu->id?>&id2=edit2">Add a menu item</a> <br> <br>
-  <?php if ($menu_items!=[]){ ?>
+  <?php if ($menu_items!=[] && $anyActive){ ?>
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
     <?php foreach ($menu_items as $i => $item) { ?>
+      <?php if ($item->active){?>
       <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td>
       <td><a href="../pages/menu.php?id=<?=$menu->id?>&id2=photo&id3=<?=$item->id?>">Change photo</a></td>
       <td>
@@ -71,6 +74,7 @@ Remove from your favorites
             </form>
       </td>
       </tr>
+      <?php }?>
     <?php } ?>
   </table>
   <?php } else{?>

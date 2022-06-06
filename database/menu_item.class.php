@@ -9,9 +9,10 @@
     public string $category;
     public int $menu;
     public int $quantity;
+    public bool $active;
 
 
-    public function __construct(int $id, string $name, int $price, string $photo, string $category, int $menu, int $quantity) {
+    public function __construct(int $id, string $name, int $price, string $photo, string $category, int $menu, int $quantity,bool $active) {
       $this->id = $id;
       $this->name = $name;
       $this->price = $price;
@@ -19,15 +20,22 @@
       $this->category = $category;
       $this->menu = $menu;
       $this->quantity = $quantity;
+      $this->active = $active;
     }
 
     static function getMenuItems(PDO $db, int $id) : array {
-        $stmt = $db->prepare('SELECT id, name, price, photo, category, menu FROM menu_item WHERE menu = ?');
+        $stmt = $db->prepare('SELECT id, name, price, photo, category, menu,status FROM menu_item WHERE menu = ?');
         $stmt->execute(array($id));
     
         $menu_items = [];
-    
+        
         while ($item = $stmt->fetch()) {
+          $active=false;
+          if ($item['status']=="1"){
+            
+            $active=true;
+          }
+       
           $menu_items[] = new Menu_Item(
             (int) $item['id'],
             $item['name'],
@@ -35,18 +43,26 @@
             $item['photo'],
             $item['category'],
             (int) $item['menu'],
-            0
+            0,
+            $active
+            
           );
+
         }
+       
     
         return $menu_items;
     }
 
 
     static function getMenuItem(PDO $db, int $id) : Menu_Item {
-      $stmt = $db->prepare('SELECT id,name,price,photo,category,menu FROM menu_item WHERE id = ?');
+      $stmt = $db->prepare('SELECT id,name,price,photo,category,menu,status FROM menu_item WHERE id = ?');
       $stmt->execute(array($id));
       $item = $stmt->fetch();
+      $active=false;
+      if ($item['status']=="1"){
+        $active=true;
+      }
       return new Menu_Item(
         (int) $item['id'],
         $item['name'],
@@ -54,7 +70,8 @@
         $item['photo'],
         $item['category'],
         (int) $item['menu'],
-        0
+        0,
+        $active
       );
     }
 
@@ -88,7 +105,7 @@
       $stmt->execute(array($id));
   
       $menu_items = [];
-  
+      $active=true;
       while ($item = $stmt->fetch()) {
         $menu_items[] = new Menu_Item(
           (int) $item['id'],
@@ -97,7 +114,8 @@
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
-          (int) $item['quantity']
+          (int) $item['quantity'],
+          $active
           
         );
       }
@@ -106,12 +124,16 @@
     }
 
     static function getFavoriteItems(PDO $db, int $id) : array {
-      $stmt = $db->prepare('select id,name,price,photo,category,menu from menu_item where id in (select menu_item from favouriteMenuItem where customer = ?)');
+      $stmt = $db->prepare('select id,name,price,photo,category,menu,status from menu_item where id in (select menu_item from favouriteMenuItem where customer = ?)');
       $stmt->execute(array($id));
   
       $menu_items = [];
   
       while ($item = $stmt->fetch()) {
+        $active=false;
+        if ($item['status']=="1"){
+          $active=true;
+        }
         $menu_items[] = new Menu_Item(
           (int) $item['id'],
           $item['name'],
@@ -119,7 +141,8 @@
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
-          0
+          0,
+          $active
         );
       }
   
@@ -127,19 +150,25 @@
     }
 
     static function getItemsByMenu(PDO $db, int $id) {
-      $stmt = $db->prepare('select menu_item.id,menu_item.name,price,photo,category,menu.id as menu from menu_item,menu where menu_item.menu=menu.id and menu.restaurant = ? order by menu.id');
+      $stmt = $db->prepare('select menu_item.id,menu_item.name,price,photo,category,menu.id as menu, menu_item.status from menu_item,menu where menu_item.menu=menu.id and menu.restaurant = ? order by menu.id');
       $stmt->execute(array($id));
       $menu_items = [];
   
       while ($item = $stmt->fetch()) {
+        $active=false;
+        if ($item['status']=="1"){
+          $active=true;
+        }
         $menu_items[] = new Menu_Item(
+          
           (int) $item['id'],
           $item['name'],
           (int) $item['price'],
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
-          0
+          0,
+          $active
         );
 
       }
@@ -148,11 +177,15 @@
 
 
     static function searchItems(PDO $db, string $search, int $count) : array {
-      $stmt = $db->prepare("SELECT id, name,price,photo,category,menu FROM menu_item WHERE name LIKE ?  LIMIT ?");
+      $stmt = $db->prepare("SELECT id, name,price,photo,category,menu,status FROM menu_item WHERE name LIKE ?  LIMIT ?");
       $stmt->execute(array($search . '%', $count));
       $item = array();
   
       while ($item = $stmt->fetch()) {
+        $active=false;
+        if ($item['status']=="1"){
+          $active=true;
+        }
         $menu_items[] = new Menu_Item(
           (int) $item['id'],
           $item['name'],
@@ -160,7 +193,8 @@
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
-          0
+          0,
+          $active
         );
       }
       
@@ -184,9 +218,10 @@
 
 
     function deleteItem(PDO $db,int $id) {
+      $inactive = 0;
       try {
-        $stmt = $db->prepare('DELETE FROM menu_item WHERE id = ?');
-        $stmt->execute(array($id));
+        $stmt = $db->prepare('UPDATE menu_item SET status = ? WHERE id = ?');
+        $stmt->execute(array($inactive,$id));
         return true;
       }
       catch(PDOException $e) {

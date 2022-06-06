@@ -89,7 +89,7 @@
     }
 
     static function getRestaurantsByItem(PDO $db, string $search) : array {
-      $stmt = $db->prepare("SELECT id, name,adress,category,photo FROM restaurants WHERE id in (select restaurant from menu where id in (select menu from menu_item where name LIKE ?))");
+      $stmt = $db->prepare("SELECT id, name,adress,category,photo FROM restaurants WHERE id in (select restaurant from menu where id in (select menu from menu_item where name LIKE ? and status = 1))");
       $stmt->execute(array($search . '%'));
       $restaurants = array();
       while ($restaurant = $stmt->fetch()) {
