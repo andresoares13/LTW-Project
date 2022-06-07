@@ -516,7 +516,7 @@ footer {
   grid-template-rows: 1fr 1fr;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: absolute;
   top: 3.125em;
   gap: 0;
   flex-direction: column;
@@ -617,4 +617,26 @@ footer {
 
 #goldenStar{
   color: gold;
+}
+
+#searchitem {
+  border-radius: 0.7em;
+  border: 1em black;
+  font-size: 15px;
+}
+
+#searchrestaurant2 {
+  border-radius: 0.7em;
+  border: 1em black;
+  font-size: 15px;
+} 
+
+#password {
+  border-radius: 0.7em;
+  border: 1em black;
+}
+
+#repeat {
+  border-radius: 0.7em;
+  border: 1em black;
 }
