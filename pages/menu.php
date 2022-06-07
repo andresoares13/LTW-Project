@@ -20,6 +20,8 @@
   $menu_items = Menu_Item::getMenuItems($db, intval($_GET['id']));
   $anyActive=false;
 
+  error_reporting(E_ERROR | E_PARSE);
+
   for ($i=0;$i<sizeof($menu_items);$i++){
     if ($menu_items[$i]->active){
       $anyActive=true;
