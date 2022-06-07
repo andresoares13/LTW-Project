@@ -17,6 +17,8 @@
 
   $db = getDatabaseConnection();
 
+  error_reporting(E_ERROR | E_PARSE);
+
   $restaurant = Restaurant::getRestaurant($db, intval($_GET['id']));
   $reviews = Review::getRestaurantReviews($db,$restaurant->id);
   
