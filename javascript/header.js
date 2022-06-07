@@ -1,5 +1,5 @@
 const hamb = document.querySelector("#hamb");
-const ul = document.querySelector("#Hmenu ul");
+const ul = document.querySelector(".hmenu");
 
 hamb.addEventListener("click", () => {
     hamb.classList.toggle("active");

@@ -7,18 +7,18 @@
 <form action="../action/action_edit_profile.php" method="post" class="profile">
 
   <label for="first_name">First Name:</label>
-  <input id="first_name" type="text" name="first_name" value="<?=$user->firstName?>" required="required">
+  <input id="first_name" type="text" name="first_name" value="<?=$user->firstName?>"  class = "profilein" required="required">
   
   <label for="last_name">Last Name:</label>
-  <input id="last_name" type="text" name="last_name" value="<?=$user->lastName?>" required="required">
+  <input id="last_name" type="text" name="last_name" value="<?=$user->lastName?>" class = "profilein" required="required">
   
   <label for="adress">Address:</label>
-  <input id="adress" type="text" name="adress" value="<?=$user->adress?>" required="required">
+  <input id="adress" type="text" name="adress" value="<?=$user->adress?>" class = "profilein" required="required">
 
   <label for="phone">Phone Number:</label>
-  <input id="phone" type="text" name="phone" value="<?=$user->phone?>" required="required">
+  <input id="phone" type="text" name="phone" value="<?=$user->phone?>" class = "profilein" required="required">
   
-  <button type="submit">Save</button>
+  <button type="submit" class="delaccount" >Save</button>
 
   <p id="error_messages" style="color: black">
     <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
@@ -36,7 +36,7 @@
   <label for="repeat">Repeat new password:</label>
   <input id="repeat" type="password" name="repeat">  
   
-  <button type="submit">Save</button>
+  <button type="submit" class="delaccount" >Save</button>
 
   <p id="error_messages" style="color: black">
     <?php if(isset($_SESSION['ERROR'])) echo htmlentities($_SESSION['ERROR']); unset($_SESSION['ERROR'])?>
@@ -96,18 +96,18 @@
   </div>
 </article>
 <p>
-<a href="../pages/profile.php?id=photo"> Change Profile Picture</a> | <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> | <a href="../pages/profile.php?id=owner">My restaurants</a> |
-  <a href="../pages/profile.php?id=reviews">Reviews</a> | <a href="../pages/profile.php?id=Rorders">Orders</a>
+<a href="../pages/profile.php?id=photo" class="userinf" > Change Profile Picture</a> | <a href="../pages/profile.php?id=profile" class="userinf"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account" class="userinf">Edit Account Info</a> | <a href="../pages/profile.php?id=owner" class="userinf">My restaurants</a> |
+  <a href="../pages/profile.php?id=reviews" class="userinf" >Reviews</a> | <a href="../pages/profile.php?id=Rorders" class="userinf" >Orders</a>
 </p>
 <p>
-  <input onclick="openDialog('Delete Account')" type="submit" value="Delete Account">
+  <input onclick="openDialog('Delete Account')" type="submit" value="Delete Account" class="delaccount">
   <div hidden id="dialog1" class="modal">
     <div class="modal-content">
         <p>Are you sure you want to delete your account forever? It is a very long time.</p>
         <div class="buttons">
-            <input onclick="closeDialog('Delete Account')" type="button" value="Cancel">
+            <input onclick="closeDialog('Delete Account')" type="button" value="Cancel" class="delaccount">
             <form action="../action/action_delete_account.php" method="post">
-                <input type="submit" name="Submit" value="Delete">
+                <input type="submit" name="Submit" value="Delete" class="delaccount">
             </form>
         </div>
     </div>
@@ -170,7 +170,7 @@
       <input type="file" name="fileToUpload" id="fileToUpload">
       <input id="id" type="hidden" name="id" value=<?=$_SESSION['id']?> required="required">
       <input id="type" type="hidden" name="type" value="user" required="required">
-      <input type="submit" name="Submit" value="Upload">
+      <input type="submit" name="Submit" value="Upload" class="delaccount">
     </form>
   </div>
 <?php }?>

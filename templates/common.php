@@ -18,7 +18,24 @@
   </head>
   <body>
   <header>
-      <h1><a href="../pages/main.php">Restaurant helper</a></h1>
+  <div id="wrapper2">
+      <h1><a href="../pages/main.php" id="maintit">Restaurant helper</a></h1>
+
+                <nav class="nav1">
+                    <ul class="hmenu">
+                        <li class="item"><a href="../pages/main.php" class="hlink">Home</a></li>
+                        <li class="item"><a href="../pages/restaurant.php?id=search" class="hlink">Restaurants</a></li>
+                        <li class="item"><a href="../pages/profile.php?id=favorites" class="hlink">Favourites</a></li>
+                        <li class="item"><a href="../pages/profile.php?id=Rorders" class="hlink">Order</a></li>
+                    </ul>
+                    <div id="hamb">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </nav>
+
+</div>
       <?php if ($_SESSION['usertype']=='Customer'){ ?>
       <div id="cartIcon">
       <a href="../pages/cart.php?id=<?=$_SESSION['cartRestaurant']?>">

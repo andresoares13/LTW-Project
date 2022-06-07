@@ -13,7 +13,7 @@
 
     <?php } ?>
   </section>
-  <h3><a href="../pages/restaurant.php?id=search">Search for a restaurant</a></h3>
+  <h3><a href="../pages/restaurant.php?id=search" id="resSearch">Search for a restaurant</a></h3>
 <?php } ?>
 
 <?php function drawRestaurant(Restaurant $restaurant, array $menus, bool $favorite) { ?>
@@ -176,8 +176,8 @@ Remove from your favorites
     <?php foreach($restaurants as $restaurant) { ?> 
       <li>
         <img src="../restaurantPictures/<?=$restaurant->photo?>"> <br>
-        <h2><a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a>  <br>
-        Rating: <?php if($restaurant->rating>0){?><?=$restaurant->rating?> <?php }else{?> No ratings yet <?php } ?> </h2>
+        <h2><a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?>  <br>
+        Rating: <?php if($restaurant->rating>0){?><?=$restaurant->rating?> <?php }else{?> No ratings yet <?php } ?></a> </h2>
     </li>
     <?php } ?>
       </ul>

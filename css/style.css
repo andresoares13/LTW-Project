@@ -9,7 +9,10 @@ html, body {
   
 body {
   width: 120em;
-  margin: 1em auto;
+  margin: auto;
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 
   max-width: 100vw;
 
@@ -25,12 +28,16 @@ body > header {
   display: flex;
 
   padding: 1em;
+  min-height: 3.125em;
 
   background-color: var(--background-color);
 }
 
-body > header h1 {
+#maintit {
   flex-grow: 1;
+
+  background-clip: text;
+
 }
 
 body > header a {
@@ -40,6 +47,8 @@ body > header a {
 
 body > header form {
   display: grid;
+  margin-right: 0;
+  margin-left: auto;
 }
 
 body > header form.login {
@@ -78,9 +87,12 @@ main > header input {
 #logout-but {
   background-color: white;
   border: 0.125em #000;
-  border-radius: 0.3125em;
+  border-radius: 0.8em;
   min-width: 5.625em;
   max-width: 5.625em;
+  min-height: 2.2em;
+  max-height: 2.2em;
+  cursor: pointer;
 
 }
 
@@ -326,7 +338,7 @@ font-weight: 300;
 }
 
 #mainRestaurants{
-  margin-right: -7em;
+  color: white;
 }
 
 #tables{
@@ -354,10 +366,10 @@ font-weight: 300;
     0.3px -0.3px 0 black,
     -0.3px 0.3px 0 black,
     0.3px 0.3px 0 black;
-    -webkit-transition: all .2s;
-    -moz-transition: all .2s;
-    -o-transition: all .2s;
-    transition: all .2s;
+    -webkit-transition: all .15s;
+    -moz-transition: all .15s;
+    -o-transition: all .15s;
+    transition: all .15s;
 }
 
 #restaurants ul{
@@ -373,7 +385,7 @@ font-weight: 300;
   padding: 1em;
 }
 
-#restaurants li:hover {
+#restaurants li a:hover {
   text-shadow:
     -0.3px -0.3px 0 black,
     0.3px -0.3px 0 black,
@@ -387,14 +399,13 @@ font-weight: 300;
 
 footer {
   background-color: black;
-  padding: 1em;
   color: white;
   width: 100%;
   margin-left: 0;
   bottom: 0;
-  position: fixed;
+  position: absolute;
   clear: both;
-  margin-top: 1em;
+  min-height: 3.75em;
 }
 
 
@@ -477,3 +488,126 @@ footer {
 .badge-warning[href] {
   background-color: #c67605;
 }
+
+.hmenu li {
+  list-style: none;
+}
+
+.nav1 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav1 {
+  min-height: 3.75em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5px;
+  width: 100%;
+}
+
+.hmenu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 3.125em;
+  gap: 0;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  transition: 0.4s;
+  left: -100%;
+}
+
+.hlink {
+  transition: 0.7s ease;
+}
+
+.hlink:hover {
+  color: yellow;
+  text-shadow:0px 0px 3px yellow;
+
+}
+
+.hmenu.active {
+  left: 0;
+}
+
+.item {
+  margin: 1em 0;
+}
+
+#hamb {
+  display: block;
+  cursor: pointer;
+  top: 0.5em;
+}
+
+.bar {
+  display: block;
+  width: 1.5625em;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+}
+
+#hamb.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+#hamb.active .bar:nth-child(1) {
+  transform: translateY(0.5em) rotate(45deg);
+}
+
+#hamb.active .bar:nth-child(3) {
+  transform: translateY(-0.5em) rotate(-45deg);
+}
+
+#wrapper2 {
+  width: 100%;
+}
+
+#resSearch:hover {
+  text-shadow:0px 0px 1px black;
+  transition: 0.2s;
+}
+
+.userinf:hover {
+  text-shadow:0px 0px 1px black;
+  transition: 0.2s;
+}
+
+.delaccount{
+  border-radius: 0.7em;
+  background-color: white;
+  border: 1em black;
+}
+
+.delaccount:hover {
+  font-weight: 900;
+  background-color: #cecdcd;
+  transition: 0.2s ease-in-out;
+}
+
+.password3 {
+  border-radius: 0.7em;
+  border: 1em black;
+}
+
+.profilein {
+  border-radius: 0.7em;
+  border: 1em black;
+  font-size: 12px;
+}
+
+#searchrestaurant1 {
+  border-radius: 0.7em;
+  border: 1em black;
+  font-size: 15px;
+}  
