@@ -129,7 +129,7 @@
 
 <?php function drawProfileFavorites(array $items,array $restaurants) { ?>
   <label class="rating">
-  <h2>My favorites <span class="icon">★</span></h2> 
+  <h2>My favorites <span class="icon" id="goldenStar">★</span></h2> 
   </label>
   <h3>Favorite Restaurants:</h3>
   <?php if ($restaurants!=[]){ ?>

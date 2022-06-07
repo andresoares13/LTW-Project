@@ -403,7 +403,7 @@ footer {
   width: 100%;
   margin-left: 0;
   bottom: 0;
-  position: absolute;
+  position: relative;
   clear: both;
   min-height: 3.75em;
 }
@@ -611,3 +611,7 @@ footer {
   border: 1em black;
   font-size: 15px;
 }  
+
+#goldenStar{
+  color: gold;
+}

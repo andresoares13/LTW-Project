@@ -30,21 +30,21 @@
       $stmt->execute(array($this->name, $this->adress,$this->category,$this->id));
     }
 
-    static function getRestaurants(PDO $db, int $count) {
+    function getRestaurants(PDO $db, int $count) {
         $stmt = $db->prepare('SELECT id, name,photo FROM restaurants LIMIT ?');
         $stmt->execute(array($count));
       
         return $stmt->fetchAll();
     }
 
-    static function getRestaurantsWithOwner(PDO $db, int $id) {
+    function getRestaurantsWithOwner(PDO $db, int $id) {
       $stmt = $db->prepare('SELECT id, name,photo FROM restaurants WHERE owner = (SELECT id FROM restaurantOwner where user = ?)');
       $stmt->execute(array($id));
     
       return $stmt->fetchAll();
     }
 
-    static function getRestaurant(PDO $db, int $id) : Restaurant {
+    function getRestaurant(PDO $db, int $id) : Restaurant {
         $stmt = $db->prepare('SELECT id, name, adress, category,photo FROM restaurants WHERE id = ?');
         $stmt->execute(array($id));
         $restaurant = $stmt->fetch();
@@ -65,7 +65,7 @@
 
   
 
-    static function searchRestaurants(PDO $db, string $search, int $count) : array {
+    function searchRestaurants(PDO $db, string $search, int $count) : array {
       $stmt = $db->prepare("SELECT id, name,adress,category,photo FROM restaurants WHERE name LIKE ?  LIMIT ?");
       $stmt->execute(array($search . '%', $count));
       $restaurants = array();
@@ -88,7 +88,7 @@
       return $restaurants;
     }
 
-    static function getRestaurantsByItem(PDO $db, string $search) : array {
+    function getRestaurantsByItem(PDO $db, string $search) : array {
       $stmt = $db->prepare("SELECT id, name,adress,category,photo FROM restaurants WHERE id in (select restaurant from menu where id in (select menu from menu_item where name LIKE ? and status = 1))");
       $stmt->execute(array($search . '%'));
       $restaurants = array();
@@ -196,7 +196,7 @@
       }
     }
 
-    static function getFavoriteRestaurants(PDO $db, int $id) : array {
+    function getFavoriteRestaurants(PDO $db, int $id) : array {
       $stmt = $db->prepare('SELECT id, name,adress,category,photo FROM restaurants WHERE id in (select restaurant from favouriteRestaurant where customer = ?) ');
       $stmt->execute(array($id));
   
@@ -220,7 +220,7 @@
       return $restaurants;
     }
 
-    static function getRestaurantAVGRating(PDO $db, int $id) : float{
+    function getRestaurantAVGRating(PDO $db, int $id) : float{
       $stmt = $db->prepare('select round(avg(rating), 2) as Rating from review where restaurant = ?');
       $stmt->execute(array($id));
       if($id = $stmt->fetch()){
@@ -229,7 +229,7 @@
       
     }
 
-    static function getRestaurantsObjects(PDO $db, int $id) : array {
+    function getRestaurantsObjects(PDO $db, int $id) : array {
       $stmt = $db->prepare('SELECT id, name,adress,category,photo FROM restaurants LIMIT ?');
       $stmt->execute(array($id));
   
@@ -268,7 +268,7 @@
     }
     
     
-    static function getRestaurantIdFromItem(PDO $db, int $id){
+    function getRestaurantIdFromItem(PDO $db, int $id){
       $stmt = $db->prepare('select id from restaurants where id = (select restaurant from menu where id=(select menu from menu_item where id = ? ))');
       $stmt->execute(array($id));
       if($id = $stmt->fetch()){
@@ -277,7 +277,7 @@
       
     }
 
-    static function getRestaurantIdFromName(PDO $db, string $name){
+    function getRestaurantIdFromName(PDO $db, string $name){
       $stmt = $db->prepare('select id from restaurants where name = ?');
       $stmt->execute(array($name));
       if($id = $stmt->fetch()){
