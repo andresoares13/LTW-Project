@@ -39,7 +39,7 @@
         return $reviews;
     }
 
-    function addReview(PDO $db,int $Rid ,int $Cid, int $rating, string $comment){
+    static function addReview(PDO $db,int $Rid ,int $Cid, int $rating, string $comment){
       $reply="";
       try {
         $stmt = $db->prepare('INSERT INTO review(customer,restaurant,rating,comment,reply) VALUES (:customer,:restaurant,:rating,:comment,:reply)');
@@ -60,7 +60,7 @@
       }
     }
 
-    function existsReview(PDO $db, int $Rid, int $Cid) {
+    static function existsReview(PDO $db, int $Rid, int $Cid) {
       try {
         $stmt = $db->prepare('SELECT id FROM review WHERE restaurant = ? AND customer = ?');
         $stmt->execute(array($Rid,$Cid));

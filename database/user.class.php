@@ -105,7 +105,7 @@
       );
     }
 
-    function existsUsername(PDO $db, string $username) {
+    static function existsUsername(PDO $db, string $username) {
       try {
         $stmt = $db->prepare('SELECT userId FROM users WHERE username = ?');
         $stmt->execute(array($username));
@@ -117,7 +117,7 @@
       }
     }
 
-    function existsEmail(PDO $db, string $email) {
+    static function existsEmail(PDO $db, string $email) {
       try {
         $stmt = $db->prepare('SELECT userId FROM users WHERE email = ?');
         $stmt->execute(array($email));
@@ -144,7 +144,7 @@
       }
     }
 
-    function existsPhone(PDO $db, string $phone, int $id) {
+    static function existsPhone(PDO $db, string $phone, int $id) {
       try {
         $stmt = $db->prepare('SELECT userId FROM users WHERE phone = ?');
         $stmt->execute(array($phone));
@@ -163,7 +163,7 @@
       }
     }
 
-    function getID(PDO $db,string $username) {
+    static function getID(PDO $db,string $username) {
       try {
         $stmt = $db->prepare('SELECT userId FROM users WHERE username = ?');
         $stmt->execute(array($username));
@@ -176,7 +176,7 @@
       }
     }
 
-    function getCustomerID(PDO $db,string $username) {
+    static function getCustomerID(PDO $db,string $username) {
       try {
         $stmt = $db->prepare('SELECT id FROM customer WHERE username = ?');
         $stmt->execute(array($username));
@@ -189,7 +189,7 @@
       }
     }
 
-    function createUser(PDO $db, string $username, string $password, string $firstname, string $lastname ,string $email,string $check) {
+    static function createUser(PDO $db, string $username, string $password, string $firstname, string $lastname ,string $email,string $check) {
       
       $password = hash('sha256', $password);
       
@@ -231,7 +231,7 @@
       
     }
 
-    function updatePassword(PDO $db, int $id, string $password){
+    static function updatePassword(PDO $db, int $id, string $password){
       $password = hash('sha256', $password);
   
       try {
@@ -246,7 +246,7 @@
       }
     }
     
-    function deleteUser(PDO $db,int $id, string $username) {
+    static function deleteUser(PDO $db,int $id, string $username) {
       try {
         $name='anonymous';
         $stmt = $db->prepare('DELETE FROM users WHERE userId = ?');
@@ -262,7 +262,7 @@
 
 
 
-    function addFavoriteRestaurant(PDO $db,int $id,int $Rid){
+    static function addFavoriteRestaurant(PDO $db,int $id,int $Rid){
       try {
         $stmt = $db->prepare('INSERT INTO favouriteRestaurant(customer,restaurant) VALUES (:customer,:restaurant)');
         $stmt->bindParam(':customer', $id);
@@ -279,7 +279,7 @@
       }
     }
 
-    function removeFavoriteRestaurant(PDO $db,int $id,int $Rid){
+    static function removeFavoriteRestaurant(PDO $db,int $id,int $Rid){
       try {
         $stmt = $db->prepare('delete from favouriteRestaurant where customer = ? and restaurant = ?');
         if ($stmt->execute(array($id,$Rid))){
@@ -296,7 +296,7 @@
 
 
 
-    function addFavoriteItem(PDO $db,int $id,int $Itemid){
+    static function addFavoriteItem(PDO $db,int $id,int $Itemid){
       try {
         $stmt = $db->prepare('INSERT INTO favouriteMenuItem(customer,menu_item) VALUES (:customer,:menu_item)');
         $stmt->bindParam(':customer', $id);
@@ -313,7 +313,7 @@
       }
     }
 
-    function removeFavoriteItem(PDO $db,int $id,int $Itemid){
+    static function removeFavoriteItem(PDO $db,int $id,int $Itemid){
       try {
         $stmt = $db->prepare('delete from favouriteMenuItem where customer = ? and menu_item = ?');
         if ($stmt->execute(array($id,$Itemid))){
@@ -328,7 +328,7 @@
       }
     }
 
-    function isRestaurantFavorite(PDO $db, int $id) {
+    static function isRestaurantFavorite(PDO $db, int $id) {
       try {
         $customer = (int) User::getCustomerID($db,$_SESSION['username']);
         $stmt = $db->prepare('SELECT id FROM favouriteRestaurant WHERE restaurant = ? and customer = ?');
@@ -346,9 +346,9 @@
       }
     }
 
-    function isItemFavorite(PDO $db, int $id) {
+    static function isItemFavorite(PDO $db, int $id) {
       try {
-        $customer = (int) User::getCustomerID($db,$_SESSION['username']);
+        $custom§ = (int) User::getCustomerID($db,$_SESSION['username']);
         $stmt = $db->prepare('SELECT id FROM favouriteMenuItem WHERE menu_item = ? and customer = ?');
         $stmt->execute(array($id,$customer));
         
@@ -364,7 +364,7 @@
       }
     }
 
-    function updateUserPhoto(PDO $db,int $id, string $photoPath) {
+    static function updateUserPhoto(PDO $db,int $id, string $photoPath) {
       try {
         $stmt = $db->prepare('UPDATE users SET photo = ? WHERE userId = ?');
         if($stmt->execute(array($photoPath, $id)))

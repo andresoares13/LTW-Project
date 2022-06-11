@@ -60,8 +60,8 @@
   </div>
 </article>
 <p>
-<a href="../pages/profile.php?id=photo"> Change Profile Picture</a> | <a href="../pages/profile.php?id=profile"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account">Edit Account Info</a> 
-  | <a href="../pages/profile.php?id=favorites">Favorites</a> | <a href="../pages/profile.php?id=Corders">My orders</a>
+<a href="../pages/profile.php?id=photo" class="userinf"> Change Profile Picture</a> | <a href="../pages/profile.php?id=profile" class="userinf"> Edit Profile Info</a> | <a href="../pages/profile.php?id=account" class="userinf">Edit Account Info</a> 
+  | <a href="../pages/profile.php?id=favorites" class="userinf">Favorites</a> | <a href="../pages/profile.php?id=Corders" class="userinf">My orders</a>
 </p>
 <p>
   <input onclick="openDialog('Delete Account')" type="submit" value="Delete Account">

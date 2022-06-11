@@ -1,5 +1,5 @@
 html{
-  background-color: #ace2f5;
+  background-color: wheat;
 }
 
 html, body {
@@ -30,21 +30,17 @@ body > header {
   padding: 1em;
   min-height: 3.125em;
 
-  background-color: var(--background-color);
+  background-color: rgb(160, 18, 18);
+  border-radius: 2.5em;
 }
 
 #maintit {
-  flex-grow: 1;
-  background-image: linear-gradient(45deg, red, blue 80%) !important;
-  background-clip: text;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-
+  color: white;
+  margin-left: 44%;
 }
 
 body > header a {
-  color: var(--main-color);
+  color: white;
   text-decoration: none;
 }
 
@@ -107,7 +103,7 @@ main > header input {
 } 
 
 #profile_name_header:hover {
-  text-shadow:0px 0px 1px black;
+  text-shadow:0px 0px 2px white;
   transition: 0.2s;
 }
 
@@ -321,6 +317,30 @@ font-weight: 300;
 }
 
 
+#menu article ul li:hover{
+  text-shadow:
+    -0.1px -0.1px 0 black,
+    0.1px -0.1px 0 black,
+    -0.1px 0.1px 0 black,
+    0.1px 0.1px 0 black;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+
+.resInfo:hover {
+  text-shadow:
+    -0.1px -0.1px 0 black,
+    0.1px -0.1px 0 black,
+    -0.1px 0.1px 0 black,
+    0.1px 0.1px 0 black;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+}
+
 #menu article ul{
   list-style: none;
   list-style-position: inside;
@@ -338,10 +358,6 @@ font-weight: 300;
   list-style-position: inside;
   margin: 0;
   padding: 0;
-}
-
-#mainRestaurants{
-  color: white;
 }
 
 #tables{
@@ -531,8 +547,8 @@ footer {
 }
 
 .hlink:hover {
-  color: yellow;
-  text-shadow:0px 0px 3px yellow;
+  color: gold;
+  text-shadow:0px 0px 3px gold;
 
 }
 

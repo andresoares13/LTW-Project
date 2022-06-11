@@ -1,7 +1,7 @@
 <?php declare(strict_types = 1); ?>
 
 <?php function drawRestaurants(array $restaurants) { ?>
-  <header>
+  <header>  
   <h2 id="mainRestaurants">Top Restaurants</h2>
   </header>
   <section id="restaurantsMain">
@@ -31,10 +31,10 @@
     Restaurant's Adress: <?=$restaurant->adress?>
   </p>
   <p>
-  <a href="../pages/cart.php?id=<?=$restaurant->id?>">Order from here</a>
+  <a href="../pages/cart.php?id=<?=$restaurant->id?>" class="resInfo">Order from here</a>
   </p>
   <p>
-    <a href="../pages/review.php?id=<?=$restaurant->id?>">Reviews</a>
+    <a href="../pages/review.php?id=<?=$restaurant->id?>" class="resInfo">Reviews</a>
   </p>
   <?php if (!$favorite){ ?>
   <form action="../action/action_add_favorite.php" method="post" class="favorite">

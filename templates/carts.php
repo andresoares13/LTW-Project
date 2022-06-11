@@ -65,7 +65,7 @@ require_once('../database/menu_item.class.php');
         Looks like your cart is empty :(
       </h1>
       <p>
-        <a href="../pages/restaurant.php?id=search">Click here to search for restaurants </a>
+        <a href="../pages/restaurant.php?id=search" class="resInfo">Click here to search for restaurants </a>
       </p>
     </body>
 

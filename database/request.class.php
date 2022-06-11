@@ -99,7 +99,7 @@
         );
       }
 
-      function isCustomerCompletedRequest(PDO $db, string $username, int $restaurant) {
+      static function isCustomerCompletedRequest(PDO $db, string $username, int $restaurant) {
         try {
           $stmt = $db->prepare('select count(id) as count from request where state="Delivered" and customer = (select id from customer where username = ?) and id in (select request from requestMenuItem where menu_item in (select id from menu_item where menu in (select id from menu where restaurant in (select id from restaurants where id = ?))))');
           $stmt->execute(array($username,$restaurant));

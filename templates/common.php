@@ -25,7 +25,7 @@
                     <ul class="hmenu">
                         <li class="item"><a href="../pages/main.php" class="hlink">Home</a></li>
                         <li class="item"><a href="../pages/restaurant.php?id=search" class="hlink">Restaurants</a></li>
-                        <li class="item"><a href="../pages/profile.php?id=favorites" class="hlink">Favourites</a></li>
+                        <li class="item"><a href="../pages/restaurant.php?id=search" class="hlink">Search</a></li>
                         <li class="item"><a href="../pages/profile.php?id=Rorders" class="hlink">Order</a></li>
                     </ul>
                     <div id="hamb">
@@ -41,7 +41,10 @@
       <a href="../pages/cart.php?id=<?=$_SESSION['cartRestaurant']?>">
       <i class="fa" style="font-size:1.5em">&#xf07a;</i>
       </a>
-       <span class='badge badge-warning'  id='lblCartCount' <?php if (!$_SESSION['cart']){?> style="background-color:transparent;" <?php } ?> ><?php if ($_SESSION['cart']){?> <?= count($_SESSION['cart'])?> <?php }?> </span> 
+       <span class='badge badge-warning'  id='lblCartCount' style="background-color:transparent">
+       <?php /* if (!$_SESSION['cart']){?><?php } ?> >
+       <?php if ($_SESSION['cart']){?> <?= count($_SESSION['cart'])?> <?php } */ ?> 
+      </span> 
       </div>
       <?php } ?>  
       <?php if (isset($_SESSION['id'])) drawLogoutForm($_SESSION['name']);?>
