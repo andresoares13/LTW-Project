@@ -68,9 +68,9 @@ Remove from your favorites
 
 <?php function drawRestaurantOwner(Restaurant $restaurant, array $menus) { ?>
   <h1><?=$restaurant->name?></h1>
-  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit">Edit restaurant's information</a> |
-  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit2">Add a menu</a> |
-  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=photo">Change restaurant's photo</a>
+  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit" class="resOwner">Edit restaurant's information</a> |
+  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=edit2" class="resOwner">Add a menu</a> |
+  <a href="../pages/restaurant.php?id=<?=$restaurant->id?>&id2=photo" class="resOwner">Change restaurant's photo</a>
   <h3>Category: <?=$restaurant->category?></h3>
   <section id="menu">
     <?php foreach ($menus as $menu) { ?>

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Open+Sans:wght@300;800&display=swap');
+
+* {
+  font-family: 'Lora', serif;
+  font-family: 'Open Sans', sans-serif;
+}
+
 #products {
     display: flex;
     flex-wrap: wrap;

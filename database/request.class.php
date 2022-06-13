@@ -122,7 +122,7 @@
         }
       }
       
-      function CreateRequest(PDO $db,int $Cid){
+      static function CreateRequest(PDO $db,int $Cid){
         try {
           $stmt = $db->prepare('INSERT INTO request(customer,state) VALUES (:customer,:state)');
           $state='Received';
@@ -149,7 +149,7 @@
         
       }
 
-      function InsertItemRequest(PDO $db,int $RequestId, int $ItemId, int $quantity){
+      static function InsertItemRequest(PDO $db,int $RequestId, int $ItemId, int $quantity){
         try {
           $stmt = $db->prepare('INSERT INTO requestMenuItem(menu_item,request,quantity) VALUES (:item,:request,:quantity)');
           $stmt->bindParam(':item', $ItemId);

@@ -85,7 +85,7 @@ require_once('../database/menu_item.class.php');
       </h1>
       <img src="../pictures/banhas.jpg" alt="Cute Penguin">
       <p>
-        <a href="../pages/restaurant.php?id=search">Click here to search for restaurants </a>
+        <a href="../pages/restaurant.php?id=search" class="resInfo">Click here to search for restaurants </a>
       </p>
     </body>
 

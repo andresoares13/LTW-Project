@@ -17,6 +17,8 @@
 
   $db = getDatabaseConnection();
 
+  error_reporting(E_ERROR | E_PARSE);
+
   $itemsByMenu=Menu_Item::getItemsByMenu($db,(int)$_GET['id']);
   
   
