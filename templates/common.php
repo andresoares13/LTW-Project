@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Restaurant Helper</title>
+    <title>Taste Servicw</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
@@ -19,7 +19,7 @@
   <body>
   <header>
   <div id="wrapper2">
-      <h1><a href="../pages/main.php" id="maintit">Restaurant helper</a></h1>
+      <h1><a href="../pages/main.php" id="maintit">Taste Service</a></h1>
 
                 <nav class="nav1">
                     <ul class="hmenu">

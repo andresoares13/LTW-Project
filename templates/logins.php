@@ -2,7 +2,7 @@
     <!DOCTYPE html>
     <html lang="en-US">
         <head>
-            <title>Restaurant Helper</title>
+            <title>Taste Service</title>
             <meta charset="utf-8">
 
             <link rel="stylesheet" href="../css/style_login.css">
@@ -14,7 +14,7 @@
         </head>
 
         <body>
-            <header><h1 class="tit">Restaurant Helper</h1></header>
+            <header><h1 class="tit">Taste Service</h1></header>
             <div class="login1">
                 <div class="formul">
                     <div class="button_rectangle">

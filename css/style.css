@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Open+Sans:wght@300&display=swap');
+
+* {
+  font-family: 'Open Sans', sans-serif, 'Lora', serif;
+}
+
 html{
   background-color: wheat;
 }
@@ -655,4 +661,25 @@ footer {
 #repeat {
   border-radius: 0.7em;
   border: 1em black;
+}
+
+@media only screen and (max-width: 900px) {
+  .hmenu {
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .hmenu {
+    width: 75%;
+  }
+  #maintit {
+    margin-left: 35%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #maintit {
+    margin-left: 25%;
+  }
 }
