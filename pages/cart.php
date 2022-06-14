@@ -3,7 +3,7 @@
 
   session_start();
 
-  if (!isset($_SESSION['id'])) 
+ 
   if ($_SESSION['usertype']!='Customer'){
     die(header('Location: /'));
   }

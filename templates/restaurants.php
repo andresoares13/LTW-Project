@@ -30,9 +30,11 @@
   <p>
     Restaurant's Adress: <?=$restaurant->adress?>
   </p>
+  <?php if ($_SESSION['usertype']=='Customer'){?>
   <p>
   <a href="../pages/cart.php?id=<?=$restaurant->id?>" class="resInfo">Order from here</a>
   </p>
+  <?php }?>
   <p>
     <a href="../pages/review.php?id=<?=$restaurant->id?>" class="resInfo">Reviews</a>
   </p>
