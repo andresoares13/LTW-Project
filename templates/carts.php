@@ -34,7 +34,7 @@ require_once('../database/menu_item.class.php');
         <tr><th>Id</th><th>Product</th><th>Quantity</th><th>Price</th><th>Total</th><th>Delete</th></tr>
       </thead>
       <tbody id="tbody">
-      <?php $total = 0; foreach ($_SESSION['cart'] as $i => $item) { $total+=$item['price']*$item['quantity'];?>
+      <?php (float) $total = 0; foreach ($_SESSION['cart'] as $i => $item) { (float)$total+=(float) $item['price']* (float)$item['quantity'];?>
           <tr id="<?=$i?>"><th><?=$i?></th><th><?php $db = getDatabaseConnection(); ?><?=Menu_Item::getItemName($db,$i)?></th><th id="quantity"><?=$item['quantity']?></th><th id= "price"><?=$item['price']?></th>
           <th><?=$item['price']*$item['quantity']?></th> <th><input type = "button" id="deleteCartRow" onclick = "DeleteRow(<?=$i?>)" value = "X"></th></tr>
         <?php } ?>

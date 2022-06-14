@@ -22,7 +22,7 @@
     }
     else{
       $_SESSION['cart'][$_POST['id']]['quantity']=(int)$_POST['quantity'];
-      $_SESSION['cart'][$_POST['id']]['price']=(int)$_POST['price'];
+      $_SESSION['cart'][$_POST['id']]['price']=(float)$_POST['price'];
       $_SESSION['cartRestaurant'] = Restaurant::getRestaurantIdFromItem($db,(int)$_POST['id']);
     }
   }

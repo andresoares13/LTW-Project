@@ -348,7 +348,7 @@
 
     static function isItemFavorite(PDO $db, int $id) {
       try {
-        $custom§ = (int) User::getCustomerID($db,$_SESSION['username']);
+        $customer = (int) User::getCustomerID($db,$_SESSION['username']);
         $stmt = $db->prepare('SELECT id FROM favouriteMenuItem WHERE menu_item = ? and customer = ?');
         $stmt->execute(array($id,$customer));
         

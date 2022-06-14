@@ -23,10 +23,10 @@ function attachBuyEvents() {
           th3.setAttribute("id","quantity")
           th4.textContent=button.previousElementSibling.previousElementSibling.innerHTML;
           th4.setAttribute("id","price")
-          total+=parseInt(button.previousElementSibling.value)*parseInt(button.previousElementSibling.previousElementSibling.innerHTML);
+          total+=parseFloat(button.previousElementSibling.value)*parseFloat(button.previousElementSibling.previousElementSibling.innerHTML);
           th5.textContent=total;
           const disPlaytotal=document.querySelector("#cart table tfoot tr th").nextElementSibling;
-          disPlaytotal.innerHTML=parseInt(disPlaytotal.innerHTML)+total;
+          disPlaytotal.innerHTML=parseFloat(disPlaytotal.innerHTML)+total;
           let deletefunction = 'DeleteRow('+ button.parentElement.getAttribute("data-id") + ')';
           th6.innerHTML='<input type = "button" onclick =' + deletefunction + ' value = "X">';
           const children=tbody.children;
@@ -49,8 +49,8 @@ function attachBuyEvents() {
           }
           else{
             newChildren=samechild.firstChild;
-            newChildren.nextElementSibling.nextElementSibling.innerHTML=parseInt(th3.textContent)+parseInt(newChildren.nextElementSibling.nextElementSibling.innerHTML);
-            newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML=parseInt(th5.textContent)+parseInt(newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML);
+            newChildren.nextElementSibling.nextElementSibling.innerHTML=parseFloat(th3.textContent)+parseFloat(newChildren.nextElementSibling.nextElementSibling.innerHTML);
+            newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML=parseFloat(th5.textContent)+parseFloat(newChildren.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML);
 
           }
           const Rid=document.querySelector('#products input');
@@ -96,16 +96,16 @@ function DeleteRow(id){
     if (child.getAttribute("id")==id){
       const price=child.querySelector("#price").textContent;
       const quantity = child.querySelector("#quantity").textContent;
-      const total = parseInt(price)* parseInt(quantity);
+      const total = parseFloat(price)* parseFloat(quantity);
       const disPlaytotal=document.querySelector("#cart table tfoot tr th").nextElementSibling;
-      disPlaytotal.innerHTML=parseInt(disPlaytotal.innerHTML)-total;     
+      disPlaytotal.innerHTML=parseFloat(disPlaytotal.innerHTML)-total;     
       child.remove();
       break;
     }; 
   }
   const cartIconNumber = document.querySelector("#lblCartCount");
-  cartIconNumber.innerHTML=parseInt(cartIconNumber.innerHTML)-1;
-  if (parseInt(cartIconNumber.innerHTML)==0){
+  cartIconNumber.innerHTML=parseFloat(cartIconNumber.innerHTML)-1;
+  if (parseFloat(cartIconNumber.innerHTML)==0){
     cartIconNumber.setAttribute("style","background-color:transparent;");
     cartIconNumber.innerHTML="";
     const cartIconA = document.querySelector("#cartIcon a");

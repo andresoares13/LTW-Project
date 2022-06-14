@@ -24,9 +24,10 @@
                 <nav class="nav1">
                     <ul class="hmenu">
                         <li class="item"><a href="../pages/main.php" class="hlink">Home</a></li>
-                        <li class="item"><a href="../pages/restaurant.php?id=search" class="hlink">Restaurants</a></li>
+                        <li class="item"><a href="../pages/restaurant.php?id=search&id2=rating" class="hlink">Best Restaurants</a></li>
                         <li class="item"><a href="../pages/restaurant.php?id=search" class="hlink">Search</a></li>
-                        <li class="item"><a href="../pages/profile.php?id=Rorders" class="hlink">Order</a></li>
+                        <li class="item"><a <?php if ($_SESSION['usertype']=='Customer'){?>href="../pages/profile.php?id=Corders" <?php } else{ ?>
+                        href="../pages/profile.php?id=Rorders"<?php } ?> class="hlink">Orders</a></li>
                     </ul>
                     <div id="hamb">
                         <span class="bar"></span>

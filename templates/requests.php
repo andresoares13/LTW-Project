@@ -4,7 +4,7 @@ require_once('../database/connection.php');
 require_once('../database/restaurant.class.php');
 ?>
 <?php function drawProfileRequests(array $requests) { ?>
-  <h2>Orders of your restaurants:</h2>
+  <?php if ($_SESSION['usertype']=='Customer'){ ?> <h2>Your orders:</h2> <?php }else{?><h2>Orders of your restaurants:</h2> <?php } ?>
   <?php if ($requests!=[]){ ?>  
   <h3>click on the order to see details <?php if ($_SESSION['usertype']=='Restaurant Owner') { ?>and edit state <?php }?></h3>    
   <table id="tables">
@@ -34,7 +34,7 @@ require_once('../database/restaurant.class.php');
   <h3>Items:</h3>
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Quantity</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
-    <?php foreach ($items as $i => $item) { $total+=(int)$item->price*(int)$item->quantity?>
+    <?php foreach ($items as $i => $item) { $total+=(float)$item->price*(float)$item->quantity?>
 
       <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->quantity?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
     <?php } ?>
@@ -55,7 +55,7 @@ require_once('../database/restaurant.class.php');
   <h3>Items:</h3>
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Menu Item</th><th scope="col">Price</th><th scope="col">Quantity</th><th scope="col">Category</th><th scope="col">Photo</th></tr>
-    <?php foreach ($items as $i => $item) { $total+=(int)$item->price*(int)$item->quantity?>
+    <?php foreach ($items as $i => $item) { $total+=(float)$item->price*(float)$item->quantity?>
 
       <tr><td><?=$i+1?></td><td><?=$item->name?></td><td><?=$item->price?>€</td><td><?=$item->quantity?></td><td><?=$item->category?></td><td><img src="../itemPictures/<?=$item->photo?>"></td></tr>
     <?php } ?>

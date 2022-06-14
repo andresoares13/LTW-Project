@@ -4,7 +4,7 @@
   class Menu_Item {
     public int $id;
     public string $name;
-    public int $price;
+    public float $price;
     public string $photo;
     public string $category;
     public int $menu;
@@ -12,7 +12,7 @@
     public bool $active;
 
 
-    public function __construct(int $id, string $name, int $price, string $photo, string $category, int $menu, int $quantity,bool $active) {
+    public function __construct(int $id, string $name, float $price, string $photo, string $category, int $menu, int $quantity,bool $active) {
       $this->id = $id;
       $this->name = $name;
       $this->price = $price;
@@ -39,7 +39,7 @@
           $menu_items[] = new Menu_Item(
             (int) $item['id'],
             $item['name'],
-            (int) $item['price'],
+            (float) $item['price'],
             $item['photo'],
             $item['category'],
             (int) $item['menu'],
@@ -66,7 +66,7 @@
       return new Menu_Item(
         (int) $item['id'],
         $item['name'],
-        (int) $item['price'],
+        (float) $item['price'],
         $item['photo'],
         $item['category'],
         (int) $item['menu'],
@@ -110,7 +110,7 @@
         $menu_items[] = new Menu_Item(
           (int) $item['id'],
           $item['name'],
-          (int) $item['price'],
+          (float) $item['price'],
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
@@ -137,7 +137,7 @@
         $menu_items[] = new Menu_Item(
           (int) $item['id'],
           $item['name'],
-          (int) $item['price'],
+          (float) $item['price'],
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
@@ -163,7 +163,7 @@
           
           (int) $item['id'],
           $item['name'],
-          (int) $item['price'],
+          (float) $item['price'],
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
@@ -189,7 +189,7 @@
         $menu_items[] = new Menu_Item(
           (int) $item['id'],
           $item['name'],
-          (int) $item['price'],
+          (float) $item['price'],
           $item['photo'],
           $item['category'],
           (int) $item['menu'],
