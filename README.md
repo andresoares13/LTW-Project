@@ -28,8 +28,13 @@
 
 ## Credentials
 
-admin/admin13 (owner)
-joaquim/order66 (owner)
-sergio/order66 (owner)
-ben/hellothere13 (customer)
-yoda/hellothere13 (customer)
+admin/admin13 (owner) <br />
+joaquim/order66 (owner) <br />
+sergio/order66 (owner) <br />
+ben/hellothere13 (customer) <br />
+yoda/hellothere13 (customer) <br />
+
+## Notes
+
+-The shopping cart icon only shows when you are logged as a customer
+-If you are logged as a restaurant owner you cannot order from restaurants
