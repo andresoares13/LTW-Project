@@ -501,8 +501,17 @@ footer {
     padding: 0 0.3125em;
     vertical-align: top;
     margin-left: -0.625em;
-    height: 1em;
+    left: 2.8em;
+    bottom: 3em;
+    position: relative;
+    
 }
+
+#cartIcon a{
+  color: black;
+  font-size: 1.5em;
+}
+
 .badge {
   padding-left: 0.5625em;
   padding-right: 0.5625em;
