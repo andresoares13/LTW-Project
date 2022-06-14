@@ -3,7 +3,7 @@
 <?php function drawReviews(array $reviews, Restaurant $restaurant) { ?>
   <h2>Reviews:</h2>
   <h3>Restaurant: <a href="../pages/restaurant.php?id=<?=$restaurant->id?>"><?=$restaurant->name?></a></h3>     
-  <p><a href="../pages/review.php?id=<?=$restaurant->id?>&id2=review" id="reviewThis">Review this restaurant</a> <br> <br></p>
+  <?php if ($_SESSION['usertype']=='Customer'){?> <p><a href="../pages/review.php?id=<?=$restaurant->id?>&id2=review" id="reviewThis">Review this restaurant</a> <br> <br></p> <?php }?>
   <?php if ($reviews!=[]){ ?>
   <table id="tables">
     <tr><th scope="col">#</th><th scope="col">Customer</th><th scope="col">Rating</th><th scope="col">Comment</th> <th scope="col">Restaurant Reply</th></tr>

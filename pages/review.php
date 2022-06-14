@@ -32,6 +32,9 @@
   else if (Restaurant::isOwnerOfRestaurant($db,(int)$_GET['id'],$_SESSION['id'])){
     drawOwnerReviews($reviews,$restaurant);
   }
+  else if ($_SESSION['usertype']=="Restaurant Owner"){
+    drawReviews($reviews,$restaurant);
+  }
   else if ($_SESSION['usertype']=="Customer"){
     if (!Request::isCustomerCompletedRequest($db,$_SESSION['username'],(int)$_GET['id'])){
       drawReviews($reviews,$restaurant);
