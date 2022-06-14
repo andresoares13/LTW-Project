@@ -22,6 +22,6 @@
 
 ## Credentials
 
-admin/lmao
-manel/lmao
+admin/lmao<br />
+manel/lmao<br />
 carol/carol44
